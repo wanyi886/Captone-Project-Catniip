@@ -9,7 +9,7 @@ import { postEvent, getOneEvent } from '../../store/event';
 import { getEventCategories } from '../../store/category';
 
 
-const AddEventFormPage = () => {
+const AddEventFormPage = ({states}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -238,16 +238,16 @@ const AddEventFormPage = () => {
           <div className='form-label'>
             <label htmlFor='state'>State</label>
           </div>
-          <div className='form-input2'>
-            <input
-              type="text"
-              name="city"
-              placeholder='Ex: CA'
-              value={state}
+            <select
+              name="state"
               onChange={e => setState(e.target.value)}
-              >
-            </input>
-          </div>
+              value={state}
+              className='form-select'
+            >
+              {states.map(state =>
+                <option key={state}>{state}</option>
+                )}
+            </select>
 
           <div className='form-label'>
             <label htmlFor='zipCode'>Zipcode</label>

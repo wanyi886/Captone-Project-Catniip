@@ -9,7 +9,7 @@ import { editEvent, getOneEvent } from '../../store/event';
 import { getEventCategories } from '../../store/category';
 
 
-const EditEventFormPage = ({event, hideForm}) => {
+const EditEventFormPage = ({event, hideForm, states}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -259,6 +259,8 @@ const EditEventFormPage = ({event, hideForm}) => {
               >
             </input>
           </div>
+
+        
 
           <div className='form-label'>
             <label htmlFor='zipCode'>Zipcode</label>
