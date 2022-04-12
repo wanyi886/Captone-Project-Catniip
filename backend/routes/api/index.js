@@ -2,19 +2,15 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie } = require('../../utils/auth');
 const { restoreUser, requireAuth } = require( '../../utils/auth');
-const { User, Event, Category } = require('../../db/models')
+const { User} = require('../../db/models')
 
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
-const eventRouter = require('./event');
-const categoryRouter = require('./category');
-const ticketsRouter = require('./tickets')
+
+
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
-router.use('/event', eventRouter);
-router.use('/categories', categoryRouter);
-router.use('/tickets', ticketsRouter);
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
@@ -24,7 +20,7 @@ router.post('/test', function(req, res) {
 router.get('/set-token-cookie', asyncHandler(async(req, res) => {
   const user = await User.findOne({
     where: {
-      username: 'Demo-lition'
+      username: 'Demo-WanYi'
     }
   })
   setTokenCookie(res, user);

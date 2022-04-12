@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import logo from '../../images/eventLight2.png'
+
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -12,62 +12,24 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <>
-      <div className="left-nav">
-        <div className="icon">
-          <NavLink exact to="/">
-            <img src={logo} alt="Logo" className='eventlight'></img>
-          </NavLink>
-        </div>
-      </div>
-
-      <div className='right-nav'>
-        <ul className='nav-menu'>
-          <li className='nav-item'>
-            <NavLink to="/add-event" >Create an Event</NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink to={`/tickets/users/${sessionUser.id}`}>My Tickets</NavLink>
-          </li>
-          <li className='nav-item'>
-            <ProfileButton  user={sessionUser} />
-          </li>
-        </ul>
-      </div>
-
-      </>
+      <ProfileButton user={sessionUser} />
     );
   } else {
     sessionLinks = (
       <>
-      <div className="left-nav">
-        <div className="icon">
-          <NavLink exact to="/">
-            <img src={logo} alt="Logo" className='eventlight'></img>
-          </NavLink>
-        </div>
-      </div>
-
-      <div className='right-nav'>
-        <ul className='nav-menu'>
-          <li className='nav-item'>
-          <NavLink to="/login" >Log In</NavLink>
-          </li>
-          <li className='nav-item'>
-          <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-        </ul>
-      </div>
-
+        <NavLink to="/login">Log In</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <header className='navbar'>
-          {isLoaded && sessionLinks}
-    </header>
+    <ul>
+      <li>
+        <NavLink exact to="/">Home</NavLink>
+        {isLoaded && sessionLinks}
+      </li>
+    </ul>
   );
 }
-
 export default Navigation;

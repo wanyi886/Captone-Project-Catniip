@@ -1,5 +1,4 @@
 import './LoginForm.css';
-import coffeImg from '../../images/coffee.jpg'
 
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
@@ -29,7 +28,7 @@ function LoginFormPage() {
   }
 
   const handleClick = () => {
-    return dispatch(sessionActions.login({ credential: "Demo-lition", password: "password" }))
+    return dispatch(sessionActions.login({ credential: "Demo-WanYi", password: "password" }))
   }
 
   return (
@@ -79,9 +78,6 @@ function LoginFormPage() {
         </div>
       </div>
 
-      <div className='img-container'>
-        <img src={coffeImg} />
-      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 // frontend/src/components/SignupFormPage/index.js
 import './SignupForm.css';
-import drinking from '../../images/drinking.jpg'
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -102,9 +101,6 @@ function SignupFormPage() {
             <a  className="atag" href="/login">Already have an account?</a>
           </div>
         </form>
-      </div>
-      <div className='img-container'>
-        <img src={drinking} />
       </div>
 
     </div>
