@@ -7,6 +7,7 @@ const { Product } = require('../../db/models')
 
 const router = express.Router();
 
+
 // get all products
 router.get('/', asyncHandler(async (req, res) => {
 
@@ -23,6 +24,13 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
 }))
 
 // create a product
+router.post('/', asyncHandler(async(req, res) => {
+  const data = req.body;
+  const newProduct = await Product.create(data);
+  console.log(req.baseUrl)
+  console.log("newProduct created!", newProduct)
+  return res.redirect(`/products/${newProduct.id}/detail`)
+}))
 
 // update a product
 

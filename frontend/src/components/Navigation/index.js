@@ -16,6 +16,7 @@ function Navigation({ isLoaded }){
       <>
         <NavLink to="/products">All Products</NavLink>
         <NavLink to="/my-listing">My Listing</NavLink>
+        <NavLink to="/products/create">Add New Product</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
@@ -26,7 +27,6 @@ function Navigation({ isLoaded }){
         {/* <NavLink to="/login">Log In</NavLink> */}
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/products">All Products</NavLink>
-        <NavLink to="/my-listing">My Listing</NavLink>
       </>
     );
   }

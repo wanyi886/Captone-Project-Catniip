@@ -35,6 +35,27 @@ export const loadOneProduct = (id) => async (dispatch) => {
 }
 
 // ========== update one product ==========
+const CREATE_A_PRODUCT = 'products/CREATE_A_PRODUCT';
+
+const createProduct = (product) => ({
+  type: CREATE_A_PRODUCT,
+  payload: product
+})
+
+export const addOneProduct = (data) => async(dispatch) => {
+  const res = await csrfFetch('/apo/products',{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+
+  if (res.ok){
+    const product = await res.json();
+    await dispatch(createProduct(product))
+  }
+}
+
+// ========== update one product ==========
 
 // ========== delete one product ==========
 
@@ -54,11 +75,12 @@ export default function productsReducer(state = initialState, action) {
       return newState;
 
     case GET_ONE_PRODUCT:
-      console.log("action.payload", action.payload)
       newState[action.payload.id] = action.payload
       return newState;
 
-
+    case CREATE_A_PRODUCT:
+      newState[action.payload.id] = action.payload
+      return newState;
 
     default:
       return newState
