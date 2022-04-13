@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
+import ProductDetail from "../ProductDetail";
 
 
 function AllProducts() {
@@ -10,7 +11,7 @@ function AllProducts() {
   const productsStateData = useSelector(state => state.productsState)
 
   const products = Object.values(productsStateData)
-  console.log("products", products)
+  // console.log("products", products)
   // console.log("product reversed", products.reverse())
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function AllProducts() {
     <h1>All Products</h1>
       <div className="products-container">
       {products.map(product => (
-        <div className="product-container" key={product.id}>
+        <div className="product-container" key={product.id} >
           <Link to={`/products/${product?.id}/detail`} style={{ textDecoration: 'none' }}>
             <div className="product-picture">
               {/* <img src={`${product?.imgUrl}`}/> */}

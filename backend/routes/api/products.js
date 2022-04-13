@@ -9,13 +9,18 @@ const router = express.Router();
 
 // get all products
 router.get('/', asyncHandler(async (req, res) => {
-  console.log("hey")
+
   const products = await Product.findAll();
-  console.log('products', products)
+
   return res.json(products);
 }))
 
 // get one product
+router.get('/:id/detail', asyncHandler(async(req, res) => {
+  const productId = req.params.id;
+  const product = await Product.findByPk(productId);
+  return res.json(product);
+}))
 
 // create a product
 

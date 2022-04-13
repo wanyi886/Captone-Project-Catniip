@@ -20,13 +20,14 @@ export const loadProductsPage = () => async (dispatch) => {
 // ========== get one product ==========
 const GET_ONE_PRODUCT = 'products/GET_ONE_PRODUCT';
 
-const getOneProduct = (productId) => ({
+const getOneProduct = (product) => ({
   type: GET_ONE_PRODUCT,
-  payload: productId
+  payload: product
 })
 
-export const loadOneProduct = (productId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/${productId}/detail`);
+export const loadOneProduct = (id) => async (dispatch) => {
+
+  const res = await csrfFetch(`/api/products/${id}/detail`);
   if (res.ok) {
     const product = await res.json();
     await dispatch(getOneProduct(product))
@@ -50,7 +51,14 @@ export default function productsReducer(state = initialState, action) {
       action.payload.forEach(product => {
         newState[product.id] = product
       })
-      return newState
+      return newState;
+
+    case GET_ONE_PRODUCT:
+      console.log("action.payload", action.payload)
+      newState[action.payload.id] = action.payload
+      return newState;
+
+
 
     default:
       return newState
