@@ -1,7 +1,8 @@
 import { csrfFetch } from "./csrf";
 
-const GET_ALL_PRODUCTS = 'products/GET_ALL_PRODUCTS';
 
+// ========== get all products ==========
+const GET_ALL_PRODUCTS = 'products/GET_ALL_PRODUCTS';
 
 const getProducts = (products) => ({
   type: GET_ALL_PRODUCTS,
@@ -15,6 +16,28 @@ export const loadProductsPage = () => async (dispatch) => {
     await dispatch(getProducts(products))
   }
 }
+
+// ========== get one product ==========
+const GET_ONE_PRODUCT = 'products/GET_ONE_PRODUCT';
+
+const getOneProduct = (productId) => ({
+  type: GET_ONE_PRODUCT,
+  payload: productId
+})
+
+export const loadOneProduct = (productId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/${productId}/detail`);
+  if (res.ok) {
+    const product = await res.json();
+    await dispatch(getOneProduct(product))
+  }
+}
+
+// ========== update one product ==========
+
+// ========== delete one product ==========
+
+// ========== Reducer ==========
 
 const initialState = {};
 

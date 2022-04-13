@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllProducts from "./components/AllProducts";
+import ProductDetail from "./components/ProductDetail";
 
 
 function App() {
@@ -25,13 +26,16 @@ function App() {
           <Route exact path="/">
             Home
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/products">
+          <Route exact path="/products">
             <AllProducts />
           </Route>
-          <Route path="/my-listing">
+          <Route exact path="/products/:id/detail">
+            <ProductDetail />
+          </Route>
+          <Route exact path="/my-listing">
             My Listing
           </Route>
           <Route>

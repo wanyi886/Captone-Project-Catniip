@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
-import { Redirect } from "react-router-dom";
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
 
