@@ -18,7 +18,8 @@ function AddProductForm() {
 
   console.log("type", type)
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     console.log("hi")
   }
 
@@ -26,7 +27,7 @@ function AddProductForm() {
     <div>
       <h1>Add New Product</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor='image'></label>
+        <label htmlFor='image'>Product Image Url</label>
         <input
           type="text"
           name='image'
@@ -85,6 +86,8 @@ function AddProductForm() {
           value={inventory}
         >
         </input>
+
+        <button type='submit'>Submit</button>
 
       </form>
     </div>
