@@ -8,7 +8,10 @@ import { loadProductsPage } from "../../store/products"
 function AllProducts() {
   const dispatch = useDispatch()
   const productsStateData = useSelector(state => state.productsState)
-  console.log("productsStateData!!!!!", productsStateData)
+
+  const products = Object.values(productsStateData)
+  console.log("products", products)
+  // console.log("product reversed", products.reverse())
 
   useEffect(() => {
     dispatch(loadProductsPage())
@@ -18,6 +21,26 @@ function AllProducts() {
   return (
     <>
     <h1>All Products</h1>
+      <div className="products-container">
+      {products.map(product => (
+        <div className="product-container" key={product.id}>
+          <div className="product-picture">
+            <img src={`${product?.imgUrl}`}/>
+          </div>
+          <div className="product-title">
+            {product?.title}
+          </div>
+          <div className="product-des">
+            {product?.description}
+          </div>
+          <div className="product-price">
+            {product?.price}
+          </div>
+
+        </div>
+      ))}
+
+      </div>
     </>
   )
 }
