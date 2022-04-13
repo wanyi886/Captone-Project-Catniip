@@ -27,8 +27,8 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
 router.post('/', asyncHandler(async(req, res) => {
   const data = req.body;
   const newProduct = await Product.create(data);
-  console.log(req.baseUrl)
-  console.log("newProduct created!", newProduct)
+  // console.log(req.baseUrl)
+  // console.log("newProduct created!", newProduct)
   return res.redirect(`/products/${newProduct.id}/detail`)
 }))
 

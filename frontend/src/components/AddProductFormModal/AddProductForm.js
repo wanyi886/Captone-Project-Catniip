@@ -16,11 +16,11 @@ function AddProductForm() {
   const [price, setPrice] = useState(0)
   const [inventory, setInventory] = useState(0)
 
-  console.log("type", type)
+  // console.log("type", type)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("hi")
+    // console.log("hi")
   }
 
   return (
