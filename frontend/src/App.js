@@ -21,13 +21,21 @@ function App() {
 
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            Home
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-
-          {/* <Route>
+          <Route path="/products">
+            Products Page
+          </Route>
+          <Route path="/my-listing">
+            My Listing
+          </Route>
+          <Route>
             Page Not Found
-          </Route> */}
+          </Route>
 
         </Switch>
       )}
