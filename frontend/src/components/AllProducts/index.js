@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom'
 import { Redirect } from "react-router-dom";
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
@@ -24,18 +25,22 @@ function AllProducts() {
       <div className="products-container">
       {products.map(product => (
         <div className="product-container" key={product.id}>
-          <div className="product-picture">
-            <img src={`${product?.imgUrl}`}/>
-          </div>
-          <div className="product-title">
-            {product?.title}
-          </div>
-          <div className="product-des">
-            {product?.description}
-          </div>
-          <div className="product-price">
-            {product?.price}
-          </div>
+          <Link to={`/products/${product?.id}/detail`} style={{ textDecoration: 'none' }}>
+            <div className="product-picture">
+              {/* <img src={`${product?.imgUrl}`}/> */}
+              Product {product?.id}:
+            </div>
+            <div className="product-title">
+              {product?.title}
+            </div>
+            <div className="product-des">
+              {product?.description}
+            </div>
+            <div className="product-price">
+              {product?.price}
+            </div>
+          </Link>
+          <button>Add to Cart</button>
 
         </div>
       ))}
