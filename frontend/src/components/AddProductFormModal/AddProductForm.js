@@ -91,4 +91,4 @@ function AddProductForm() {
   )
 }
 
-export default AddProductForm()
+export default AddProductForm

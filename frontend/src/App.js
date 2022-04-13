@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllProducts from "./components/AllProducts";
 import ProductDetail from "./components/ProductDetail";
+import MyListingPage from "./components/MyListing";
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
             <ProductDetail />
           </Route>
           <Route exact path="/my-listing">
-            My Listing
+            <MyListingPage />
           </Route>
           <Route>
             Page Not Found
