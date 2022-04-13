@@ -6,11 +6,12 @@ const { User} = require('../../db/models')
 
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
-
+const productsRouter = require('./products')
 
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/products', productsRouter)
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
@@ -37,11 +38,6 @@ router.get('/require-auth', requireAuth, asyncHandler(async(req, res) => {
   return res.json(req.user);
 }))
 
-router.get('/', asyncHandler(async(req, res) => {
-  const events = await Event.findAll({
-    include: { model: Category }
-  });
-  return res.json(events);
-}))
+
 
 module.exports = router;
