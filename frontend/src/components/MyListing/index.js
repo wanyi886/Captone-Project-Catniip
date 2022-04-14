@@ -37,6 +37,8 @@ function MyListingPage(){
               <div className='my-product-id'>{userProduct.id}</div>
               <div className='my-product-title'>{userProduct.title}</div>
               <div className='my-product-description'>Description: {userProduct.description}</div>
+              <button type="button">Edit</button>
+              <button type="button">Delete</button>
             </div>
           ))
         }
