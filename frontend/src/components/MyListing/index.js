@@ -6,6 +6,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import { loadProductsPage } from '../../store/products';
 import * as sessionActions from '../../store/session'
 import EditProductForm from '../EditProductFormModal/EditProductForm';
+import ConfirmModal from './ConfirmModal'
 
 function MyListingPage(){
   const dispatch = useDispatch()
@@ -16,6 +17,8 @@ function MyListingPage(){
 
   const [showModal, setShowModal] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
+
   const [currentProduct, setCurrentProduct] = useState("")
 
   useEffect(() => {
@@ -24,8 +27,15 @@ function MyListingPage(){
 
   const handleEditClick = (e) => {
     setShowEditForm(true);
-
     // pass in the click event, to get the event.target.id, which is the index of the userProducts array
+    setCurrentProduct(userProducts[e.target.id])
+  }
+
+  const handleDeleteClick = (e) => {
+    setShowConfirmModal(true);
+    console.log("userProducts", userProducts)
+    console.log("e.target", e.target)
+    console.log("product clicked", userProducts[e.target.id])
     setCurrentProduct(userProducts[e.target.id])
   }
 
@@ -38,13 +48,13 @@ function MyListingPage(){
         </Modal>
       )}
       <div className='my-product-outter-container'>
-          {userProducts.map((userProduct, i )=> (
+          {userProducts.map((userProduct, index )=> (
             <div key={userProduct.id} className='my-product-container'>
               <div className='my-product-id'>{userProduct.id}</div>
               <div className='my-product-title'>{userProduct.title}</div>
               <div className='my-product-description'>Description: {userProduct.description}</div>
-              <button type="button" onClick={(e) => handleEditClick(e)} id={i}>Edit</button>
-              <button type="button">Delete</button>
+              <button type="button" onClick={(e) => handleEditClick(e)} id={index}>Edit</button>
+              <button type="button" onClick={(e) => handleDeleteClick(e)} id={index}>Delete</button>
             </div>
           ))
         }
@@ -53,6 +63,12 @@ function MyListingPage(){
               <EditProductForm product={currentProduct} hideForm={() => setShowEditForm(false)}/>
             </Modal>
           )}
+         {showConfirmModal && (
+           <Modal onClose={() => setShowConfirmModal(false)}>
+              <ConfirmModal product={currentProduct} hideForm={() => setShowConfirmModal(false)}/>
+           </Modal>
+         )}
+
       </div>
     </>
   );

@@ -85,6 +85,23 @@ export const updateOneProduct = (data) => async(dispatch) => {
 }
 
 // ========== delete one product ==========
+const DELETE_A_PRODUCT = 'products/DELETE_A_PRODUCT';
+
+const deleteProduct = (id) => ({
+  type: DELETE_A_PRODUCT,
+  payload: id
+})
+
+export const removeOneProduct = (id) => async(dispatch) => {
+  const res = await csrfFetch(`/api/products/${id}`, {
+    method: "DELETE",
+  })
+
+  if (res.ok) {
+    const productId = await res.json();
+    await dispatch(deleteProduct(productId))
+  }
+}
 
 // ========== Reducer ==========
 
@@ -110,10 +127,13 @@ export default function productsReducer(state = initialState, action) {
       return newState;
 
     case UPDATE_A_PRODUCT:
-      console.log("in the reducer update case");
-      console.log("action", action)
       newState[action.payload.id] = action.payload
       return newState;
+
+    case DELETE_A_PRODUCT:
+      console.log("action.payload", action.payload)
+      delete newState[action.payload]
+      return newState
 
     default:
       return newState

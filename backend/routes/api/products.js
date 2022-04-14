@@ -62,11 +62,24 @@ router.put('/:id', validateProduct, handleValidationErrors, asyncHandler(async(r
   if (targetProduct) {
     await targetProduct.update(updatedProduct)
     return res.json(targetProduct)
+  } else {
+    throw new Error('Cannot find this product.')
   }
 
 }))
 
 // delete a product
+router.delete('/:id', asyncHandler(async(req, res) => {
+  const id = req.params.id;
+  const targetProduct = await Product.findByPk(id);
+
+  if (targetProduct) {
+    await targetProduct.destroy()
+    return res.json(id)
+  } else {
+    throw new Error('Cannot find this product.')
+  }
+}))
 
 
 module.exports = router;
