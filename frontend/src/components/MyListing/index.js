@@ -13,8 +13,6 @@ function MyListingPage(){
   const products = Object.values(productsStateData);
   const userProducts = products.filter(product => product.sellerId === sessionUser.id)
 
-  console.log("userProducts", userProducts)
-
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {

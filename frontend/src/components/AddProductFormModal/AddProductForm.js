@@ -55,6 +55,7 @@ function AddProductForm({ hideForm }) {
 
   }
 
+
   return (
     <div>
       <h1>Add New Product</h1>
@@ -123,6 +124,7 @@ function AddProductForm({ hideForm }) {
         </input>
 
         <button type='submit'>Submit</button>
+        <button type="button" onClick={hideForm}>Cancel</button>
 
       </form>
     </div>
