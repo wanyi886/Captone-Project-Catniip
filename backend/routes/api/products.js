@@ -46,7 +46,6 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
 }))
 
 // create a product
-
 router.post('/', validateProduct, handleValidationErrors, asyncHandler(async(req, res) => {
   const data = req.body;
   const newProduct = await Product.create(data);

@@ -3,7 +3,6 @@ import './AddProductForm.css';
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { productTypes } from './ProductTypeList'
 import { addOneProduct } from '../../store/products'
 
