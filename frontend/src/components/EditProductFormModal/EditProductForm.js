@@ -9,7 +9,7 @@ import { updateOneProduct } from '../../store/products'
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
   console.log("product passed into edit form", product)
-  console.log("product title:", product.title)
+  // console.log("product title:", product.title)
   // console.log("productS!!!", products)
 
   const [imgUrl, setImgUrl] = useState("");
