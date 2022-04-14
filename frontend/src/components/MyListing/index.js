@@ -28,7 +28,7 @@ function MyListingPage(){
       <button onClick={() => setShowModal(true)}>Add New Product</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AddProductForm />
+          <AddProductForm hideForm={() => setShowModal(false)}/>
         </Modal>
       )}
       <div className='my-product-outter-container'>

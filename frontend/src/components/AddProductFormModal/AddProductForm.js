@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 import { productTypes } from './ProductTypeList'
 import { addOneProduct } from '../../store/products'
 
-function AddProductForm() {
+function AddProductForm({ hideForm }) {
   const dispatch = useDispatch();
   const [imgUrl, setImgUrl] = useState("");
   const [type, setType] = useState(productTypes[0])
@@ -48,12 +48,10 @@ function AddProductForm() {
       price,
       inventory
     }
-    console.log("payload in form", payload)
+    // console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
     const result = await dispatch(addOneProduct(payload))
-    console.log("dispatched!!!", result)
-
-    // TODO: close the modal
+    hideForm()
 
   }
 
