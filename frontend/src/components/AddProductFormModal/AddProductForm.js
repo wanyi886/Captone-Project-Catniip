@@ -50,6 +50,7 @@ function AddProductForm({ hideForm }) {
     // console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
     const result = await dispatch(addOneProduct(payload))
+    console.log("result from create", result)
     if (result) {
       hideForm()
     }

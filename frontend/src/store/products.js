@@ -67,14 +67,14 @@ const updateProduct = (product) => ({
 })
 
 export const updateOneProduct = (data) => async(dispatch) => {
-  console.log("hi from update thunk");
-  console.log("data passed into update thunk", data);
+  // console.log("hi from update thunk");
+  // console.log("data passed into update thunk", data);
   const res = await csrfFetch(`/api/products/${data.id}`,{
     method: 'PUT',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(data)
   })
-  console.log("res in the update thunk", res)
+  // console.log("res in the update thunk", res)
 
   if (res.ok){
     const product = await res.json();

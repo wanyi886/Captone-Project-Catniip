@@ -24,8 +24,8 @@ function MyListingPage(){
 
   const handleEditClick = (e) => {
     setShowEditForm(true);
-    // setShowModal(false);
-    console.log("userProducts!!!", userProducts[e.target.id])
+
+    // pass in the click event, to get the event.target.id, which is the index of the userProducts array
     setCurrentProduct(userProducts[e.target.id])
   }
 
@@ -50,7 +50,7 @@ function MyListingPage(){
         }
          {showEditForm && (
             <Modal onClose={() => setShowEditForm(false)}>
-              <EditProductForm product={currentProduct}/>
+              <EditProductForm product={currentProduct} hideForm={() => setShowEditForm(false)}/>
             </Modal>
           )}
       </div>
