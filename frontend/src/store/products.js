@@ -43,14 +43,20 @@ const createProduct = (product) => ({
 })
 
 export const addOneProduct = (data) => async(dispatch) => {
+  console.log('hi from addOneProduct thunk')
+  console.log("data passed to addOneProduct", data)
+
   const res = await csrfFetch('/api/products',{
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(data)
   })
 
+  console.log("res", res)
+
   if (res.ok){
     const product = await res.json();
+    console.log("res.json()", product)
     await dispatch(createProduct(product))
   }
 }
@@ -79,6 +85,7 @@ export default function productsReducer(state = initialState, action) {
       return newState;
 
     case CREATE_A_PRODUCT:
+      console.log("in the reducer")
       newState[action.payload.id] = action.payload
       return newState;
 

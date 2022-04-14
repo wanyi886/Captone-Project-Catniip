@@ -5,18 +5,6 @@ import  AddProductForm  from '../AddProductFormModal/AddProductForm';
 
 function MyListingPage(){
 
-
-  // return (
-  //   <div>
-  //     <h1>My Listing</h1>
-  //     <button>Add New Product</button>
-  //     <Modal>
-  //       <AddProductForm/>
-  //     </Modal>
-
-  //   </div>
-  // )
-
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -27,6 +15,7 @@ function MyListingPage(){
           <AddProductForm />
         </Modal>
       )}
+      
     </>
   );
 }

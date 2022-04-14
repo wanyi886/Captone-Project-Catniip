@@ -48,8 +48,10 @@ function AddProductForm() {
       price,
       inventory
     }
-
-    await dispatch(addOneProduct(payload))
+    console.log("payload in form", payload)
+    // await dispatch(addOneProduct(payload))
+    const result = await dispatch(addOneProduct(payload))
+    console.log("dispatched!!!", result)
 
     // TODO: close the modal
 
