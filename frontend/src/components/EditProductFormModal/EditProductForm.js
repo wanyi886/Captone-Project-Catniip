@@ -8,11 +8,11 @@ import { updateOneProduct } from '../../store/products'
 
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
-  console.log("product passed into edit form", product)
+  // console.log("product passed into edit form", product)
   // console.log("product title:", product.title)
   // console.log("productS!!!", products)
 
-  const [imgUrl, setImgUrl] = useState("");
+  const [imgUrl, setImgUrl] = useState(product.imgUrl);
   const [type, setType] = useState(product.type)
   const [title, setTitle] = useState(product.title)
   const [description, setDescription ] = useState(product.description)
@@ -42,6 +42,7 @@ function EditProductForm({ product, hideForm }) {
     }
 
     const payload = {
+      ...product,
       type,
       sellerId: sessionUser?.id,
       title,
@@ -53,6 +54,7 @@ function EditProductForm({ product, hideForm }) {
     }
     // console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
+    console.log("payload", payload)
     const result = await dispatch(updateOneProduct(payload))
     if (result) {
       hideForm()
