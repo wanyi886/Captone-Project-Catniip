@@ -31,7 +31,7 @@ function MyListingPage(){
       )}
       <div className='my-product-outter-container'>
           {userProducts.map(userProduct => (
-            <div className='my-product-container'>
+            <div key={userProduct.id} className='my-product-container'>
               <div className='my-product-id'>{userProduct.id}</div>
               <div className='my-product-title'>{userProduct.title}</div>
               <div className='my-product-description'>Description: {userProduct.description}</div>

@@ -25,7 +25,7 @@ function AddProductForm({ hideForm }) {
     if (!imgUrl) errors.push("Image cannot be empty.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
-    if (!price) errors.push("Price cannot be empty.")
+    if (price < 0) errors.push("Price cannot be less than 0.")
     if (!inventory) errors.push("Inventory cannot be less than 1")
 
     return errors
@@ -51,8 +51,9 @@ function AddProductForm({ hideForm }) {
     // console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
     const result = await dispatch(addOneProduct(payload))
-    hideForm()
-
+    if (result) {
+      hideForm()
+    }
   }
 
 
@@ -123,7 +124,7 @@ function AddProductForm({ hideForm }) {
         >
         </input>
 
-        <button type='submit'>Submit</button>
+        <button type='submit' disabled={errors.length > 0}>Submit</button>
         <button type="button" onClick={hideForm}>Cancel</button>
 
       </form>

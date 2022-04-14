@@ -24,14 +24,28 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
 }))
 
 // create a product
+
+// const validateC
+
 router.post('/', asyncHandler(async(req, res) => {
   const data = req.body;
   const newProduct = await Product.create(data);
-  
+
   return res.json(newProduct)
 }))
 
 // update a product
+router.put('/:id', asyncHandler(async(req, res) => {
+  const id = req.params.id;
+  const targetProduct = await Product.findByPk(id);
+  const updatedProduct = req.body;
+
+  if (targetProduct) {
+    await targetProduct.update(updatedProduct)
+    return res.json(targetProduct)
+  }
+
+}))
 
 // delete a product
 

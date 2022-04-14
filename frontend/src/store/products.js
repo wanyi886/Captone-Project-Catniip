@@ -34,7 +34,7 @@ export const loadOneProduct = (id) => async (dispatch) => {
   }
 }
 
-// ========== update one product ==========
+// ========== create one product ==========
 const CREATE_A_PRODUCT = 'products/CREATE_A_PRODUCT';
 
 const createProduct = (product) => ({
@@ -43,8 +43,6 @@ const createProduct = (product) => ({
 })
 
 export const addOneProduct = (data) => async(dispatch) => {
-  console.log('hi from addOneProduct thunk')
-  console.log("data passed to addOneProduct", data)
 
   const res = await csrfFetch('/api/products',{
     method: 'POST',
@@ -52,16 +50,39 @@ export const addOneProduct = (data) => async(dispatch) => {
     body: JSON.stringify(data)
   })
 
-  console.log("res", res)
 
   if (res.ok){
     const product = await res.json();
-    console.log("res.json()", product)
+    // console.log("res.json()", product)
     await dispatch(createProduct(product))
   }
 }
 
 // ========== update one product ==========
+const UPDATE_A_PRODUCT = 'products/UPDATE_A_PRODUCT';
+
+const updateProduct = (product) => ({
+  type: UPDATE_A_PRODUCT,
+  payload: product
+})
+
+export const updateOneProduct = (data) => async(dispatch) => {
+  console.log("hi from update thunk");
+  console.log("data passed into update thunk", data);
+  const res = await csrfFetch(`/api/products/${data.id}`,{
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  console.log("res in the update thunk", res)
+
+  if (res.ok){
+    const product = await res.json();
+    console.log("res.json() result in the update thunk", product)
+    await dispatch(updateProduct(product))
+    console.log("dispatched!!!!")
+  }
+}
 
 // ========== delete one product ==========
 
@@ -85,7 +106,12 @@ export default function productsReducer(state = initialState, action) {
       return newState;
 
     case CREATE_A_PRODUCT:
-      console.log("in the reducer")
+      newState[action.payload.id] = action.payload
+      return newState;
+
+    case UPDATE_A_PRODUCT:
+      console.log("in the reducer update case");
+      console.log("action", action)
       newState[action.payload.id] = action.payload
       return newState;
 
