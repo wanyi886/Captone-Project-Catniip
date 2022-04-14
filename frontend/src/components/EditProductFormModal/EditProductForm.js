@@ -1,20 +1,24 @@
-import './AddProductForm.css';
+import './EditProductForm.css';
 
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { productTypes } from './ProductTypeList'
-import { addOneProduct } from '../../store/products'
+import { productTypes } from '../AddProductFormModal/ProductTypeList'
+import { updateOneProduct } from '../../store/products'
 
-function AddProductForm({ hideForm }) {
+function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
-  const [imgUrl, setImgUrl] = useState("");
-  const [type, setType] = useState(productTypes[0])
-  const [title, setTitle] = useState("")
-  const [description, setDescription ] = useState("")
-  const [detail, setDetail ] = useState("")
-  const [price, setPrice] = useState(0)
-  const [inventory, setInventory] = useState(1)
+  // console.log("product passed into edit form", product)
+  // console.log("product title:", product.title)
+  // console.log("productS!!!", products)
+
+  const [imgUrl, setImgUrl] = useState(product.imgUrl);
+  const [type, setType] = useState(product.type)
+  const [title, setTitle] = useState(product.title)
+  const [description, setDescription ] = useState(product.description)
+  const [detail, setDetail ] = useState(product.detail)
+  const [price, setPrice] = useState(product.price)
+  const [inventory, setInventory] = useState(product.inventory)
   const [errors, setErrors] = useState([])
 
   const sessionUser = useSelector(state => state.session.user)
@@ -38,6 +42,7 @@ function AddProductForm({ hideForm }) {
     }
 
     const payload = {
+      ...product,
       type,
       sellerId: sessionUser?.id,
       title,
@@ -49,8 +54,9 @@ function AddProductForm({ hideForm }) {
     }
     // console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
-    const result = await dispatch(addOneProduct(payload))
-    console.log("result from create", result)
+    console.log("payload", payload)
+    const result = await dispatch(updateOneProduct(payload))
+    console.log("result from edit", result)
     if (result) {
       hideForm()
     }
@@ -59,7 +65,8 @@ function AddProductForm({ hideForm }) {
 
   return (
     <div>
-      <h1>Add New Product</h1>
+      <h1>Edit Your Product</h1>
+      <div>{product.id}</div>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
@@ -132,4 +139,4 @@ function AddProductForm({ hideForm }) {
   )
 }
 
-export default AddProductForm
+export default EditProductForm

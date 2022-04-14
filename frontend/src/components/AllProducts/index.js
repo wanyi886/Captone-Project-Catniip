@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
-import ProductDetail from "../ProductDetail";
+
 
 
 function AllProducts() {
