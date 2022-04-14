@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { productTypes } from './ProductTypeList'
+import { addOneProduct } from '../../store/products'
 
 function AddProductForm() {
   const dispatch = useDispatch();
@@ -14,19 +15,53 @@ function AddProductForm() {
   const [description, setDescription ] = useState("")
   const [detail, setDetail ] = useState("")
   const [price, setPrice] = useState(0)
-  const [inventory, setInventory] = useState(0)
+  const [inventory, setInventory] = useState(1)
+  const [errors, setErrors] = useState([])
 
-  // console.log("type", type)
+  const sessionUser = useSelector(state => state.session.user)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // console.log("hi")
+  const validationErrors = () => {
+    const errors = [];
+    if (!imgUrl) errors.push("Image cannot be empty.")
+    if (!title) errors.push("Title cannot be empty.")
+    if (!description) errors.push("Description cannot be empty.")
+    if (!price) errors.push("Price cannot be empty.")
+    if (!inventory) errors.push("Inventory cannot be less than 1")
+
+    return errors
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validateErrors = validationErrors();
+    if (validateErrors) {
+      setErrors(validateErrors)
+    }
+
+    const payload = {
+      type,
+      sellerId: sessionUser?.id,
+      title,
+      detail,
+      description,
+      imgUrl,
+      price,
+      inventory
+    }
+
+    await dispatch(addOneProduct(payload))
+
+    // TODO: close the modal
+
   }
 
   return (
     <div>
       <h1>Add New Product</h1>
       <form onSubmit={handleSubmit}>
+        <ul>
+          {errors && errors.map((error) => <li key={error}>{error}</li>)}
+        </ul>
         <label htmlFor='image'>Product Image Url</label>
         <input
           type="text"

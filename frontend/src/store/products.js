@@ -43,7 +43,7 @@ const createProduct = (product) => ({
 })
 
 export const addOneProduct = (data) => async(dispatch) => {
-  const res = await csrfFetch('/apo/products',{
+  const res = await csrfFetch('/api/products',{
     method: 'POST',
     headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(data)
