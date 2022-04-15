@@ -39,6 +39,9 @@ function App() {
           <Route exact path="/my-listing">
             <MyListingPage />
           </Route>
+          <Route exact path="/cart">
+            Cart
+          </Route>
           <Route>
             Page Not Found
           </Route>
