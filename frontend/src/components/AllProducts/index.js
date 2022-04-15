@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
-
+import { addToCart } from '../../store/cart'
 
 
 function AllProducts() {
   const dispatch = useDispatch()
+  const history = useHistory()
   const productsStateData = useSelector(state => state.productsState)
 
   const products = Object.values(productsStateData)
@@ -18,13 +19,17 @@ function AllProducts() {
     dispatch(loadProductsPage())
   }, [dispatch])
 
+  const handleAddCart = async (e) => {
+    await dispatch(addToCart(e.target.id))
+    history.push('/cart')
+  }
 
   return (
     <>
     <h1>All Products</h1>
       <div className="products-container">
-      {products.map(product => (
-        <div className="product-container" key={product.id} >
+      {products.map((product, index) => (
+        <div className="product-container" key={product.id}  >
           <Link to={`/products/${product?.id}/detail`} style={{ textDecoration: 'none' }}>
             <div className="product-picture">
               {/* <img src={`${product?.imgUrl}`}/> */}
@@ -40,7 +45,7 @@ function AllProducts() {
               {product?.price}
             </div>
           </Link>
-          <button>Add to Cart</button>
+          <button onClick={(e) => handleAddCart(e)} id={index}>Add to Cart</button>
 
         </div>
       ))}

@@ -1,6 +1,7 @@
 import { updateCount, removeFromCart } from '../../store/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useState } from 'react';
+import './Cart.css'
 
 function CartItem ({item}) {
   const dispatch = useDispatch();
@@ -45,14 +46,14 @@ function CartItem ({item}) {
       </div>
 
       <div className='cart-item-count-area'>
-        <span className='cart-item-count-decreate' onClick={handleSubstract}>
-          -
+        <span className='cart-item-count-decrease' onClick={handleSubstract}>
+          <i class="fa-solid fa-square-minus"></i>
         </span>
         <span className='cart-item-count-number'>
           {item.count}
         </span>
         <span className='cart-item-count-increase' onClick={handleAdd}>
-          +
+          <i class="fa-solid fa-square-plus"></i>
         </span>
       </div>
 
