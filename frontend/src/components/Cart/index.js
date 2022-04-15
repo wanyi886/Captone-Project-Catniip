@@ -15,6 +15,12 @@ function Cart () {
     return {...item, ...productData[item.id]}
   })
 
+  console.log("mappedArray", mappedCartArray)
+
+  let subtotal = 0;
+  for (let i = 0; i < mappedCartArray.length; i++) {
+    subtotal += mappedCartArray[i].price * mappedCartArray[i].count
+  }
 
   useEffect(() => {
     dispatch(loadProductsPage())
@@ -28,6 +34,10 @@ function Cart () {
         <CartItem item={item}/>
       ))}
 
+      </div>
+
+      <div className='cart-price-total'>
+        SUBTOTAL: {Math.round(subtotal*100)/100}
       </div>
     </div>
   )

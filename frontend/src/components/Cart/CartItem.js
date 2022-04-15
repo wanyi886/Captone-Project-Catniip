@@ -21,6 +21,8 @@ function CartItem ({item}) {
     setFinalCount(prev => prev - 1)
   }
 
+  const total = Math.round(item.price * finalCount * 100) /100
+
   return (
     <div className='cart-item-container'>
       <div className='cart-item-image-container'>
@@ -31,7 +33,7 @@ function CartItem ({item}) {
       </div>
 
       <div className='cart-item-price'>
-        {item.price}
+        Price: {item.price}
       </div>
 
       <div className='cart-item-count-area'>
@@ -44,6 +46,10 @@ function CartItem ({item}) {
         <span className='cart-item-count-increase' onClick={handleAdd}>
           +
         </span>
+      </div>
+
+      <div className='cart-item-total-price'>
+        Subtotal: {total}
       </div>
 
     </div>
