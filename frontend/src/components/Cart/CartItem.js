@@ -37,6 +37,9 @@ function CartItem ({item}) {
       <div className='cart-item-image-container'>
         {/* <img src={item.imgUrl}></img> */}
       </div>
+      <div>
+        Product Id: {item.id}
+      </div>
       <div className='cart-item-title'>
         {item.title}
       </div>
