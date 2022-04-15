@@ -19,9 +19,7 @@ function ProductDetail () {
 
 
   const productPageData = useSelector(state => state.productsState)
-  // console.log("productPageData", productPageData)
   const product = productPageData[id];
-  // console.log("product from pagestate", product)
   const cartData = useSelector(state => state.cart);
   const cartArray = Object.values(cartData)
 
