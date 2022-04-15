@@ -21,6 +21,10 @@ function CartItem ({item}) {
     setFinalCount(prev => prev - 1)
   }
 
+  const handleRemove = async () => {
+    await dispatch(removeFromCart(item.id))
+  }
+
   const total = Math.round(item.price * finalCount * 100) /100
 
   return (
@@ -51,6 +55,7 @@ function CartItem ({item}) {
       <div className='cart-item-total-price'>
         Subtotal: {total}
       </div>
+      <button onClick={handleRemove}>Remove</button>
 
     </div>
 

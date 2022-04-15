@@ -8,11 +8,18 @@ export const addToCart = (id) => ({
   id
 })
 
-export const updateCount = (id, count) => ({
-  type: UPDATE_COUNT,
-  id,
-  count
-})
+export const updateCount = (id, count) => {
+
+  if (count < 1) {
+    return removeFromCart(id)
+  }
+
+  return {
+    type: UPDATE_COUNT,
+    id,
+    count
+  }
+}
 
 export const removeFromCart = (id) => ({
   type: REMOVE,
