@@ -1,0 +1,20 @@
+.cart-item-count-decrease {
+  font-size: 25px;
+
+  margin: 10px 5px
+}
+
+.cart-item-count-increase {
+  font-size: 25px;
+
+  margin: 10px 5px
+}
+
+.cart-item-count-number {
+  font-size: 25px;
+  margin: 10px
+}
+
+.cart-item-container {
+  margin: 20px;
+}
