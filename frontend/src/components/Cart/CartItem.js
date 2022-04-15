@@ -12,13 +12,13 @@ function CartItem ({item}) {
   const handleAdd = async () => {
     const count = item.count
     await dispatch(updateCount(item.id, count + 1))
-    setFinalCount(count)
+    setFinalCount(prev => prev + 1)
   }
 
   const handleSubstract = async () => {
     const count = item.count
     await dispatch(updateCount(item.id, count - 1))
-    setFinalCount(count)
+    setFinalCount(prev => prev - 1)
   }
 
   return (
