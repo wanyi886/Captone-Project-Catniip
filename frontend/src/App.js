@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import AllProducts from "./components/AllProducts";
 import ProductDetail from "./components/ProductDetail";
 import MyListingPage from "./components/MyListing";
+import Cart from "./components/Cart"
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
             <MyListingPage />
           </Route>
           <Route exact path="/cart">
-            Cart
+            <Cart />
           </Route>
           <Route>
             Page Not Found
