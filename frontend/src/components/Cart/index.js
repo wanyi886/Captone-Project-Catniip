@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadProductsPage } from '../../store/products'
 import { useEffect } from 'react';
 import CartItem from './CartItem';
+import carts from '../../images/carts.png'
 
 function Cart () {
   const dispatch = useDispatch();
@@ -48,7 +49,10 @@ function Cart () {
   } else {
     component = (
       <div>
-        <h1>Your Cart is Empty</h1>
+        <h1>Cart</h1>
+        <h2>Your Cart is Empty</h2>
+        <img src={carts} alt="Cart Image"></img>
+        <button>Return to Shop</button>
       </div>
     )
   }
