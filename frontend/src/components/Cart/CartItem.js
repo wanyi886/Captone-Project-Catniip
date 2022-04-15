@@ -17,8 +17,12 @@ function CartItem ({item}) {
 
   const handleSubstract = async () => {
     const count = item.count
-    await dispatch(updateCount(item.id, count - 1))
-    setFinalCount(prev => prev - 1)
+    if (count === 1) {
+      dispatch(removeFromCart(item.id))
+    } else {
+      await dispatch(updateCount(item.id, count - 1))
+      setFinalCount(prev => prev - 1)
+    }
   }
 
   const handleRemove = async () => {

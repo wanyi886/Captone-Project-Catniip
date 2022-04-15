@@ -10,9 +10,9 @@ export const addToCart = (id) => ({
 
 export const updateCount = (id, count) => {
 
-  if (count < 1) {
-    return removeFromCart(id)
-  }
+  // if (count < 1) {
+  //   return removeFromCart(id)
+  // }
 
   return {
     type: UPDATE_COUNT,
