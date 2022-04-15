@@ -6,14 +6,24 @@ import './Cart.css'
 function CartItem ({item}) {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
-  console.log("cart!!", cart)
+  // console.log("cart!!", cart)
   const [finalCount, setFinalCount] = useState(cart[item.id].count)
-  console.log("finalCount", finalCount)
+  // console.log("finalCount", finalCount)
+  const [cartErrors, setCartErrors] = useState([])
+
+  // let cartErrors = []
 
   const handleAdd = async () => {
     const count = item.count
-    await dispatch(updateCount(item.id, count + 1))
-    setFinalCount(prev => prev + 1)
+
+    if (count === item.inventory) {
+      // cartErrors.push(`Only ${item.inventory} pieces available for this product currently.`)
+      // console.log(cartErrors)
+      return cartErrors;
+    } else {
+      await dispatch(updateCount(item.id, count + 1))
+      setFinalCount(prev => prev + 1)
+    }
   }
 
   const handleSubstract = async () => {
@@ -47,6 +57,12 @@ function CartItem ({item}) {
       <div className='cart-item-price'>
         Price: {item.price}
       </div>
+      <ul>
+        {/* {cartErrors.length > 0 && cartErrors.map(error => (
+          <li>{error}</li>
+        ))
+        } */}
+      </ul>
 
       <div className='cart-item-count-area'>
         <span className='cart-item-count-decrease' onClick={handleSubstract}>
