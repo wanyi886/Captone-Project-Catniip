@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
+import logo from '../../images/logo-removebg.png'
 
 
 function Navigation({ isLoaded }){
@@ -33,12 +34,19 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <nav>
+      <div className='navbar-container'>
+        <Link to="/">
+          <img src={logo} className="navbar-logo" alt="logo"/>
+        </Link>
+        <div className='navbar-right-container'>
+
+        </div>
+        {/* <NavLink exact to="/">Home</NavLink> */}
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+
+      </div>
+    </nav>
   );
 }
 export default Navigation;
