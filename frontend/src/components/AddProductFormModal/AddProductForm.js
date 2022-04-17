@@ -58,74 +58,109 @@ function AddProductForm({ hideForm }) {
 
 
   return (
-    <div>
-      <h1>Add New Product</h1>
+    <div className='new-product-modal'>
+      <h1 className='new-product-h1'>Add New Product</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
-        <label htmlFor='image'>Product Image Url</label>
-        <input
-          type="text"
-          name='image'
-          value={imgUrl}
-          onChange={e => setImgUrl(e.target.value)}
-        >
-        </input>
+        <div className='product-form-label'>
+          <label htmlFor='image'>Product Image Url</label>
+        </div>
+        <div className='product-form-input'>
+          <input
+            type="text"
+            name='image'
+            value={imgUrl}
+            onChange={e => setImgUrl(e.target.value)}
+          >
+          </input>
+        </div>
 
-        <label htmlFor='title'>Title</label>
-        <input
-          name="title"
-          onChange={e => setTitle(e.target.value)}
-          value={title}
-        >
-        </input>
+        <div className='product-form-label'>
+          <label htmlFor='title'>Title</label>
+        </div>
+        <div className='product-form-input'>
+          <input
+            name="title"
+            onChange={e => setTitle(e.target.value)}
+            value={title}
+          >
+          </input>
+        </div>
 
-        <label htmlFor='type'>Product Type</label>
-        <select
-          name="type"
-          onChange={e => setType(e.target.value)}
-          value={type}
-        >
-          {productTypes.map(productType => (
-            <option key={productType}>{productType}</option>
-          ))}
-        </select>
+        <div className='product-form-label'>
+          <label htmlFor='type'>Product Type</label>
+        </div>
 
-        <label htmlFor='description'>Description</label>
-        <input
-          name="description"
-          onChange={e => setDescription(e.target.value)}
-          value={description}
-        >
-        </input>
+        <div className='product-form-input'>
+          <select
+            name="type"
+            onChange={e => setType(e.target.value)}
+            value={type}
+          >
+            {productTypes.map(productType => (
+              <option key={productType}>{productType}</option>
+            ))}
+          </select>
+        </div>
 
-        <label htmlFor='detail'>Detail</label>
-        <input
-          name="detail"
-          onChange={e => setDetail(e.target.value)}
-          value={detail}
-        >
-        </input>
+        <div className='product-form-label'>
+          <label htmlFor='description'>Description</label>
+        </div>
 
-        <label htmlFor='price'>Price</label>
-        <input
-          name="price"
-          onChange={e => setPrice(e.target.value)}
-          value={price}
-        >
-        </input>
+        <div className='product-form-input'>
+          <input
+            name="description"
+            onChange={e => setDescription(e.target.value)}
+            value={description}
+          >
+          </input>
+        </div>
 
-        <label htmlFor='inventory'>Inventory</label>
-        <input
-          name="inventory"
-          onChange={e => setInventory(e.target.value)}
-          value={inventory}
-        >
-        </input>
+        <div className='product-form-label'>
+          <label htmlFor='detail'>Detail</label>
+        </div>
 
-        <button type='submit' disabled={errors.length > 0}>Submit</button>
-        <button type="button" onClick={hideForm}>Cancel</button>
+        <div className='product-form-input'>
+          <input
+            name="detail"
+            onChange={e => setDetail(e.target.value)}
+            value={detail}
+          >
+          </input>
+        </div>
+
+        <div className='product-form-label'>
+          <label htmlFor='price'>Price</label>
+        </div>
+
+        <div className='product-form-input'>
+          <input
+            name="price"
+            onChange={e => setPrice(e.target.value)}
+            value={price}
+          >
+          </input>
+        </div>
+
+        <div className='product-form-label'>
+          <label htmlFor='inventory'>Inventory</label>
+        </div>
+
+        <div className='product-form-input'>
+          <input
+            name="inventory"
+            onChange={e => setInventory(e.target.value)}
+            value={inventory}
+          >
+          </input>
+        </div>
+
+        <div className='new-product-btn-area'>
+          <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button>
+          <button type="button" onClick={hideForm} className="new-product-cancel">Cancel</button>
+        </div>
 
       </form>
     </div>
