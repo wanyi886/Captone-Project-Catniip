@@ -18,3 +18,54 @@
 .cart-item-container {
   margin: 20px;
 }
+
+.empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-h1 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #2c2c2c;
+}
+
+.cart-h2 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #5d5d5d;
+}
+.empty-cart-img img {
+  width: 450px;
+  height: auto;
+}
+
+.empty-cart-btn-div {
+  /* width: 150px; */
+}
+
+.empty-cart-btn {
+  width: 200px;
+  height: 35px;
+  background-color: #cf8193;
+  border-radius: 20px;
+  border: none;
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.empty-cart-btn-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.empty-cart-btn i {
+  margin-right: 5px;
+}

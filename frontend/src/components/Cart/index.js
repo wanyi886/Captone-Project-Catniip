@@ -1,5 +1,6 @@
 import './Cart.css'
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loadProductsPage } from '../../store/products'
 import { useEffect } from 'react';
 import CartItem from './CartItem';
@@ -33,7 +34,7 @@ function Cart () {
   if (cartItems.length > 0) {
     component = (
       <div>
-      <h1>Cart</h1>
+      <h1 className='cart-h1'>Cart</h1>
       <div className='cart-price-total'>
         SUBTOTAL: {Math.round(subtotal*100)/100}
       </div>
@@ -48,11 +49,18 @@ function Cart () {
     )
   } else {
     component = (
-      <div>
-        <h1>Cart</h1>
-        <h2>Your Cart is Empty</h2>
-        <img src={carts} alt="Cart Image"></img>
-        <button>Return to Shop</button>
+      <div className='empty-cart-container'>
+        <h1 className='cart-h1'>Cart</h1>
+        <h2 className='cart-h2'>Your Cart is Empty</h2>
+        <button className='empty-cart-btn'>
+          <Link to="/products" className='empty-cart-btn-link'>
+            <i class="fa-solid fa-paw"></i>
+            Return to Shop
+          </Link>
+        </button>
+        <div className='empty-cart-img'>
+          <img src={carts} alt="Cart Image"></img>
+        </div>
       </div>
     )
   }

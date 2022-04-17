@@ -1,9 +1,19 @@
+.navbar-login {
+  cursor: pointer;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(106, 105, 105);
+}
+
+.navbar-login:hover {
+  color: #242424
+}
+
 .login-modal {
   width: 200px;
   height: 500px
 }
-
-
 
 .login-form-container {
   width: 300px;
