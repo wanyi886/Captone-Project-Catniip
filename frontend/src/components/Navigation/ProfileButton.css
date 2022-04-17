@@ -1,0 +1,22 @@
+.profile-button-container {
+  position: relative;
+}
+
+.profile-dropdown {
+  list-style: none;
+  padding-left: 0;
+  position: absolute;
+  background-color: white;
+  margin: 0 0 0 -170px;
+  /* margin: 0 0 0 -170px; */
+  border-radius: 10px;
+  border: #d3d3d3;
+  width: 200px;
+  padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+.logout-button {
+  cursor: pointer;
+}

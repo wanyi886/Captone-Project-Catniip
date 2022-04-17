@@ -15,9 +15,6 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/products">All Products</NavLink>
-        <NavLink to="/my-listing">My Listing</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
@@ -27,8 +24,6 @@ function Navigation({ isLoaded }){
         <LoginFormModal />
         {/* <NavLink to="/login">Log In</NavLink> */}
         <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/products">All Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
       </>
     );
   }
@@ -36,14 +31,22 @@ function Navigation({ isLoaded }){
   return (
     <nav>
       <div className='navbar-container'>
-        <Link to="/">
-          <img src={logo} className="navbar-logo" alt="logo"/>
-        </Link>
+        <div className='navbar-logo-tray'></div>
+          <Link to="/">
+            <img src={logo} className="navbar-logo" alt="logo"/>
+          </Link>
         <div className='navbar-right-container'>
+          <div className='navbar-icon-tray'>
+            <Link to="/products">
+              <i class="fa-solid fa-store"></i>
+            </Link>
+            <Link to="/cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </Link>
+            {isLoaded && sessionLinks}
+          </div>
 
-        </div>
-        {/* <NavLink exact to="/">Home</NavLink> */}
-        {isLoaded && sessionLinks}
+          </div>
 
       </div>
     </nav>
