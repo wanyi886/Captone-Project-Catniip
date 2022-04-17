@@ -40,21 +40,38 @@ function MyListingPage(){
   }
 
   return (
-    <>
-      <button onClick={() => setShowModal(true)}>Add New Product</button>
+    <div className='my-listing-page-body'>
+      <h1 className='my-listing-h1'>My Listing</h1>
+      <button onClick={() => setShowModal(true)} className='add-product-btn'>
+        <i class="fa-solid fa-plus"></i>
+        Add New Product
+      </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <AddProductForm  hideForm={() => setShowModal(false)}/>
         </Modal>
       )}
-      <div className='my-product-outter-container'>
+      <div className='my-products-outter-container'>
           {userProducts.map((userProduct, index )=> (
             <div key={userProduct.id} className='my-product-container'>
-              <div className='my-product-id'>{userProduct.id}</div>
+              {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
+              <div className='my-product-img-container'>
+                <img src={userProduct.imgUrl}></img>
+              </div>
               <div className='my-product-title'>{userProduct.title}</div>
-              <div className='my-product-description'>Description: {userProduct.description}</div>
-              <button type="button" onClick={(e) => handleEditClick(e)} id={index}>Edit</button>
-              <button type="button" onClick={(e) => handleDeleteClick(e)} id={index}>Delete</button>
+              <div className='my-product-price'>Price: {userProduct.price}</div>
+              <div className='my-product-inventory'>Inventory: {userProduct.inventory}</div>
+              <div className='my-product-sold'>Sold: Coming soon{}</div>
+              <div className='my-listing-button-area'>
+                <button type="button" className='my-listing-edit' onClick={(e) => handleEditClick(e)} id={index}>
+                  <i class="fa-solid fa-pen"></i>
+                  Edit
+                </button>
+                <button type="button" className='my-listing-delete' onClick={(e) => handleDeleteClick(e)} id={index}>
+                  <i class="fa-solid fa-trash"></i>
+                  Delete
+                </button>
+              </div>
             </div>
           ))
         }
@@ -70,7 +87,7 @@ function MyListingPage(){
          )}
 
       </div>
-    </>
+    </div>
   );
 }
 
