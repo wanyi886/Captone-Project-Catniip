@@ -24,6 +24,7 @@
   margin-top: 15px;
   margin-bottom: 5px;
   color: white;
+  cursor: pointer;
 }
 
 .cart-checkout i{
@@ -119,15 +120,21 @@
   align-items: center;
 }
 
+.remove-btn {
+  cursor: pointer;
+}
+
 .cart-item-count-decrease {
   font-size: 25px;
-  margin: 10px 5px
+  margin: 10px 5px;
+  cursor: pointer;
 }
 
 .cart-item-count-increase {
   font-size: 25px;
 
-  margin: 10px 5px
+  margin: 10px 5px;
+  cursor: pointer;
 }
 
 .cart-item-count-number {
