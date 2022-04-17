@@ -33,19 +33,19 @@ function Cart () {
 
   if (cartItems.length > 0) {
     component = (
-      <div>
-      <h1 className='cart-h1'>Cart</h1>
-      <div className='cart-price-total'>
-        SUBTOTAL: {Math.round(subtotal*100)/100}
-      </div>
-      <button>CHECKOUT</button>
+      <div className='cart-container'>
+        <h1 className='cart-h1'>Cart</h1>
+        <div className='cart-price-total'>
+          SUBTOTAL: {Math.round(subtotal*100)/100}
+        </div>
+        <button>CHECKOUT</button>
 
-      <div className='cart-items-container'>
-      {mappedCartArray.map(item => (
-        <CartItem key={item.id} item={item}/>
-      ))}
+        <div className='cart-items-container'>
+        {mappedCartArray.map(item => (
+          <CartItem key={item.id} item={item}/>
+        ))}
+        </div>
       </div>
-    </div>
     )
   } else {
     component = (
