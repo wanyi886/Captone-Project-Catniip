@@ -40,16 +40,19 @@ function AllProducts() {
                 <div className="product-title">
                   {product?.title}
                 </div>
-                <div className="product-price">
-                  $ {product?.price}
+                <div className="price-and-cart-btn">
+                  <div className="product-price">
+                    $ {product?.price}
+                  </div>
+                  <button onClick={(e) => handleAddCart(e)} id={product.id} className="add-to-cart-button">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    {/* Add to Cart */}
+                  </button>
                 </div>
               </div>
             </Link>
             <div className="cart-button-area">
-              <button onClick={(e) => handleAddCart(e)} id={product.id} className="add-to-cart-button">
-                <i class="fa-solid fa-cart-plus"></i>
-                Add to Cart
-              </button>
+
             </div>
 
           </div>

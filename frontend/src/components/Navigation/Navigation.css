@@ -37,6 +37,6 @@
   cursor: pointer;
 }
 
-i:hover {
+.navbar-icon-tray i:hover {
   color: #242424
 }
