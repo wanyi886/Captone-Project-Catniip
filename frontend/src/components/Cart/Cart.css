@@ -14,11 +14,27 @@
 }
 
 .cart-checkout {
-  width: 200px;
+  width: 250px;
   height: 35px;
   background-color: #cf8193;
   border-radius: 20px;
   border: none;
+  margin: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 17px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.cart-continue {
+  width: 250px;
+  height: 35px;
+  background-color: #cf8193;
+  border-radius: 20px;
+  border: none;
+  margin: 10px;
   font-family: 'Rubik', sans-serif;
   font-size: 17px;
   margin-top: 15px;
@@ -28,6 +44,10 @@
 }
 
 .cart-checkout i{
+  margin-right: 5px;
+}
+
+.cart-continue i{
   margin-right: 5px;
 }
 

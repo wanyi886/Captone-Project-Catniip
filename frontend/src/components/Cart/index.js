@@ -1,6 +1,6 @@
 import './Cart.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { loadProductsPage } from '../../store/products'
 import { useEffect } from 'react';
 import CartItem from './CartItem';
@@ -8,6 +8,7 @@ import carts from '../../images/carts.png'
 
 function Cart () {
   const dispatch = useDispatch();
+  const history = useHistory()
   const productData = useSelector(state => state.productsState)
   const cartData = useSelector(state => state.cart)
   const cartItems = Object.values(cartData)
@@ -29,6 +30,10 @@ function Cart () {
     dispatch(loadProductsPage())
   }, [dispatch])
 
+  const handleContinue = () => {
+    history.push('/products')
+  }
+
   let component
 
   if (cartItems.length > 0) {
@@ -38,10 +43,16 @@ function Cart () {
         <div className='cart-price-total'>
           SUBTOTAL:   $ {Math.round(subtotal*100)/100}
         </div>
-        <button className='cart-checkout'>
-          <i class="fa-solid fa-paw"></i>
-          CHECKOUT
-        </button>
+        <div className='button-area'>
+          <button className='cart-continue' onClick={handleContinue}>
+            <i class="fa-solid fa-paw"></i>
+            CONTINUE SHOPPING
+          </button>
+          <button className='cart-checkout'>
+            <i class="fa-solid fa-paw"></i>
+            CHECKOUT
+          </button>
+        </div>
 
         <div className='cart-items-container'>
         {mappedCartArray.map(item => (
