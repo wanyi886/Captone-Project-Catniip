@@ -28,6 +28,10 @@
   cursor: pointer;
 }
 
+.cart-checkout:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
 .cart-continue {
   width: 250px;
   height: 35px;
@@ -43,6 +47,10 @@
   cursor: pointer;
 }
 
+.cart-continue:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
 .cart-checkout i{
   margin-right: 5px;
 }
@@ -53,13 +61,19 @@
 
 .remove-btn {
   width: 100px;
-  height: 20px;
+  height: 25px;
   font-family: 'Rubik', sans-serif;
   font-size: 15px;
   border-radius: 20px;
   border: #565656 solid 1px;
   background-color: white;
   color:#565656
+}
+
+.remove-btn:hover{
+  border: #565656 solid 1px;
+  background-color: #565656;
+  color:white
 }
 
 /* CartItems */

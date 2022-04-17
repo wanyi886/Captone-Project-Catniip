@@ -29,6 +29,10 @@
   cursor: pointer;
 }
 
+.add-product-btn:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
 .add-product-btn i {
   margin-right: 10px;
 }
