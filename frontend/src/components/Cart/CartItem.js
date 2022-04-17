@@ -54,7 +54,7 @@ function CartItem ({item}) {
           {item.title}
         </div>
         <div className='cart-item-price'>
-          Price: {item.price}
+          Unit Price: ${item.price}
         </div>
       </div>
 
@@ -70,10 +70,13 @@ function CartItem ({item}) {
         </span>
       </div>
 
-      <div className='cart-item-total-price'>
-        Subtotal: {total}
+      <div className='cart-item-total-price-area'>
+         $ {total}
       </div>
-      <button onClick={handleRemove}>Remove</button>
+
+      <div className='cart-item-remove'>
+        <button onClick={handleRemove} className='remove-btn'>Remove</button>
+      </div>
 
     </div>
 

@@ -36,9 +36,12 @@ function Cart () {
       <div className='cart-container'>
         <h1 className='cart-h1'>Cart</h1>
         <div className='cart-price-total'>
-          SUBTOTAL: {Math.round(subtotal*100)/100}
+          SUBTOTAL:   $ {Math.round(subtotal*100)/100}
         </div>
-        <button>CHECKOUT</button>
+        <button className='cart-checkout'>
+          <i class="fa-solid fa-paw"></i>
+          CHECKOUT
+        </button>
 
         <div className='cart-items-container'>
         {mappedCartArray.map(item => (
