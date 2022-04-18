@@ -109,13 +109,13 @@ function AddProductForm({ hideForm }) {
           <label htmlFor='description'>Description</label>
         </div>
 
-        <div className='product-form-input'>
-          <input
+        <div className='product-form-input des'>
+          <textarea
             name="description"
             onChange={e => setDescription(e.target.value)}
             value={description}
           >
-          </input>
+          </textarea>
         </div>
 
         <div className='product-form-label'>

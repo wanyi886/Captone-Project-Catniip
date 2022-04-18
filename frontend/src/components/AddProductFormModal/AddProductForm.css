@@ -30,6 +30,11 @@
   padding-right: 4px;
 }
 
+.des textarea{
+  height: 50px;
+  width: 200px;
+  padding: 4px;
+}
 .new-product-btn-area {
   margin-top: 15px;
   display: flex;
@@ -39,7 +44,7 @@
 .new-product-submit {
   width: 80px;
   height: 28px;
-  margin: 10px;
+  margin: 5px;
   font-size: 15px;
   border: #cf8193 solid 2px;
   color: #ffffff;
@@ -55,7 +60,7 @@
 .new-product-cancel {
   width: 80px;
   height: 28px;
-  margin: 10px;
+  margin: 5px;
   font-size: 15px;
   border: #cf8193 solid 2px;
   color: #ffffff;
