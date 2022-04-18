@@ -41,7 +41,7 @@ function AllProducts() {
       <h1 className="all-products-h1">All Products</h1>
         <div className="products-container">
         {products.map((product) => (
-          <div className="product-container" key={product.id}  >
+          <div className="product-container" key={product?.id}  >
             <Link to={`/products/${product?.id}/detail`} style={{ textDecoration: 'none' }}>
               <div className="product-picture-container">
                 <img src={`${product?.imgUrl}`}/>
@@ -54,7 +54,7 @@ function AllProducts() {
                   <div className="product-price">
                     $ {product?.price}
                   </div>
-                  <button onClick={(e) => handleAddCart(e)} id={product.id} className="add-to-cart-button">
+                  <button onClick={(e) => handleAddCart(e)} id={product?.id} className="add-to-cart-button">
                     <i class="fa-solid fa-cart-plus"></i>
                     {/* Add to Cart */}
                   </button>
