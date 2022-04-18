@@ -1,7 +1,9 @@
+import { csrfFetch } from "./csrf"
 
 const ADD_TO_CART = 'cart/ADD_TO_CART'
 const UPDATE_COUNT = 'cart/UPDATE_COUNT'
 const REMOVE = 'cart/REMOVE'
+const PLACE_ORDER = 'cart/PLACE_ORDER'
 
 export const addToCart = (id) => ({
   type: ADD_TO_CART,
@@ -9,10 +11,6 @@ export const addToCart = (id) => ({
 })
 
 export const updateCount = (id, count) => {
-
-  // if (count < 1) {
-  //   return removeFromCart(id)
-  // }
 
   return {
     type: UPDATE_COUNT,
@@ -26,6 +24,23 @@ export const removeFromCart = (id) => ({
   id
 })
 
+const placeOrder = (order) => ({
+  type: PLACE_ORDER,
+  payload: order
+})
+
+// export const checkout = (data) => async (dispatch) => {
+//   const res = csrfFetch('/api/orders', {
+//     method: 'POST',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify(data)
+//   })
+
+//   if (res.ok) {
+//     const order = await res.json();
+//     await dispatch(placeOrder(order))
+//   }
+// }
 
 
 // ========== Reducer ==========
@@ -48,6 +63,11 @@ export default function cartReducer(state = initialState, action) {
     case REMOVE:
       delete newState[action.id]
       window.localStorage.setItem('cart', JSON.stringify(newState))
+      return newState;
+
+    case PLACE_ORDER:
+      console.log('Hi from place order reducer case')
+      // TODO: clear out the items in cart????
       return newState;
 
     default:

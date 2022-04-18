@@ -57,6 +57,7 @@ function EditProductForm({ product, hideForm }) {
     console.log("payload", payload)
     const result = await dispatch(updateOneProduct(payload))
     console.log("result from edit", result)
+
     if (result) {
       hideForm()
     }

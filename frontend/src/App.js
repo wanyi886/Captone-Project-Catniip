@@ -10,6 +10,7 @@ import AllProducts from "./components/AllProducts";
 import ProductDetail from "./components/ProductDetail";
 import MyListingPage from "./components/MyListing";
 import Cart from "./components/Cart"
+import MyOrders from "./components/MyOrders";
 
 
 function App() {
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route exact path="/cart">
             <Cart />
+          </Route>
+          <Route exact path="/my-orders">
+            <MyOrders />
           </Route>
           <Route>
             Page Not Found

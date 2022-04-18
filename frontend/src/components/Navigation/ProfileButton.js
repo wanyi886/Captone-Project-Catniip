@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
         <ul className="profile-dropdown">
           <li>Welcome, {user.username} !</li>
           <li><Link to="/my-listing">My Listing</Link></li>
-          <li><Link to="/my-order">My Orders</Link></li>
+          <li><Link to="/my-orders">My Orders</Link></li>
           <li onClick={logout} className='logout-button'>Log Out</li>
         </ul>
       )}
