@@ -13,7 +13,7 @@ export const loadUserOrders = (userId) => async(dispatch) => {
 
   if (res.ok) {
     const orders = await res.json();
-    console.log("orders in loadUserorder thunk", orders)
+    // console.log("orders in loadUserorder thunk", orders)
     await dispatch(getOrders(orders))
   }
 }
@@ -25,8 +25,8 @@ export default function ordersReducer(state = initialState, action) {
 
   switch (action.type) {
     case GET_ORDERS:
-      console.log("hi from get orders reducer")
-      console.log("action.payload", action.payload)
+      // console.log("hi from get orders reducer")
+      // console.log("action.payload", action.payload)
       action.payload.forEach (order => {
         newState[order.id] = order
       })
