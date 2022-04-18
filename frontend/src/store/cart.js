@@ -33,11 +33,13 @@ const initialState = JSON.parse(window.localStorage.getItem('cart')) || {}
 
 export default function cartReducer(state = initialState, action) {
   const newState = {...state}
+  console.log("newState before switch", newState)
 
   switch (action.type) {
     case ADD_TO_CART:
       newState[action.id] = { id: action.id, count: 1}
       window.localStorage.setItem('cart', JSON.stringify(newState))
+      console.log("newState in case", newState, action.id)
       return newState;
 
     case UPDATE_COUNT:

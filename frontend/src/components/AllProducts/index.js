@@ -24,6 +24,7 @@ function AllProducts() {
 
   const handleAddCart = async (e) => {
     console.log("e.target.id in the add cart event handler", e.target.id)
+    console.log("integer e.targe.id", Number(e.target.id))
 
     // const targetItem = cartArray.find(item => item.id === e.target.id)
 
@@ -35,7 +36,7 @@ function AllProducts() {
     await dispatch(addToCart(e.target.id))
     history.push('/cart')
   }
-
+  console.log("products in component", products)
   return (
     <div className="products-page-body">
       <h1 className="all-products-h1">All Products</h1>
@@ -54,7 +55,7 @@ function AllProducts() {
                   <div className="product-price">
                     $ {product?.price}
                   </div>
-                  <button onClick={(e) => handleAddCart(e)} id={product?.id} className="add-to-cart-button">
+                  <button onClick={handleAddCart} id={product?.id} className="add-to-cart-button">
                     <i class="fa-solid fa-cart-plus"></i>
                     {/* Add to Cart */}
                   </button>

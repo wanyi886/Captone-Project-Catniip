@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import './Cart.css'
 
 function CartItem ({item}) {
+
+  console.log("item in CartItem", item);
+  
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
   // console.log("cart!!", cart)
@@ -46,7 +49,7 @@ function CartItem ({item}) {
     <div className='cart-item-container'>
 
       <div className='cart-item-image-container'>
-        <img src={item.imgUrl}></img>
+        <img src={item?.imgUrl}></img>
       </div>
 
       <div className='cart-item-info-container'>
@@ -54,7 +57,7 @@ function CartItem ({item}) {
           {item.title}
         </div>
         <div className='cart-item-price'>
-          Unit Price: ${item.price}
+          Unit Price: ${item?.price}
         </div>
       </div>
 
@@ -63,7 +66,7 @@ function CartItem ({item}) {
           <i class="fa-solid fa-square-minus"></i>
         </span>
         <span className='cart-item-count-number'>
-          {item.count}
+          {item?.count}
         </span>
         <span className='cart-item-count-increase' onClick={handleAdd}>
           <i class="fa-solid fa-square-plus"></i>
