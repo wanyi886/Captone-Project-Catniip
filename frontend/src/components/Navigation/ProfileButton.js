@@ -1,50 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-
-// function ProfileButton({ user }) {
-//   const dispatch = useDispatch();
-//   const [showMenu, setShowMenu] = useState(false);
-
-//   const openMenu = () => {
-//     if (showMenu) return;
-//     setShowMenu(true);
-//   };
-
-//   useEffect(() => {
-//     if (!showMenu) return;
-
-//     const closeMenu = () => {
-//       setShowMenu(false);
-//     };
-
-//     document.addEventListener('click', closeMenu);
-
-//     return () => document.removeEventListener("click", closeMenu);
-//   }, [showMenu]);
-
-//   const logout = (e) => {
-//     e.preventDefault();
-//     dispatch(sessionActions.logout());
-//   };
-
-//   return (
-//     <>
-//       <div>
-//         {/* <i className="fas fa-user-circle avatar" onClick={openMenu}></i> */}
-//         <span className="user-name" onClick={openMenu}>Hi {user.username} </span>
-//       </div>
-//       {showMenu && (
-//         <ul className="profile-dropdown">
-//           <li>{user.email}</li>
-//           <li>
-//             <button onClick={logout}>Log Out</button>
-//           </li>
-//         </ul>
-//       )}
-//     </>
-//   );
-// }
+import { Link, NavLink } from 'react-router-dom';
+import './ProfileButton.css'
 
 
 function ProfileButton({ user }) {
@@ -74,20 +32,19 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <button onClick={openMenu}>
+    <div className='profile-button-container'>
+      <div onClick={openMenu} className='profile-button-icon'>
         <i className="fas fa-user-circle" />
-      </button>
+      </div>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
+          <li>Welcome, {user.username} !</li>
+          <li><Link to="/my-listing">My Listing</Link></li>
+          <li><Link to="/my-order">My Orders</Link></li>
+          <li onClick={logout} className='logout-button'>Log Out</li>
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

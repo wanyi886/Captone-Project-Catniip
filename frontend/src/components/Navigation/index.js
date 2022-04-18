@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
+import logo from '../../images/logo-removebg.png'
 
 
 function Navigation({ isLoaded }){
@@ -14,9 +15,6 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to="/products">All Products</NavLink>
-        <NavLink to="/my-listing">My Listing</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
@@ -26,19 +24,32 @@ function Navigation({ isLoaded }){
         <LoginFormModal />
         {/* <NavLink to="/login">Log In</NavLink> */}
         <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/products">All Products</NavLink>
-        <NavLink to="/cart">Cart</NavLink>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <nav>
+      <div className='navbar-container'>
+        <div className='navbar-logo-tray'></div>
+          <Link to="/">
+            <img src={logo} className="navbar-logo" alt="logo"/>
+          </Link>
+        <div className='navbar-right-container'>
+          <div className='navbar-icon-tray'>
+            <Link to="/products">
+              <i class="fa-solid fa-store"></i>
+            </Link>
+            <Link to="/cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </Link>
+            {isLoaded && sessionLinks}
+          </div>
+
+          </div>
+
+      </div>
+    </nav>
   );
 }
 export default Navigation;

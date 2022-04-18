@@ -44,25 +44,19 @@ function CartItem ({item}) {
 
   return (
     <div className='cart-item-container'>
+
       <div className='cart-item-image-container'>
-        {/* <img src={item.imgUrl}></img> */}
-      </div>
-      <div>
-        Product Id: {item.id}
-      </div>
-      <div className='cart-item-title'>
-        {item.title}
+        <img src={item.imgUrl}></img>
       </div>
 
-      <div className='cart-item-price'>
-        Price: {item.price}
+      <div className='cart-item-info-container'>
+        <div className='cart-item-title'>
+          {item.title}
+        </div>
+        <div className='cart-item-price'>
+          Unit Price: ${item.price}
+        </div>
       </div>
-      <ul>
-        {/* {cartErrors.length > 0 && cartErrors.map(error => (
-          <li>{error}</li>
-        ))
-        } */}
-      </ul>
 
       <div className='cart-item-count-area'>
         <span className='cart-item-count-decrease' onClick={handleSubstract}>
@@ -76,10 +70,13 @@ function CartItem ({item}) {
         </span>
       </div>
 
-      <div className='cart-item-total-price'>
-        Subtotal: {total}
+      <div className='cart-item-total-price-area'>
+         $ {total}
       </div>
-      <button onClick={handleRemove}>Remove</button>
+
+      <div className='cart-item-remove'>
+        <button onClick={handleRemove} className='remove-btn'>Remove</button>
+      </div>
 
     </div>
 
