@@ -37,12 +37,14 @@ function MyOrders () {
         return (
           <div className="order-info" key={i}>
             <div className="order-number">Order # {order.id}</div>
+            <div className="order-total">$ {order.total}</div>
             {/* <div></div> */}
             {order.OrderItems.map((orderItem, i) => {
               return (
                 <div key={i} className="order-item">
                   <div className="order-item-title">{orderItem.Product.title}</div>
-                  <div className="order-item">Qty: {orderItem.quantity}</div>
+                  <div className="order-item-qty">Qty: {orderItem.quantity}</div>
+                  <div className="order-item-subtotal">Subtotal: {orderItem.subtotal}</div>
                 </div>
               )
             })}
