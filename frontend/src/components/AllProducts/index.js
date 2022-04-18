@@ -14,7 +14,6 @@ function AllProducts() {
 
   const products = Object.values(productsStateData)
   // console.log("products", products)
-  // console.log("product reversed", products.reverse())
   const cartData = useSelector(state => state.cart);
   const cartArray = Object.values(cartData)
 
@@ -23,20 +22,25 @@ function AllProducts() {
   }, [dispatch])
 
   const handleAddCart = async (e) => {
-    console.log("e.target.id in the add cart event handler", e.target.id)
-    console.log("integer e.targe.id", Number(e.target.id))
 
-    // const targetItem = cartArray.find(item => item.id === e.target.id)
+    /* e.target.id sometimes works, sometimes not.
+    because it might not clicking actual button with the id.
+    Your click is grabbing id from the parent element div.price-and-cart-btn
+    instead of its child button.add-to-cart-button.
+    */
 
-    // if (!targetItem) {
-    //   await dispatch(addToCart(e.target.id))
-    // } else {
-    //   await dispatch(updateCount(e.target.id, targetItem.count + 1 ))
-    // }
-    await dispatch(addToCart(e.target.id))
+    const targetItem = cartArray.find(item => item.id === e.currentTarget.id)
+
+    if (!targetItem) {
+      await dispatch(addToCart(e.currentTarget.id))
+    } else {
+      await dispatch(updateCount(e.currentTarget.id, targetItem.count + 1 ))
+    }
+
     history.push('/cart')
   }
-  console.log("products in component", products)
+
+
   return (
     <div className="products-page-body">
       <h1 className="all-products-h1">All Products</h1>

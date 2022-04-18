@@ -5,8 +5,8 @@ import './Cart.css'
 
 function CartItem ({item}) {
 
-  console.log("item in CartItem", item);
-  
+  // console.log("item in CartItem", item);
+
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
   // console.log("cart!!", cart)
