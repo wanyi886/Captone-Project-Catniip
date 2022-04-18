@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from 'react-router-dom'
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
-import { addToCart } from '../../store/cart'
+import { addToCart, updateCount } from '../../store/cart'
 
 
 function AllProducts() {
@@ -15,13 +15,23 @@ function AllProducts() {
   const products = Object.values(productsStateData)
   // console.log("products", products)
   // console.log("product reversed", products.reverse())
+  const cartData = useSelector(state => state.cart);
+  const cartArray = Object.values(cartData)
 
   useEffect(() => {
     dispatch(loadProductsPage())
   }, [dispatch])
 
   const handleAddCart = async (e) => {
+    console.log("e.target.id in the add cart event handler", e.target.id)
 
+    // const targetItem = cartArray.find(item => item.id === e.target.id)
+
+    // if (!targetItem) {
+    //   await dispatch(addToCart(e.target.id))
+    // } else {
+    //   await dispatch(updateCount(e.target.id, targetItem.count + 1 ))
+    // }
     await dispatch(addToCart(e.target.id))
     history.push('/cart')
   }
