@@ -12,14 +12,14 @@ function Cart () {
   const productData = useSelector(state => state.productsState)
   const cartData = useSelector(state => state.cart)
   const cartItems = Object.values(cartData)
-  console.log("cartItems", cartItems)
+  // console.log("cartItems", cartItems)
 
   const mappedCartArray = cartItems.map(item => {
     // combine cart item and product information to an object
     return {...item, ...productData[item.id]}
   })
 
-  console.log("mappedArray", mappedCartArray)
+  // console.log("mappedArray", mappedCartArray)
 
   let subtotal = 0;
   for (let i = 0; i < mappedCartArray.length; i++) {

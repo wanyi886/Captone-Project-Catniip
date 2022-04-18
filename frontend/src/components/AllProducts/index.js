@@ -29,6 +29,7 @@ function AllProducts() {
     instead of its child button.add-to-cart-button.
     */
 
+    // if the item is not in the cart, add this item to cart, if it exists, just add one to the count
     const targetItem = cartArray.find(item => item.id === e.currentTarget.id)
 
     if (!targetItem) {
@@ -61,7 +62,6 @@ function AllProducts() {
                   </div>
                   <button onClick={handleAddCart} id={product?.id} className="add-to-cart-button">
                     <i class="fa-solid fa-cart-plus"></i>
-                    {/* Add to Cart */}
                   </button>
                 </div>
               </div>
