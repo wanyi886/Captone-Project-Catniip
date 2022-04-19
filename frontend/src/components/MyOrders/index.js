@@ -84,7 +84,7 @@ function MyOrders () {
                       <div className="order-item-price">$ {orderItem.Product.price}</div>
                     </div>
                     <div className="order-item-qty">Qty: {orderItem.quantity}</div>
-                    <div className="order-item-subtotal">Subtotal: {orderItem.subtotal}</div>
+                    <div className="order-item-subtotal">Subtotal: $ {orderItem.subtotal}</div>
                   </div>
                 )
               })}
