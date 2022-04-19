@@ -39,7 +39,7 @@ function Cart () {
     }
 
     await dispatch(createOrder(data))
-
+    history.push('/my-orders')
   }
 
   let subtotal = 0;

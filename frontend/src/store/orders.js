@@ -26,8 +26,8 @@ const placeOrder = (order) => ({
 
 export const createOrder = (data) => async (dispatch) => {
 
-  console.log("hi from createOrder thunk")
-  console.log("data.userId", data.userId)
+  // console.log("hi from createOrder thunk")
+  // console.log("data.userId", data.userId)
 
   const res = csrfFetch(`/api/orders/users/${data.userId}`, {
     method: 'POST',
@@ -37,6 +37,7 @@ export const createOrder = (data) => async (dispatch) => {
 
   if (res.ok) {
     const order = await res.json();
+    console.log("order from res", order)
     await dispatch(placeOrder(order))
   }
 }
@@ -46,6 +47,7 @@ const initialState = {}
 
 export default function ordersReducer(state = initialState, action) {
   const newState = {...state}
+  console.log("order state", newState)
 
   switch (action.type) {
     case GET_ORDERS:
@@ -57,7 +59,8 @@ export default function ordersReducer(state = initialState, action) {
 
     case PLACE_ORDER:
       console.log("hi from reducer case Place-order")
-
+      console.log("action.payload", action.payload)
+      // newState[action.payload.id] = action.payload
       return newState
 
     default:

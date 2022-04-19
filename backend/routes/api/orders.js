@@ -25,10 +25,10 @@ router.get(`/users/:id`, asyncHandler(async (req, res) => {
 }))
 
 router.post(`/users/:id`, asyncHandler(async(req, res) => {
-  console.log("beginning of post route")
   const userId = req.params.id
   const data = req.body;
 
+  // create order first
   const orderData = { buyerId: userId, total: data.total }
   const newOrder = await Order.create(orderData);
 
@@ -39,15 +39,23 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
     return {...orderItem, orderId: newOrder.id}
   })
 
-
   if (newOrder) {
     for (let i = 0; i < addOrderIdItems.length; i++) {
       await OrderItem.create(addOrderIdItems[i])
     }
   }
 
-  console.log("finished!")
+  const createdOrder = await Order.findOne(
+    {
+      where: {
+        id: newOrder.id
+      },
+      include: [{ model: OrderItem,
+                  include: [{ model: Product }]  }]
+    })
 
+  console.log("createdOrder(for sending back to thunk)", createdOrder)
+  return res.json(createdOrder)
 
 }))
 
