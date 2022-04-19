@@ -21,24 +21,40 @@ function MyOrders () {
   // console.log("first ele in orders array: order", userOrdersArray[1])
   // console.log("orderItems of first order", userOrdersArray[1].OrderItems)
 
-  /* userOrdersArray[ order[ ]
-
-  ]
- */
   useEffect(() => {
     dispatch(loadUserOrders(sessionUser.id))
   }, [dispatch])
 
+  let component;
 
-  return (
-    <div className="my-orders-page-body">
+  if (!sessionUser) {
+    component = (
+      <div className="my-orders-page-body">
+        <h1 className="my-orders-h1">My Orders</h1>
+        <div >Please Log In to See Order Records</div>
+      </div>
+    )
+  }
+
+  if (!userOrdersData) {
+    component = (
+      <div className="my-orders-page-body">
+        <h1 className="my-orders-h1">My Orders</h1>
+        <div className="no-order-records">You haven't buy anything on Catniip yet.</div>
+        <button>Return to Shop</button>
+      </div>
+    )
+  }
+
+  if (sessionUser && userOrdersData) {
+    component = (
+      <div className="my-orders-page-body">
       <h1 className="my-orders-h1">My Orders</h1>
       {userOrdersArray.map( (order, i) => {
         return (
           <div className="order-info" key={i}>
             <div className="order-number">Order # {order.id}</div>
             <div className="order-total">$ {order.total}</div>
-            {/* <div></div> */}
             {order.OrderItems.map((orderItem, i) => {
               return (
                 <div key={i} className="order-item">
@@ -52,7 +68,10 @@ function MyOrders () {
         )
       })}
     </div>
-  )
+    )
+  } 
+
+  return component
 }
 
 export default MyOrders;
