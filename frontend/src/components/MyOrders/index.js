@@ -32,7 +32,9 @@ function MyOrders () {
 
 
   useEffect(() => {
-    dispatch(loadUserOrders(sessionUser.id))
+    if (sessionUser) {
+      dispatch(loadUserOrders(sessionUser.id))
+    }
   }, [dispatch])
 
   const handleCancelOrder = async () => {
@@ -45,7 +47,7 @@ function MyOrders () {
     component = (
       <div className="my-orders-page-body">
         <h1 className="my-orders-h1">My Orders</h1>
-        <div >Please Log In to See Order Records</div>
+        <div >Please Log In to See Your Order History.</div>
       </div>
     )
   }
