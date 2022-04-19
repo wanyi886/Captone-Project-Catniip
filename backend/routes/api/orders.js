@@ -24,5 +24,14 @@ router.get(`/users/:id`, asyncHandler(async (req, res) => {
 
 }))
 
+router.post(`/users/:id`, asyncHandler(async(req, res) => {
+  const userId = req.params.id
+  const orderData = req.body;
+
+  const newOrder = await Order.create(orderData);
+  
+
+}))
+
 
 module.exports = router;

@@ -2,6 +2,8 @@ import './Cart.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { loadProductsPage } from '../../store/products'
+import { createOrder} from '../../store/cart'
+import { loadUserOrders } from '../../store/orders';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
 import carts from '../../images/carts.png'
@@ -12,14 +14,35 @@ function Cart () {
   const productData = useSelector(state => state.productsState)
   const cartData = useSelector(state => state.cart)
   const cartItems = Object.values(cartData)
-  // console.log("cartItems", cartItems)
+  const sessionUser = useSelector(state => state.session.user);
+  const userId = sessionUser.id
+  console.log("userId", userId)
+  console.log("cartItems", cartItems)
 
   const mappedCartArray = cartItems.map(item => {
     // combine cart item and product information to an object
     return {...item, ...productData[item.id]}
   })
 
-  // console.log("mappedArray", mappedCartArray)
+  console.log("mappedArray", mappedCartArray)
+
+
+  const handleCheckout = async () => {
+
+    const orderItems = mappedCartArray.map(item => {
+      // const productId = item.id
+      return { productId: item.id, quantity: item.count, subtotal: Math.round(item.price * item.count * 100)/100 }
+    })
+
+    const data = {
+      userId,
+      total: Math.round(subtotal*100)/100,
+      orderItems
+    }
+    console.log("orderData", data)
+
+    await dispatch(createOrder(data))
+  }
 
   let subtotal = 0;
   for (let i = 0; i < mappedCartArray.length; i++) {
@@ -27,7 +50,8 @@ function Cart () {
   }
 
   useEffect(() => {
-    dispatch(loadProductsPage())
+    dispatch(loadProductsPage());
+    dispatch(loadUserOrders(userId))
   }, [dispatch])
 
   const handleContinue = () => {
@@ -48,7 +72,7 @@ function Cart () {
             <i class="fa-solid fa-paw"></i>
             CONTINUE SHOPPING
           </button>
-          <button className='cart-checkout'>
+          <button className='cart-checkout' onClick={handleCheckout}>
             <i class="fa-solid fa-paw"></i>
             CHECKOUT
           </button>

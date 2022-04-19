@@ -29,18 +29,18 @@ const placeOrder = (order) => ({
   payload: order
 })
 
-// export const checkout = (data) => async (dispatch) => {
-//   const res = csrfFetch('/api/orders', {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(data)
-//   })
+export const createOrder = (data) => async (dispatch) => {
+  const res = csrfFetch(`/api/orders/users/${data.userId}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
 
-//   if (res.ok) {
-//     const order = await res.json();
-//     await dispatch(placeOrder(order))
-//   }
-// }
+  if (res.ok) {
+    const order = await res.json();
+    await dispatch(placeOrder(order))
+  }
+}
 
 
 // ========== Reducer ==========
