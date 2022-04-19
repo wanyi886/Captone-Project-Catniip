@@ -54,7 +54,7 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
                   include: [{ model: Product }]  }]
     })
 
-  console.log("createdOrder(for sending back to thunk)", createdOrder)
+  // console.log("createdOrder(for sending back to thunk)", createdOrder)
   return res.json(createdOrder)
 
 }))

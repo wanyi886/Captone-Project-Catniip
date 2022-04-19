@@ -35,6 +35,10 @@ function MyOrders () {
     dispatch(loadUserOrders(sessionUser.id))
   }, [dispatch])
 
+  const handleCancelOrder = async () => {
+    // TODO: dispatch cancel order
+  }
+
   let component;
 
   if (!sessionUser) {
@@ -63,13 +67,20 @@ function MyOrders () {
         {userOrdersArray.map( (order, i) => {
           return (
             <div className="order-info" key={i}>
-              <div className="order-number">Order # {order.id}</div>
-              <div className="order-date">{new Date(order.createdAt).toDateString()}</div>
-              <div className="order-total">$ {order.total}</div>
+              <div className="order-number-container">
+                <div className="order-number">Order # {order.id}</div>
+                <div className="order-date">{new Date(order.createdAt).toDateString()}</div>
+                <div className="order-total">Total: $ {order.total}</div>
+                <button className="cancel-order-btn"onClick={handleCancelOrder} id={order.id}>Cancel Order</button>
+              </div>
               {order.OrderItems.map((orderItem, i) => {
                 return (
                   <div key={i} className="order-item">
+                    <div className="order-item-img-container">
+                      {/* <img src={orderItem.Product.imgUrl}></img> */}
+                    </div>
                     <div className="order-item-title">{orderItem.Product.title}</div>
+                    <div className="order-item-title">$ {orderItem.Product.price}</div>
                     <div className="order-item-qty">Qty: {orderItem.quantity}</div>
                     <div className="order-item-subtotal">Subtotal: {orderItem.subtotal}</div>
                   </div>
