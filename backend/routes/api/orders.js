@@ -25,11 +25,17 @@ router.get(`/users/:id`, asyncHandler(async (req, res) => {
 }))
 
 router.post(`/users/:id`, asyncHandler(async(req, res) => {
+  console.log("beginning of post route")
   const userId = req.params.id
-  const orderData = req.body;
+  const data = req.body;
+  const orderData = { buyerId: userId, total: data.total }
 
   const newOrder = await Order.create(orderData);
-  
+
+  // if (newOrder) {
+
+  // }
+
 
 }))
 

@@ -24,23 +24,27 @@ export const removeFromCart = (id) => ({
   id
 })
 
-const placeOrder = (order) => ({
-  type: PLACE_ORDER,
-  payload: order
-})
+// const placeOrder = (order) => ({
+//   type: PLACE_ORDER,
+//   payload: order
+// })
 
-export const createOrder = (data) => async (dispatch) => {
-  const res = csrfFetch(`/api/orders/users/${data.userId}`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data)
-  })
+// export const createOrder = (data) => async (dispatch) => {
 
-  if (res.ok) {
-    const order = await res.json();
-    await dispatch(placeOrder(order))
-  }
-}
+//   console.log("hi from createOrder thunk")
+//   console.log("data.userId", data.userId)
+
+//   const res = csrfFetch(`/api/orders/users/${data.userId}`, {
+//     method: 'POST',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify(data)
+//   })
+
+//   if (res.ok) {
+//     const order = await res.json();
+//     await dispatch(placeOrder(order))
+//   }
+// }
 
 
 // ========== Reducer ==========
@@ -65,10 +69,10 @@ export default function cartReducer(state = initialState, action) {
       window.localStorage.setItem('cart', JSON.stringify(newState))
       return newState;
 
-    case PLACE_ORDER:
-      console.log('Hi from place order reducer case')
-      // TODO: clear out the items in cart????
-      return newState;
+    // case PLACE_ORDER:
+    //   console.log('Hi from place order reducer case')
+    //   // TODO: clear out the items in cart????
+    //   return newState;
 
     default:
       return newState

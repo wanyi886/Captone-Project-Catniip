@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ORDERS = 'orders/GET_ORDERS';
+const PLACE_ORDER = 'cart/PLACE_ORDER'
 
 const getOrders = (orders) => ({
   type: GET_ORDERS,
@@ -18,6 +19,27 @@ export const loadUserOrders = (userId) => async(dispatch) => {
   }
 }
 
+const placeOrder = (order) => ({
+  type: PLACE_ORDER,
+  payload: order
+})
+
+export const createOrder = (data) => async (dispatch) => {
+
+  console.log("hi from createOrder thunk")
+  console.log("data.userId", data.userId)
+
+  const res = csrfFetch(`/api/orders/users/${data.userId}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+
+  if (res.ok) {
+    const order = await res.json();
+    await dispatch(placeOrder(order))
+  }
+}
 
 
 const initialState = {}
@@ -32,6 +54,9 @@ export default function ordersReducer(state = initialState, action) {
       action.payload.forEach (order => {
         newState[order.id] = order
       })
+
+    case PLACE_ORDER:
+      console.log("hi from reducer case Place-order")
 
       return newState
 
