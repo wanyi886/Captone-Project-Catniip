@@ -35,11 +35,15 @@ export const createOrder = (data) => async (dispatch) => {
     body: JSON.stringify(data)
   })
 
-  if (res.ok) {
-    const order = await res.json();
-    console.log("order from res", order)
-    await dispatch(placeOrder(order))
-  }
+  // console.log("after getting res ")
+
+  // if (res.ok) {
+  //   console.log("beginning of res if statement")
+  //   const order = await res.json();
+  //   console.log("order from res", order)
+  //   await dispatch(placeOrder(order))
+  //   console.log("after dispatch(placeOrder(order))")
+  // }
 }
 
 
@@ -51,17 +55,15 @@ export default function ordersReducer(state = initialState, action) {
 
   switch (action.type) {
     case GET_ORDERS:
-      // console.log("hi from get orders reducer")
-      // console.log("action.payload", action.payload)
       action.payload.forEach (order => {
         newState[order.id] = order
       })
 
-    case PLACE_ORDER:
-      console.log("hi from reducer case Place-order")
-      console.log("action.payload", action.payload)
+    // case PLACE_ORDER:
+    //   console.log("hi from reducer case Place-order")
+    //   console.log("action.payload", action.payload)
       // newState[action.payload.id] = action.payload
-      return newState
+      // return newState
 
     default:
       return newState
