@@ -37,11 +37,9 @@ function Cart () {
       total: Math.round(subtotal*100)/100,
       orderItems
     }
-    console.log("orderData", data)
 
     await dispatch(createOrder(data))
 
-    console.log("dispatched!!!")
   }
 
   let subtotal = 0;

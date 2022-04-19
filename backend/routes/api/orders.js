@@ -28,13 +28,25 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
   console.log("beginning of post route")
   const userId = req.params.id
   const data = req.body;
-  const orderData = { buyerId: userId, total: data.total }
 
+  const orderData = { buyerId: userId, total: data.total }
   const newOrder = await Order.create(orderData);
 
-  // if (newOrder) {
+  const orderItems = data.orderItems
 
-  // }
+  // since the data from req.body has no orderId, so need to add orderId for each item
+  const addOrderIdItems = orderItems.map(orderItem => {
+    return {...orderItem, orderId: newOrder.id}
+  })
+
+
+  if (newOrder) {
+    for (let i = 0; i < addOrderIdItems.length; i++) {
+      await OrderItem.create(addOrderIdItems[i])
+    }
+  }
+
+  console.log("finished!")
 
 
 }))
