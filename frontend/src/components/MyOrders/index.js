@@ -54,7 +54,7 @@ function MyOrders () {
     component = (
       <div className="my-orders-page-body">
         <h1 className="my-orders-h1">My Orders</h1>
-        <div className="no-order-records">You haven't buy anything on Catniip yet.</div>
+        <div className="no-order-records">You haven't bought anything on Catniip yet.</div>
         <button>Return to Shop</button>
       </div>
     )
@@ -75,12 +75,14 @@ function MyOrders () {
               </div>
               {order.OrderItems.map((orderItem, i) => {
                 return (
-                  <div key={i} className="order-item">
+                  <div key={i} className="order-item-area">
                     <div className="order-item-img-container">
-                      {/* <img src={orderItem.Product.imgUrl}></img> */}
+                      <img src={orderItem.Product.imgUrl}></img>
                     </div>
-                    <div className="order-item-title">{orderItem.Product.title}</div>
-                    <div className="order-item-title">$ {orderItem.Product.price}</div>
+                    <div className="order-item-title-price-area">
+                      <div className="order-item-title">{orderItem.Product.title}</div>
+                      <div className="order-item-price">$ {orderItem.Product.price}</div>
+                    </div>
                     <div className="order-item-qty">Qty: {orderItem.quantity}</div>
                     <div className="order-item-subtotal">Subtotal: {orderItem.subtotal}</div>
                   </div>
