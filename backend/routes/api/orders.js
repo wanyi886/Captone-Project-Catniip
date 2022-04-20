@@ -8,7 +8,7 @@ const { Order, OrderItem, Product } = require('../../db/models')
 
 const router = express.Router();
 
-router.get(`/users/:id`, asyncHandler(async (req, res) => {
+router.get(`/users/:id`, requireAuth, asyncHandler(async (req, res) => {
   // console.log("beginning of router")
   const userId = req.params.id
   // console.log("userId from router", userId)
@@ -45,17 +45,33 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
     }
   }
 
-  const createdOrder = await Order.findOne(
-    {
-      where: {
-        id: newOrder.id
-      },
-      include: [{ model: OrderItem,
-                  include: [{ model: Product }]  }]
-    })
+  // const createdOrder = await Order.findOne(
+  //   {
+  //     where: {
+  //       id: newOrder.id
+  //     },
+  //     include: [{ model: OrderItem,
+  //                 include: [{ model: Product }]  }]
+  //   })
 
   // console.log("createdOrder(for sending back to thunk)", createdOrder)
-  return res.json(createdOrder)
+  return res.json(newOrder)
+
+}))
+
+router.delete('/api/orders/:id', asyncHandler(async(req, res) => {
+  const orderId = req.params.id;
+  const tagetOrderItems = await OrderItem.findAll({
+    where: {
+      orderId: orderId
+    }
+  })
+  // TODO: Maybe can use cascade delete???? Try add hook in the data model
+  const targetOrder = await Order.findByPk(orderId);
+
+  // TODO: destroy the data
+
+  return res.json(orderId)
 
 }))
 
