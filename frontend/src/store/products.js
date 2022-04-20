@@ -53,8 +53,9 @@ export const addOneProduct = (data) => async(dispatch) => {
 
   if (res.ok){
     const product = await res.json();
-    // console.log("res.json()", product)
+    
     await dispatch(createProduct(product))
+    return product
   }
 }
 
@@ -79,7 +80,8 @@ export const updateOneProduct = (data) => async(dispatch) => {
   if (res.ok){
     const product = await res.json();
     await dispatch(updateProduct(product))
-
+    // if we don't return product, the result const in edit product form would be undefined
+    return product;
   }
 }
 
