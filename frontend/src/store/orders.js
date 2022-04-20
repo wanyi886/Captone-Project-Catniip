@@ -31,7 +31,7 @@ export const createOrder = (data) => async (dispatch) => {
   // console.log("hi from createOrder thunk")
   // console.log("data.userId", data.userId)
 
-  const res = csrfFetch(`/api/orders/users/${data.userId}`, {
+  const res = await csrfFetch(`/api/orders/users/${data.userId}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
@@ -59,13 +59,10 @@ export const cancelOrder = (orderId) => async(dispatch) => {
     method: 'DELETE'
   })
 
-  console.log("after res")
 
   if (res.ok) {
 
     const orderId = await res.json();
-    console.log("orderId received from res", orderId)
-
     await dispatch(deleteOrder(orderId))
   }
 
@@ -90,10 +87,7 @@ export default function ordersReducer(state = initialState, action) {
       // return newState
 
     case CANCEL_ORDER:
-      console.log("newState before", newState)
-      console.log("action.payload", action.payload)
       delete newState[action.payload];
-      console.log("newState after", newState)
       return newState
 
     default:

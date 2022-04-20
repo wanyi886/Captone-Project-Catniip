@@ -78,9 +78,8 @@ export const updateOneProduct = (data) => async(dispatch) => {
 
   if (res.ok){
     const product = await res.json();
-    console.log("res.json() result in the update thunk", product)
     await dispatch(updateProduct(product))
-    console.log("dispatched!!!!")
+
   }
 }
 
@@ -131,7 +130,6 @@ export default function productsReducer(state = initialState, action) {
       return newState;
 
     case DELETE_A_PRODUCT:
-      console.log("action.payload", action.payload)
       delete newState[action.payload]
       return newState
 

@@ -62,16 +62,9 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
 router.delete('/:id', asyncHandler(async(req, res) => {
   const orderId = req.params.id;
   const targetOrder = await Order.findByPk(orderId);
-  // const tagetOrderItems = await OrderItem.findAll({
-  //   where: {
-  //     orderId: orderId
-  //   }
-  // })
 
   if (targetOrder) {
-    console.log("before destroy")
     await targetOrder.destroy()
-    console.log("orderId from route", orderId)
     return res.json(orderId)
 
   } else {

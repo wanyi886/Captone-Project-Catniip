@@ -38,8 +38,7 @@ function MyOrders () {
   }, [dispatch])
 
   const handleCancelOrder = async (e) => {
-    // TODO: dispatch cancel order
-    console.log("e.currentTarget.id", e.currentTarget.id)
+
     await dispatch(cancelOrder(e.currentTarget.id))
   }
 
