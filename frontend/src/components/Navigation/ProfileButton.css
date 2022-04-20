@@ -14,7 +14,8 @@
   width: 200px;
   padding: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
+  /* font-size: 1.25vw; */
+  font-size: 16px;
 }
 
 .logout-button {

@@ -29,8 +29,8 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <nav>
-      <div className='navbar-container'>
+    // <nav>
+      <div className='navbar-container sticky'>
         <div className='navbar-logo-tray'></div>
           <Link to="/">
             <img src={logo} className="navbar-logo" alt="logo"/>
@@ -49,7 +49,7 @@ function Navigation({ isLoaded }){
           </div>
 
       </div>
-    </nav>
+    // </nav>
   );
 }
 export default Navigation;
