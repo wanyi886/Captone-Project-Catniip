@@ -1,5 +1,5 @@
 import './HomePage.css'
-import image1 from '../../images/homepage/pink-bg-cat.jpg'
+import image1 from '../../images/homepage/cat-with-glasses.jpg'
 import image2 from '../../images/homepage/different-colors-eyes.jpg'
 import { Link, useHistory } from 'react-router-dom'
 
