@@ -1,12 +1,14 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ORDERS = 'orders/GET_ORDERS';
-const PLACE_ORDER = 'cart/PLACE_ORDER'
+const PLACE_ORDER = 'orders/PLACE_ORDER';
+const CACEL_ORDER = 'orders/CANCEL_ORDER'
 
 const getOrders = (orders) => ({
   type: GET_ORDERS,
   payload: orders
 })
+
 
 export const loadUserOrders = (userId) => async(dispatch) => {
 
@@ -45,6 +47,12 @@ export const createOrder = (data) => async (dispatch) => {
   //   console.log("after dispatch(placeOrder(order))")
   // }
 }
+
+const deleteOrder = (orderId) => ({
+  type: CACEL_ORDER,
+  payload: orderId
+})
+
 
 
 const initialState = {}
