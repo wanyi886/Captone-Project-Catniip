@@ -67,7 +67,8 @@
   border-radius: 20px;
   border: #565656 solid 1px;
   background-color: white;
-  color:#565656
+  color:#565656;
+  cursor:pointer;
 }
 
 .remove-btn:hover{

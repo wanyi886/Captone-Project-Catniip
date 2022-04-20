@@ -75,6 +75,7 @@ router.delete('/:id', asyncHandler(async(req, res) => {
 
   if (targetProduct) {
     await targetProduct.destroy()
+    
     return res.json(id)
   } else {
     throw new Error('Cannot find this product.')

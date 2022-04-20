@@ -33,9 +33,9 @@ function MyListingPage(){
 
   const handleDeleteClick = (e) => {
     setShowConfirmModal(true);
-    console.log("userProducts", userProducts)
-    console.log("e.target", e.target)
-    console.log("product clicked", userProducts[e.target.id])
+    // console.log("userProducts", userProducts)
+    // console.log("e.target", e.target)
+    // console.log("product clicked", userProducts[e.target.id])
     setCurrentProduct(userProducts[e.target.id])
   }
 

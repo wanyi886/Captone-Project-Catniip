@@ -8,7 +8,7 @@ const { Order, OrderItem, Product } = require('../../db/models')
 
 const router = express.Router();
 
-router.get(`/users/:id`, asyncHandler(async (req, res) => {
+router.get(`/users/:id`, requireAuth, asyncHandler(async (req, res) => {
   // console.log("beginning of router")
   const userId = req.params.id
   // console.log("userId from router", userId)
@@ -21,6 +21,56 @@ router.get(`/users/:id`, asyncHandler(async (req, res) => {
   )
 
   return res.json(orders)
+
+}))
+
+router.post(`/users/:id`, asyncHandler(async(req, res) => {
+  const userId = req.params.id
+  const data = req.body;
+
+  // create order first
+  const orderData = { buyerId: userId, total: data.total }
+  const newOrder = await Order.create(orderData);
+
+  const orderItems = data.orderItems
+
+  // since the data from req.body has no orderId, so need to add orderId for each item
+  const addOrderIdItems = orderItems.map(orderItem => {
+    return {...orderItem, orderId: newOrder.id}
+  })
+
+  if (newOrder) {
+    for (let i = 0; i < addOrderIdItems.length; i++) {
+      await OrderItem.create(addOrderIdItems[i])
+    }
+  }
+
+  // const createdOrder = await Order.findOne(
+  //   {
+  //     where: {
+  //       id: newOrder.id
+  //     },
+  //     include: [{ model: OrderItem,
+  //                 include: [{ model: Product }]  }]
+  //   })
+
+  // console.log("createdOrder(for sending back to thunk)", createdOrder)
+  return res.json(newOrder)
+
+}))
+
+router.delete('/:id', asyncHandler(async(req, res) => {
+  const orderId = req.params.id;
+  const targetOrder = await Order.findByPk(orderId);
+
+  if (targetOrder) {
+    await targetOrder.destroy()
+    return res.json(orderId)
+
+  } else {
+    throw new Error('Cannot find this order.')
+  }
+
 
 }))
 

@@ -4,7 +4,6 @@ import { removeOneProduct } from '../../store/products'
 
 function ConfirmModal({ product, hideForm }) {
   const dispatch = useDispatch();
-  console.log("product in confirmModal", product)
   const deleteHandler = () => {
     dispatch(removeOneProduct(product.id))
     hideForm()
