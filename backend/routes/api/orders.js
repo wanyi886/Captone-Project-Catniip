@@ -59,19 +59,23 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
 
 }))
 
-router.delete('/api/orders/:id', asyncHandler(async(req, res) => {
+router.delete('/:id', asyncHandler(async(req, res) => {
   const orderId = req.params.id;
-  const tagetOrderItems = await OrderItem.findAll({
-    where: {
-      orderId: orderId
-    }
-  })
-  // TODO: Maybe can use cascade delete???? Try add hook in the data model
   const targetOrder = await Order.findByPk(orderId);
+  // const tagetOrderItems = await OrderItem.findAll({
+  //   where: {
+  //     orderId: orderId
+  //   }
+  // })
 
-  // TODO: destroy the data
+  if (targetOrder) {
+    await targetOrder.destroy()
+    return res.json(orderId)
 
-  return res.json(orderId)
+  } else {
+    throw new Error('Cannot find this order.')
+  }
+
 
 }))
 

@@ -54,6 +54,7 @@ const deleteOrder = (orderId) => ({
 })
 
 export const cancelOrder = (orderId) => async(dispatch) => {
+  console.log("orderId passed to thunk", orderId)
   const res = csrfFetch(`/api/orders/${orderId}`, {
     method: 'DELETE'
   })
@@ -81,6 +82,11 @@ export default function ordersReducer(state = initialState, action) {
     //   console.log("action.payload", action.payload)
       // newState[action.payload.id] = action.payload
       // return newState
+
+    case CACEL_ORDER:
+      console.log()
+      delete newState[action.payload];
+      return newState
 
     default:
       return newState

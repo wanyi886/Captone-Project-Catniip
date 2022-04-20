@@ -7,7 +7,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
-import { loadUserOrders } from "../../store/orders";
+import { loadUserOrders, cancelOrder } from "../../store/orders";
 import { useEffect } from "react";
 import './MyOrders.css'
 
@@ -37,8 +37,10 @@ function MyOrders () {
     }
   }, [dispatch])
 
-  const handleCancelOrder = async () => {
+  const handleCancelOrder = async (e) => {
     // TODO: dispatch cancel order
+    console.log("e.currentTarget.id", e.currentTarget.id)
+    await dispatch(cancelOrder(e.currentTarget.id))
   }
 
   let component;
@@ -73,7 +75,7 @@ function MyOrders () {
                 <div className="order-number">Order # {order.id}</div>
                 <div className="order-date">{new Date(order.createdAt).toDateString()}</div>
                 <div className="order-total">Total: $ {order.total}</div>
-                <button className="cancel-order-btn"onClick={handleCancelOrder} id={order.id}>Cancel Order</button>
+                <button className="cancel-order-btn" onClick={handleCancelOrder} id={order.id}>Cancel Order</button>
               </div>
               {order.OrderItems.map((orderItem, i) => {
                 return (
