@@ -1,4 +1,5 @@
 import './Cart.css'
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { loadProductsPage } from '../../store/products'
@@ -6,6 +7,8 @@ import { loadUserOrders, createOrder } from '../../store/orders';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
 import carts from '../../images/carts.png'
+import LoginForm from '../LoginFormModal/LoginForm';
+import { Modal } from '../../context/Modal';
 
 function Cart () {
   const dispatch = useDispatch();
@@ -14,7 +17,9 @@ function Cart () {
   const cartData = useSelector(state => state.cart)
   const cartItems = Object.values(cartData)
   const sessionUser = useSelector(state => state.session.user);
-  const userId = sessionUser.id
+  const userId = sessionUser?.id
+
+  const [ showModal, setShowModal ]= useState(false)
   // console.log("userId", userId)
   // console.log("cartItems", cartItems)
 
@@ -27,6 +32,10 @@ function Cart () {
 
 
   const handleCheckout = async () => {
+
+    if (!sessionUser) {
+      setShowModal(true)
+    }
 
     const orderItems = mappedCartArray.map(item => {
       return { productId: item.id, quantity: item.count, subtotal: Math.round(item.price * item.count * 100)/100 }
@@ -74,6 +83,11 @@ function Cart () {
             <i class="fa-solid fa-paw"></i>
             CHECKOUT
           </button>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)} classname="login-modal">
+              <LoginForm/>
+            </Modal>
+          )}
         </div>
 
         <div className='cart-items-container'>
