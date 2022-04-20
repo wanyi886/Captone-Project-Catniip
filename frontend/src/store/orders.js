@@ -53,7 +53,16 @@ const deleteOrder = (orderId) => ({
   payload: orderId
 })
 
+export const cancelOrder = (orderId) => async(dispatch) => {
+  const res = csrfFetch(`/api/orders/${orderId}`, {
+    method: 'DELETE'
+  })
 
+  if (res.ok) {
+    const orderId = res.json();
+    await dispatch(deleteOrder(orderId))
+  }
+}
 
 const initialState = {}
 
