@@ -1,0 +1,65 @@
+
+html
+{
+  /* Convert 1rem to 10px */
+  font-size: 62.5%;
+}
+
+.home-page-body {
+
+}
+
+.home-page-first-go-shopping-area {
+  display: flex;
+}
+
+.go-shopping-img-container {
+  /* width: 60%; */
+  width: 60vw;
+  height: 40vw;
+  /* margin-top: 10px; */
+}
+
+.go-shopping-img-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-filter:saturate(100%);
+  filter: saturate(70%)
+  /* opacity: 0.85; */
+}
+
+.go-shopping-words-container {
+  width: 40vw;
+  /* height: inherit; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page-go-shopping-h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 3.5vw;
+  padding: 2vw;
+}
+
+.home-page-go-shopping-h3 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  font-size: 2vw;
+  padding: 3vw;
+}
+
+.go-shopping-btn{
+  width: 15vw;
+  height: 4vw;
+  background-color: #cf8193;
+  border-radius: 10vw;
+  border: none;
+  margin: 10px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.5vw;
+  color: white;
+  cursor: pointer;
+}

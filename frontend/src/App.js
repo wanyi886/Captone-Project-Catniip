@@ -11,6 +11,7 @@ import ProductDetail from "./components/ProductDetail";
 import MyListingPage from "./components/MyListing";
 import Cart from "./components/Cart"
 import MyOrders from "./components/MyOrders";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            Home
+            <HomePage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
