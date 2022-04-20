@@ -69,7 +69,9 @@ router.delete('/:id', asyncHandler(async(req, res) => {
   // })
 
   if (targetOrder) {
+    console.log("before destroy")
     await targetOrder.destroy()
+    console.log("orderId from route", orderId)
     return res.json(orderId)
 
   } else {

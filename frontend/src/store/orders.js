@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ORDERS = 'orders/GET_ORDERS';
 const PLACE_ORDER = 'orders/PLACE_ORDER';
-const CACEL_ORDER = 'orders/CANCEL_ORDER'
+const CANCEL_ORDER = 'orders/CANCEL_ORDER'
 
 const getOrders = (orders) => ({
   type: GET_ORDERS,
@@ -49,27 +49,33 @@ export const createOrder = (data) => async (dispatch) => {
 }
 
 const deleteOrder = (orderId) => ({
-  type: CACEL_ORDER,
+  type: CANCEL_ORDER,
   payload: orderId
 })
 
 export const cancelOrder = (orderId) => async(dispatch) => {
-  console.log("orderId passed to thunk", orderId)
-  const res = csrfFetch(`/api/orders/${orderId}`, {
+
+  const res = await csrfFetch(`/api/orders/${orderId}`, {
     method: 'DELETE'
   })
 
+  console.log("after res")
+
   if (res.ok) {
-    const orderId = res.json();
+
+    const orderId = await res.json();
+    console.log("orderId received from res", orderId)
+
     await dispatch(deleteOrder(orderId))
   }
+
 }
 
 const initialState = {}
 
 export default function ordersReducer(state = initialState, action) {
   const newState = {...state}
-  console.log("order state", newState)
+
 
   switch (action.type) {
     case GET_ORDERS:
@@ -83,9 +89,11 @@ export default function ordersReducer(state = initialState, action) {
       // newState[action.payload.id] = action.payload
       // return newState
 
-    case CACEL_ORDER:
-      console.log()
+    case CANCEL_ORDER:
+      console.log("newState before", newState)
+      console.log("action.payload", action.payload)
       delete newState[action.payload];
+      console.log("newState after", newState)
       return newState
 
     default:
