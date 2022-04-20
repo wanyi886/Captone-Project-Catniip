@@ -165,7 +165,8 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='new-product-btn-area'>
-          <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button>
+          {/* <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button> */}
+          <button type='submit'  className="new-product-submit">Submit</button>
           <button type="button" onClick={hideForm} className="new-product-cancel">Cancel</button>
         </div>
 
