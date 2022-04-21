@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeOneProduct } from '../../store/products'
-
+import './ConfirmModal.css'
 
 function ConfirmModal({ product, hideForm }) {
   const dispatch = useDispatch();
@@ -13,9 +13,9 @@ function ConfirmModal({ product, hideForm }) {
   return (
     <div className='delete-product-modal'>
 
-      <div className='delete-product-title'>
+      <h1 className='delete-product-title'>
         Delete Product
-      </div>
+      </h1>
 
       <div className='delete-product-confirm'>
         Are you sure you want to delete this product?

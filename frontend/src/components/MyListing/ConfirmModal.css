@@ -1,0 +1,65 @@
+.delete-product-modal{
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-product-title{
+  font-size: 30px;
+  color: #2c2c2c;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.delete-product-confirm {
+  font-size: 17px;
+  color: #2c2c2c;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.delete-product-modal-buttons{
+
+}
+
+#delete-product-modal-delete {
+  width: 90px;
+  font-size: 15px;
+  background-color: white;
+  border: #5e5e5e 1px solid;
+  color:#5e5e5e;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 5px;
+  height: 30px;
+}
+
+#delete-product-modal-delete:hover {
+  background-color: #5e5e5e;
+  border: #5e5e5e 1px solid;
+  color:white;
+}
+
+#delete-product-modal-cancel {
+  width: 90px;
+  font-size: 15px;
+  background-color: white;
+  border: #5e5e5e 1px solid;
+  color:#5e5e5e;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 5px;
+  height: 30px;
+}
+
+#delete-product-modal-cancel:hover {
+  background-color: #5e5e5e;
+  border: #5e5e5e 1px solid;
+  color:white;
+}
