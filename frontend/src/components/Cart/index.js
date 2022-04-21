@@ -47,6 +47,7 @@ function Cart () {
     }
 
     await dispatch(createOrder(data))
+    window.localStorage.setItem('cart', JSON.stringify({}))
     history.push('/my-orders')
   }
 
