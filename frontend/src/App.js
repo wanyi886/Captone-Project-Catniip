@@ -12,6 +12,7 @@ import MyListingPage from "./components/MyListing";
 import Cart from "./components/Cart"
 import MyOrders from "./components/MyOrders";
 import HomePage from "./components/HomePage";
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
 
         </Switch>
       )}
+      <Footer/>
     </>
   );
 }
