@@ -62,7 +62,7 @@ function AddProductForm({ hideForm }) {
     <div className='new-product-modal'>
       <h1 className='new-product-h1'>Add New Product</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='error-list'>
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>

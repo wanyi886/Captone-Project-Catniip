@@ -1,6 +1,6 @@
 .new-product-modal {
   width: 500px;
-  height: 550px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,7 +23,7 @@
 }
 
 .product-form-input input{
-  width: 200px;
+  width: 250px;
   height: 20px;
 
   padding-left: 4px;
@@ -32,9 +32,10 @@
 
 .des textarea{
   height: 50px;
-  width: 200px;
+  width: 250px;
   padding: 4px;
 }
+
 .new-product-btn-area {
   margin-top: 15px;
   display: flex;

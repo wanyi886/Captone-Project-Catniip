@@ -43,3 +43,17 @@
 .navbar-icon-tray i:hover {
   color: #242424
 }
+
+.nav-bar-signup {
+  cursor: pointer;
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(106, 105, 105);
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+.nav-bar-signup:hover {
+  color: #242424
+}
