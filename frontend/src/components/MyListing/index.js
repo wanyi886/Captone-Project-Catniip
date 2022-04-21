@@ -48,7 +48,7 @@ function MyListingPage(){
     component = (
       <div className='my-listing-page-body'>
         <h1 className='my-listing-h1'>My Listing</h1>
-        <p className='my-listing-not-login'>Please Log In to See Your Listing</p>
+        <p className='my-listing-not-login'>Please Log In to See Your Listing!</p>
       </div>
     )
   } else {
