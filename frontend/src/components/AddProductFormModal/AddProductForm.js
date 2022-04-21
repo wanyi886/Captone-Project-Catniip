@@ -25,7 +25,7 @@ function AddProductForm({ hideForm }) {
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
     if (!price || price < 0) errors.push("Price cannot be less than 0.")
-    if (inventory < 1) errors.push("Inventory cannot be less than 1")
+    if (inventory < 1 || inventory > 10000) errors.push("Inventory cannot be less than 1 or greater than 10,000")
 
     return errors
   }
