@@ -48,8 +48,9 @@ function AddProductForm({ hideForm }) {
       inventory
     }
 
+
     const result = await dispatch(addOneProduct(payload))
-    // console.log("result from create", result)
+
     if (result) {
       hideForm()
     }
@@ -61,7 +62,7 @@ function AddProductForm({ hideForm }) {
     <div className='new-product-modal'>
       <h1 className='new-product-h1'>Add New Product</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='error-list'>
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>
@@ -158,7 +159,8 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='new-product-btn-area'>
-          <button type='submit' disabled={errors.length > 0} className="new-product-submit" >Submit</button>
+          {/* <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button> */}
+          <button type='submit'  className="new-product-submit">Submit</button>
           <button type="button" onClick={hideForm} className="new-product-cancel">Cancel</button>
         </div>
 

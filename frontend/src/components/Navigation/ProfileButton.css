@@ -14,9 +14,34 @@
   width: 200px;
   padding: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  /* font-size: 1.25vw; */
+  font-size: 16px;
+}
 
+.welcome {
+  font-family: 'Rubik', sans-serif;
+  color:rgb(98, 98, 98);
+  font-weight: 600;
+}
+
+.li {
+  font-family: 'Rubik', sans-serif;
+  color:rgb(98, 98, 98);
+  cursor:pointer
+}
+
+.li:hover {
+  color: #cf8193;
+  font-weight: 600;
 }
 
 .logout-button {
   cursor: pointer;
+  font-family: 'Rubik', sans-serif;
+  color:rgb(98, 98, 98)
+}
+
+.logout-button:hover {
+  color: #cf8193;
+  font-weight: 600;
 }

@@ -68,7 +68,7 @@ function EditProductForm({ product, hideForm }) {
     <div className='new-product-modal'>
       <h1 className='new-product-h1'>Edit Product</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className='error-list'>
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>
@@ -165,7 +165,8 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='new-product-btn-area'>
-          <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button>
+          {/* <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button> */}
+          <button type='submit'  className="new-product-submit">Submit</button>
           <button type="button" onClick={hideForm} className="new-product-cancel">Cancel</button>
         </div>
 

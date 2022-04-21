@@ -48,7 +48,7 @@ function MyOrders () {
     component = (
       <div className="my-orders-page-body">
         <h1 className="my-orders-h1">My Orders</h1>
-        <div >Please Log In to See Your Order History.</div>
+        <div className="my-orders-not-login">Please Log In to See Your Order History.</div>
       </div>
     )
   }

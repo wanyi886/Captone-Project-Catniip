@@ -23,14 +23,14 @@ function Navigation({ isLoaded }){
       <>
         <LoginFormModal />
         {/* <NavLink to="/login">Log In</NavLink> */}
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup" className={"nav-bar-signup"}>Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <nav>
-      <div className='navbar-container'>
+    // <nav>
+      <div className='navbar-container sticky'>
         <div className='navbar-logo-tray'></div>
           <Link to="/">
             <img src={logo} className="navbar-logo" alt="logo"/>
@@ -49,7 +49,7 @@ function Navigation({ isLoaded }){
           </div>
 
       </div>
-    </nav>
+    // </nav>
   );
 }
 export default Navigation;
