@@ -12,6 +12,7 @@ import MyListingPage from "./components/MyListing";
 import Cart from "./components/Cart"
 import MyOrders from "./components/MyOrders";
 import HomePage from "./components/HomePage";
+import Footer from "./components/Footer"
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="page-container">
       <Navigation isLoaded={isLoaded} />
 
       {isLoaded && (
@@ -54,7 +55,8 @@ function App() {
 
         </Switch>
       )}
-    </>
+      <Footer/>
+    </div>
   );
 }
 

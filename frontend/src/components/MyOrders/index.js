@@ -34,12 +34,22 @@ function MyOrders () {
   useEffect(() => {
     if (sessionUser) {
       dispatch(loadUserOrders(sessionUser.id))
+      console.log("orderisEmpty?", orderIsEmpty)
+    console.log("orders.length", Object.keys(userOrdersData).length);
+    console.log("orders", Object.keys(userOrdersData))
+    console.log("state", userOrdersData)
     }
   }, [dispatch])
 
   const handleCancelOrder = async (e) => {
 
     await dispatch(cancelOrder(e.currentTarget.id))
+    // await dispatch(loadUserOrders(sessionUser.id))
+    const orderIsEmpty = Object.keys(userOrdersData).length === 0;
+    console.log("orderisEmpty?", orderIsEmpty)
+    console.log("orders.length", Object.keys(userOrdersData).length);
+    console.log("orders", Object.keys(userOrdersData))
+    console.log("state", userOrdersData)
   }
 
   let component;
@@ -53,7 +63,9 @@ function MyOrders () {
     )
   }
 
-  if (!userOrdersData) {
+  const orderIsEmpty = Object.keys(userOrdersData).length === 0;
+
+  if (sessionUser && orderIsEmpty) {
     component = (
       <div className="my-orders-page-body">
         <h1 className="my-orders-h1">My Orders</h1>

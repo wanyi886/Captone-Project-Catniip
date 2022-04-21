@@ -190,6 +190,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 80vh;
 }
 
 .cart-h1 {
@@ -204,9 +205,10 @@
 .cart-h2 {
   font-family: 'Rubik', sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 40px;
   color: #5d5d5d;
-  margin: 20px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 .empty-cart-img img {
   width: 450px;
@@ -222,13 +224,13 @@
 
 
 .empty-cart-btn {
-  width: 200px;
-  height: 35px;
+  width: 220px;
+  height: 45px;
   background-color: #cf8193;
   border-radius: 20px;
   border: none;
   font-family: 'Rubik', sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   margin-top: 15px;
   margin-bottom: 5px;
 }

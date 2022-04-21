@@ -5,10 +5,10 @@ This is a clone of [Wild One](https://wildone.com/). Catniip is a cat supplies w
 
 
 ## Table of Contents
-  - [MVP Feature List](https://github.com/wanyi886/W16-solo-project-eventLight/wiki/Features)
-  - [Database Schema](https://github.com/wanyi886/W16-solo-project-eventLight/wiki/Database-Schema )
-  - [API Documentation](#API-Documentation)
-  - [Frontend Routes](#Frontend-Routes)
+  - [MVP Feature List](https://github.com/wanyi886/Captone-Project-Catniip/wiki/Feature-List)
+  - [Database Schema](https://github.com/wanyi886/Captone-Project-Catniip/wiki/Database-Schema )
+  - [User Stories](https://github.com/wanyi886/Captone-Project-Catniip/wiki/User-Stories)
+  - [WireFrame](https://github.com/wanyi886/Captone-Project-Catniip/wiki/Wireframe)
 
 ## Link to live site
 
@@ -34,7 +34,7 @@ Catniip was built using the following technologies:
 ## Getting started
 
 1. Clone this repo.
--- `gh repo clone wanyi886/W16-solo-project-eventLight`
+-- `gh repo clone wanyi886/Captone-Project-Catniip`
 
 2. Install dependencies from the root directory.
 -- `npm install`
@@ -59,13 +59,16 @@ Catniip was built using the following technologies:
 
 
 ## Features
-### Logged in users can do:
-- View/ Create/ Edit/ Delete events
-- Register events
-- View your tickets/ registrations of events
-- Cancel registrations of events
 
-### Logged out users can do:
-- View all the events
+### Logged out users can:
+- View all products
+- Add items to shopping cart
 
-Hosted on Heroku: [eventLight](https://event-light.herokuapp.com/)
+### Logged in users can:
+- View all products
+- Add items to shopping cart
+- Adjust quantity of items in the shopping cart
+- List(Create) product which users want to sell
+- View products listed by users
+- Update and Delete products listed by users
+- Place orders/ View orders history/ Cancel orders
