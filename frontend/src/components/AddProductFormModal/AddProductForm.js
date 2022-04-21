@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from './ProductTypeList'
 import { addOneProduct } from '../../store/products'
+import validator from 'validator';
 
 function AddProductForm({ hideForm }) {
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ function AddProductForm({ hideForm }) {
 
   const validationErrors = () => {
     const errors = [];
-    if (!imgUrl) errors.push("Image cannot be empty.")
+    if (!imgUrl) errors.push("Image URL cannot be empty.")
+    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
     if (!price || price < 0) errors.push("Price cannot be less than 0.")

@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from '../AddProductFormModal/ProductTypeList'
-import { updateOneProduct } from '../../store/products'
+import { updateOneProduct } from '../../store/products';
+import validator from 'validator';
 
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
@@ -37,7 +38,8 @@ function EditProductForm({ product, hideForm }) {
 
   useEffect(() => {
     const errors = [];
-    if (!imgUrl) errors.push("Image cannot be empty.")
+    if (!imgUrl) errors.push("Image URL cannot be empty.")
+    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
     if (!price || price < 0) errors.push("Price cannot be less than 0.")
