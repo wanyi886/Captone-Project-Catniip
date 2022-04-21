@@ -1,6 +1,7 @@
 .page-container {
   position: relative;
   min-height: 100vh;
+  padding-bottom: 7vw;
 }
 
 .footer-body{
@@ -8,7 +9,7 @@
   position: absolute;
   width: 100%;
   bottom: 0;
-  background-color: #ffe1bf;
+  background-color: #fbe9d3;
   /* border: red 1px solid; */
   display: flex;
   flex-direction: column;
@@ -21,10 +22,16 @@
   font-size: 10px;
 }
 
-.footer-icon-container {
+.footer-icon-container a{
+  text-decoration: none;
+}
 
+a:visited {
+  text-decoration: none;
 }
 
 .footer-icon-container i{
-
+  font-size: 2.5vw;
+  margin: 5px;
+  color:rgb(78, 78, 78)
 }
