@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeOneProduct } from '../../store/products'
 
+
 function ConfirmModal({ product, hideForm }) {
   const dispatch = useDispatch();
   const deleteHandler = () => {
@@ -13,7 +14,7 @@ function ConfirmModal({ product, hideForm }) {
     <div className='delete-product-modal'>
 
       <div className='delete-product-title'>
-        Delete Post
+        Delete Product
       </div>
 
       <div className='delete-product-confirm'>
