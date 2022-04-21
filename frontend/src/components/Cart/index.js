@@ -105,11 +105,12 @@ function Cart () {
         <button className='empty-cart-btn'>
           <Link to="/products" className='empty-cart-btn-link'>
             <i class="fa-solid fa-paw"></i>
-            Return to Shop
+            GO SHOPPING
           </Link>
         </button>
         <div className='empty-cart-img'>
-          <img src={carts} alt="Cart Image"></img>
+          {/* <img src={carts} alt="Cart Image"></img> */}
+          <i class="fa-solid fa-cart-shopping empty-cart-image"></i>
         </div>
       </div>
     )
