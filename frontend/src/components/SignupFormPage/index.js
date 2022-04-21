@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+// import cat from '../../images/cat-in-round-bed.jpg'
 import cat from '../../images/cat-in-round-bed.jpg'
 
 function SignupFormPage() {
