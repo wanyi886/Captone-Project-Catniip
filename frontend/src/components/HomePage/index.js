@@ -27,8 +27,8 @@ function HomePage() {
 
       <div className="second-area">
         <div className='second-area-words-container'>
-          <h1 className='second-area-h1'>Why Catniip</h1>
-          <p className='second-area-words'>Catnup is the award-winning cat lifestyle brand for happy and healthy cats. Our innovative and delicate design and premium food recipe have won over 1 million cat parents' love.</p>
+          <h1 className='second-area-h1'>What is Catniip</h1>
+          <p className='second-area-words'>Catnup is a One-Stop-Shop for happy and healthy cats. As Cat Lovers, you can buy delecate products from food to carrier. If you have products that could level up cat's life, list it here! </p>
         </div>
         <div className='second-area-image-container'>
           <img src={image2} alt="cat-img-2"/>
