@@ -6,7 +6,6 @@ import { loadProductsPage } from '../../store/products'
 import { loadUserOrders, createOrder } from '../../store/orders';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
-import carts from '../../images/carts.png'
 import LoginForm from '../LoginFormModal/LoginForm';
 import { Modal } from '../../context/Modal';
 
@@ -109,7 +108,6 @@ function Cart () {
           </Link>
         </button>
         <div className='empty-cart-img'>
-          {/* <img src={carts} alt="Cart Image"></img> */}
           <i class="fa-solid fa-cart-shopping empty-cart-image"></i>
         </div>
       </div>
