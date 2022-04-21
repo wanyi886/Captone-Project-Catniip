@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf"
 const ADD_TO_CART = 'cart/ADD_TO_CART'
 const UPDATE_COUNT = 'cart/UPDATE_COUNT'
 const REMOVE = 'cart/REMOVE'
+const CLEAR = 'cart/CLEAR'
 const PLACE_ORDER = 'cart/PLACE_ORDER'
 
 export const addToCart = (id) => ({
@@ -22,6 +23,10 @@ export const updateCount = (id, count) => {
 export const removeFromCart = (id) => ({
   type: REMOVE,
   id
+})
+
+export const clearCart = () => ({
+  type: CLEAR
 })
 
 // const placeOrder = (order) => ({
@@ -68,6 +73,11 @@ export default function cartReducer(state = initialState, action) {
       delete newState[action.id]
       window.localStorage.setItem('cart', JSON.stringify(newState))
       return newState;
+
+    case CLEAR:
+      const emptyState = {}
+      window.localStorage.setItem('cart', JSON.stringify(emptyState))
+      return emptyState
 
     // case PLACE_ORDER:
     //   console.log('Hi from place order reducer case')

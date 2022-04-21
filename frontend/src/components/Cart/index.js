@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { loadProductsPage } from '../../store/products'
 import { loadUserOrders, createOrder } from '../../store/orders';
+import { clearCart } from '../../store/cart';
 import { useEffect } from 'react';
 import CartItem from './CartItem';
 import LoginForm from '../LoginFormModal/LoginForm';
@@ -47,6 +48,7 @@ function Cart () {
     }
 
     await dispatch(createOrder(data))
+    await dispatch(clearCart())
     history.push('/my-orders')
   }
 
@@ -107,9 +109,9 @@ function Cart () {
             GO SHOPPING
           </Link>
         </button>
-        <div className='empty-cart-img'>
+        {/* <div className='empty-cart-img'>
           <i class="fa-solid fa-cart-shopping empty-cart-image"></i>
-        </div>
+        </div> */}
       </div>
     )
   }
