@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import cat from '../../images/cat-in-round-bed.jpg'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -30,20 +31,23 @@ function SignupFormPage() {
   };
 
   return (
-    <div className='outter-container'>
-      <div className='form-container'>
-        <h1>Create an Account</h1>
+    <div className='signup-form-page-body'>
+      <div className="signup-form-image-container">
+        <img src={cat} alt="cat-image"></img>
+      </div>
+      <div className='signup-form-container'>
+        <h1 className='signup-h1'>Create an Account</h1>
         <form onSubmit={handleSubmit}>
-          <ul>
+          <ul className='error-list'>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <div>
+          <div className='form-label'>
             <label>
               Email
             </label>
           </div>
 
-          <div className='form-input'>
+          <div className='signup-form-input'>
               <input
                 type="text"
                 value={email}
@@ -52,13 +56,13 @@ function SignupFormPage() {
                 />
           </div>
 
-          <div>
+          <div className='form-label'>
             <label>
               Username
             </label>
           </div>
 
-          <div className='form-input'>
+          <div className='signup-form-input'>
               <input
                 type="text"
                 value={username}
@@ -67,12 +71,12 @@ function SignupFormPage() {
               />
           </div>
 
-          <div>
+          <div className='form-label'>
             <label>
               Password
             </label>
           </div>
-          <div className='form-input'>
+          <div className='signup-form-input'>
               <input
                 type="password"
                 value={password}
@@ -81,12 +85,12 @@ function SignupFormPage() {
               />
           </div>
 
-          <div>
-            <label>
+          <div className='form-label'>
+            <label >
               Confirm Password
             </label>
           </div>
-          <div className='form-input'>
+          <div className='signup-form-input'>
               <input
                 type="password"
                 value={confirmPassword}

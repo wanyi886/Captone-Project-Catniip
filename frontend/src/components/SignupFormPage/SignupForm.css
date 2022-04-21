@@ -1,1 +1,29 @@
+.signup-form-page-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: rgb(207, 207, 207) 1px solid;
+  border-radius: 15px;
+  align-items: center;
+  padding: 40px;
+}
+
+.signup-form-image-container {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  margin-top: 20px;
+  /* border: red 1px solid; */
+}
+
+.signup-form-input input{
+  width: 300px;
+  height: 25px;
+  margin-bottom: 8px;;
+}
