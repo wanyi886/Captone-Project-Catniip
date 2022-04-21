@@ -98,11 +98,11 @@ function SignupFormPage() {
                 required
               />
           </div>
-          <div>
-            <button className="btn-login" type="submit">Sign Up</button>
+          <div className='btn-container'>
+            <button className="btn-signup" type="submit">Sign Up</button>
           </div>
           <div className='login-container'>
-            <a  className="atag" href="/login">Already have an account?</a>
+            {/* <a  className="atag" href="/login">Already have an account?</a> */}
           </div>
         </form>
       </div>
