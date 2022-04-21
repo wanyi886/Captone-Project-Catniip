@@ -27,6 +27,7 @@ app.use(
     policy: "cross-origin"
 }))
 
+
 // Set the _csrf token and create req.csrfToken method
 app.use(
   csurf({
@@ -58,7 +59,7 @@ app.use((err, _req, _res, next) => {
     err.errors = err.errors.map((e) => e.message);
     err.title = 'Validation error';
   }
-  
+
   next(err);
 });
 
