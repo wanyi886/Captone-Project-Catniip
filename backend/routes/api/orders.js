@@ -39,10 +39,26 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
     return {...orderItem, orderId: newOrder.id}
   })
 
+
+  console.log('=========  addOrderIdItems  =========', addOrderIdItems )
+
+
   if (newOrder) {
+
+    // create orderItems
     for (let i = 0; i < addOrderIdItems.length; i++) {
       await OrderItem.create(addOrderIdItems[i])
     }
+
+    // adjust product inventory
+    for (let i = 0; i < addOrderIdItems.length; i++) {
+      const orderItem = addOrderIdItems[i];
+      const targetProduct = await Product.findByPk(orderItem.productId)
+
+      targetProduct.inventory = targetProduct.inventory - orderItem.quantity
+      targetProduct.save()
+    }
+
   }
 
   // const createdOrder = await Order.findOne(
