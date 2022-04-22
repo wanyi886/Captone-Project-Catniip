@@ -40,7 +40,7 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
   })
 
 
-  console.log('=========  addOrderIdItems  =========', addOrderIdItems )
+  // console.log('=========  addOrderIdItems  =========', addOrderIdItems )
 
 
   if (newOrder) {
@@ -56,7 +56,7 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
       const targetProduct = await Product.findByPk(orderItem.productId)
 
       targetProduct.inventory = targetProduct.inventory - orderItem.quantity
-      targetProduct.save()
+      await targetProduct.save()
     }
 
   }
@@ -80,7 +80,29 @@ router.delete('/:id', asyncHandler(async(req, res) => {
   const targetOrder = await Order.findByPk(orderId);
 
   if (targetOrder) {
+    // add back inventory for products
+    // TODO:
+    const orderItems = await OrderItem.findAll({
+      where: {
+        orderId: orderId
+      }
+    })
+
+    // console.log("========= orderItems grabbed from database", orderItems)
+
+    for (let i = 0; i < orderItems.length; i++) {
+      const orderItem = orderItems[i];
+      const targetProduct = await Product.findByPk(orderItem.productId);
+
+      console.log("======= targetProduct.inventory before ========", targetProduct.inventory)
+      targetProduct.inventory = targetProduct.inventory + orderItem.quantity
+      console.log("======= targetProduct.inventory after =======", targetProduct.inventory)
+
+      await targetProduct.save()
+    }
+
     await targetOrder.destroy()
+
     return res.json(orderId)
 
   } else {
