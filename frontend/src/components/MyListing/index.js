@@ -31,7 +31,7 @@ function MyListingPage(){
   const handleEditClick = (e) => {
     setShowEditForm(true);
     // pass in the click event, to get the event.target.id, which is the index of the userProducts array
-    setCurrentProduct(userProducts[e.target.id])
+    setCurrentProduct(userProducts[e.currentTarget.id])
   }
 
   const handleDeleteClick = async (e) => {
@@ -39,7 +39,7 @@ function MyListingPage(){
     // console.log("userProducts", userProducts)
     // console.log("e.target", e.target)
     // console.log("product clicked", userProducts[e.target.id])
-    setCurrentProduct(userProducts[e.target.id])
+    setCurrentProduct(userProducts[e.currentTarget.id])
     await dispatch(loadProductsPage())
   }
 
