@@ -58,6 +58,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: 17px;
   padding: 8px;
+  overflow-wrap: break-word;
 }
 
 .price-and-cart-btn {
@@ -73,6 +74,7 @@
   font-family: 'Rubik', sans-serif;
   font-size: 22px;
   padding-left: 15px;
+  overflow-wrap: break-word;
 }
 
 
