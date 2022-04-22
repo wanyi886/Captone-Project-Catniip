@@ -102,7 +102,7 @@
   width: 400px;
   border-right: rgb(205, 205, 205) 1px solid;
   padding: 10px;
-
+  overflow-wrap: break-word;
 }
 
 .cart-item-title {
@@ -111,6 +111,7 @@
   font-family: 'Rubik', sans-serif;
   font-weight: 600;
   color: #4b4b4b;
+  overflow-wrap: break-word;
 }
 
 .cart-item-price {
@@ -149,7 +150,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Rubik', sans-serif;
-  font-size: 20px;
+  font-size: 15.5px;
   font-weight: 600;
   color: #555555;
 

@@ -99,6 +99,7 @@
   font-family: 'Rubik', sans-serif;
   font-weight: 600;
   color: #4b4b4b;
+  overflow-wrap: break-word;
 }
 
 .order-item-price {

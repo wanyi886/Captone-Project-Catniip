@@ -60,7 +60,7 @@ function CartItem ({item}) {
            ${item?.price}
         </div>
         <div className='cart-item-inventory'>
-          {item?.inventory} pieces available
+          {item?.inventory} piece(s) available
         </div>
       </div>
 
