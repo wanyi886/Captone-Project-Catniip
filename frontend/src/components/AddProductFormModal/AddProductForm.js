@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from './ProductTypeList'
 import { addOneProduct } from '../../store/products'
 import validator from 'validator';
+import { loadProductsPage } from '../../store/products'
 
 function AddProductForm({ hideForm }) {
   const dispatch = useDispatch();
@@ -72,9 +73,11 @@ function AddProductForm({ hideForm }) {
 
 
     const result = await dispatch(addOneProduct(payload))
+    await dispatch(loadProductsPage())
 
     if (result) {
       hideForm()
+
     }
 
   }

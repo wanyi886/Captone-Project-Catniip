@@ -13,7 +13,7 @@ export const loadProductsPage = () => async (dispatch) => {
   const res = await csrfFetch('/api/products');
   if (res.ok) {
     const products = await res.json();
-    await dispatch(getProducts(products))
+    dispatch(getProducts(products))
   }
 }
 
@@ -30,7 +30,7 @@ export const loadOneProduct = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/products/${id}/detail`);
   if (res.ok) {
     const product = await res.json();
-    await dispatch(getOneProduct(product))
+    dispatch(getOneProduct(product))
   }
 }
 
@@ -53,7 +53,7 @@ export const addOneProduct = (data) => async(dispatch) => {
 
   if (res.ok){
     const product = await res.json();
-    
+
     await dispatch(createProduct(product))
     return product
   }
@@ -100,7 +100,7 @@ export const removeOneProduct = (id) => async(dispatch) => {
 
   if (res.ok) {
     const productId = await res.json();
-    await dispatch(deleteProduct(productId))
+    dispatch(deleteProduct(productId))
   }
 }
 

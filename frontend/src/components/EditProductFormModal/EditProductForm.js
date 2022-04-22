@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from '../AddProductFormModal/ProductTypeList'
 import { updateOneProduct } from '../../store/products';
 import validator from 'validator';
+import { loadProductsPage } from '../../store/products'
 
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function EditProductForm({ product, hideForm }) {
     // await dispatch(addOneProduct(payload))
 
     const result = await dispatch(updateOneProduct(payload))
+    await dispatch(loadProductsPage())
 
     if (result) {
       hideForm()

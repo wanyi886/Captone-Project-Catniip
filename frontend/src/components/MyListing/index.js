@@ -34,12 +34,13 @@ function MyListingPage(){
     setCurrentProduct(userProducts[e.target.id])
   }
 
-  const handleDeleteClick = (e) => {
+  const handleDeleteClick = async (e) => {
     setShowConfirmModal(true);
     // console.log("userProducts", userProducts)
     // console.log("e.target", e.target)
     // console.log("product clicked", userProducts[e.target.id])
     setCurrentProduct(userProducts[e.target.id])
+    await dispatch(loadProductsPage())
   }
 
 
