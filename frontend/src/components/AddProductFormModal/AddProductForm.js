@@ -70,7 +70,7 @@ function AddProductForm({ hideForm }) {
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>
-          <label htmlFor='image'>Product Image Url</label>
+          <label htmlFor='image'>*Product Image Url</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -83,7 +83,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title'>*Title</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -95,7 +95,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='type'>Product Type</label>
+          <label htmlFor='type'>*Product Type</label>
         </div>
 
         <div className='product-form-input'>
@@ -111,7 +111,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='description'>Description</label>
+          <label htmlFor='description'>*Description</label>
         </div>
 
         <div className='product-form-input des'>
@@ -137,7 +137,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='price'>Price</label>
+          <label htmlFor='price'>*Price</label>
         </div>
 
         <div className='product-form-input'>
@@ -150,7 +150,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='inventory'>Inventory</label>
+          <label htmlFor='inventory'>*Inventory</label>
         </div>
 
         <div className='product-form-input'>
