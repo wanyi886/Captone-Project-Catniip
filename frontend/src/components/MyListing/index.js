@@ -31,10 +31,11 @@ function MyListingPage(){
     dispatch(loadProductsPage())
   }, [dispatch])
 
-  const handleEditClick = (e) => {
+  const handleEditClick = async (e) => {
     setShowEditForm(true);
     // pass in the click event, to get the event.target.id, which is the index of the userProducts array
     setCurrentProduct(userProducts[e.currentTarget.id])
+    await dispatch(loadProductsPage())
   }
 
   const handleDeleteClick = async (e) => {

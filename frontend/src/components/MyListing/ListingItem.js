@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import paw from '../../images/paw.png'
 
 function ListingItem ({userProduct, index, handleEditClick, handleDeleteClick}) {
-  const [imageSource, setImagaSource] = useState(null)
+  const [imageSource, setImageSource] = useState(null)
 
   return (
     <>
@@ -14,10 +14,10 @@ function ListingItem ({userProduct, index, handleEditClick, handleDeleteClick}) 
       <div className='my-product-img-container'>
         <img src={imageSource ? imageSource : userProduct.imgUrl }
               // onError={(e) =>(e.target.onerror = null, e.target.src={paw})}
-              onError={(currentTarget) => {
-                currentTarget.onerror = null;
-                // currentTarget.src={paw}
-                setImagaSource(paw)
+              onError={(e) => {
+                e.onerror = null;
+                // e.src={paw}
+                setImageSource(paw)
                 // return
               }}
 
