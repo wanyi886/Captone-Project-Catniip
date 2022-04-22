@@ -185,7 +185,7 @@ function AddProductForm({ hideForm }) {
             type='number'
             min="0"
             max='1000000'
-            step="0.01"
+            step="1"
             onChange={e => setInventory(e.target.value)}
             value={inventory}
           >
