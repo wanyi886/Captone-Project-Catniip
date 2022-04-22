@@ -8,12 +8,15 @@ import * as sessionActions from '../../store/session'
 import EditProductForm from '../EditProductFormModal/EditProductForm';
 import ConfirmModal from './ConfirmModal'
 import paw from '../../images/paw.png'
+import ListingItem from './ListingItem'
 
 function MyListingPage(){
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const productsStateData = useSelector(state => state.productsState)
   const products = Object.values(productsStateData);
+
+
 
   const userProducts = products.filter(product => product.sellerId === sessionUser?.id)
 
@@ -68,31 +71,42 @@ function MyListingPage(){
       )}
       <div className='my-products-outter-container'>
           {userProducts.map((userProduct, index )=> (
-            <div key={userProduct.id} className='my-product-container'>
-              {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
-              <div className='my-product-img-container'>
-                <img src={userProduct.imgUrl}
-                    //  onError={(e) => (e.target.onerror = null, e.target.src={paw})}
-                     ></img>
-              </div>
-              <div className='my-product-title-container'>
-                <div className='my-product-title'>{userProduct.title}</div>
-              </div>
-              <div className='my-product-price'>Price: {userProduct.price}</div>
-              <div className='my-product-inventory'>Inventory: {userProduct.inventory}</div>
-              <div className='my-product-sold'>Sold: Coming soon{}</div>
-              <div className='my-listing-button-area'>
-                <button type="button" className='my-listing-edit' onClick={(e) => handleEditClick(e)} id={index}>
-                  <i class="fa-solid fa-pen"></i>
-                  Edit
-                </button>
-                <button type="button" className='my-listing-delete' onClick={(e) => handleDeleteClick(e)} id={index}>
-                  <i class="fa-solid fa-trash"></i>
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))
+            // <div key={userProduct.id} className='my-product-container'>
+            //   {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
+            //   <div className='my-product-img-container'>
+            //     <img src={imageSource ? imageSource : userProduct.imgUrl }
+            //           // onError={(e) =>(e.target.onerror = null, e.target.src={paw})}
+            //           onError={(currentTarget) => {
+            //             currentTarget.onerror = null;
+            //             // currentTarget.src={paw}
+            //             setImagaSource(paw)
+            //             return
+            //           }}
+
+            //          ></img>
+            //   </div>
+            //   <div className='my-product-title-container'>
+            //     <div className='my-product-title'>{userProduct.title}</div>
+            //     {/* <img src={paw}></img> */}
+
+            //   </div>
+            //   <div className='my-product-price'>Price: {userProduct.price}</div>
+            //   <div className='my-product-inventory'>Inventory: {userProduct.inventory}</div>
+            //   <div className='my-product-sold'>Sold: Coming soon{}</div>
+            //   <div className='my-listing-button-area'>
+            //     <button type="button" className='my-listing-edit' onClick={(e) => handleEditClick(e)} id={index}>
+            //       <i class="fa-solid fa-pen"></i>
+            //       Edit
+            //     </button>
+            //     <button type="button" className='my-listing-delete' onClick={(e) => handleDeleteClick(e)} id={index}>
+            //       <i class="fa-solid fa-trash"></i>
+            //       Delete
+            //     </button>
+            //   </div>
+            // </div>
+            <ListingItem userProduct={userProduct} key={userProduct.id} index={index} handleDeleteClick={handleDeleteClick} handleEditClick={handleEditClick}/>
+          )
+          )
         }
          {showEditForm && (
             <Modal onClose={() => setShowEditForm(false)}>

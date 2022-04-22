@@ -40,7 +40,7 @@ function AddProductForm({ hideForm }) {
   useEffect(() => {
     const errors = [];
     if (!imgUrl) errors.push("Image URL cannot be empty.")
-    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
+    // if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (title.length > 32) errors.push("Title cannot be over 32 characters.")
     if (!description) errors.push("Description cannot be empty.")
