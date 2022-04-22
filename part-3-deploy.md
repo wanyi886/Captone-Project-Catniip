@@ -285,3 +285,12 @@ back. You're a web developer!
 [Heroku CLI]: https://devcenter.heroku.com/articles/heroku-command-line
 [Setting Heroku Config Variables]: https://devcenter.heroku.com/articles/config-vars
 [Content Security Policy]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
+
+### remigrate and reseed data on Heroku
+Log in to Heroku and run commands:
+
+heroku run npm run sequelize db:seed:undo:all
+heroku run npm run sequelize db:migrate:undo:all
+heroku run npm run sequelize db:migrate
+heroku run npm run sequelize db:seed:all
