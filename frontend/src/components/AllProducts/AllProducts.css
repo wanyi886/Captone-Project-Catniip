@@ -70,11 +70,14 @@
 }
 
 .product-price {
-  height: 50px;
+  height: 30px;
   font-family: 'Rubik', sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   padding-left: 15px;
   overflow-wrap: break-word;
+
+  display: flex;
+  align-items: center;
 }
 
 
