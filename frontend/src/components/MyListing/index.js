@@ -71,7 +71,8 @@ function MyListingPage(){
               {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
               <div className='my-product-img-container'>
                 <img src={userProduct.imgUrl}
-                     onerror={(e) => (e.target.onerror = null, e.target.src = "../../images/paw.png")}></img>
+                    //  onError={(e) => (e.target.onerror = null, e.target.src={paw})}
+                     ></img>
               </div>
               <div className='my-product-title'>{userProduct.title}</div>
               <div className='my-product-price'>Price: {userProduct.price}</div>
