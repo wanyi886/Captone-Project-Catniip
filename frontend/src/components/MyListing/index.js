@@ -7,6 +7,7 @@ import { loadProductsPage } from '../../store/products';
 import * as sessionActions from '../../store/session'
 import EditProductForm from '../EditProductFormModal/EditProductForm';
 import ConfirmModal from './ConfirmModal'
+import paw from '../../images/paw.png'
 
 function MyListingPage(){
   const dispatch = useDispatch()
@@ -69,7 +70,9 @@ function MyListingPage(){
             <div key={userProduct.id} className='my-product-container'>
               {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
               <div className='my-product-img-container'>
-                <img src={userProduct.imgUrl}></img>
+                <img src={userProduct.imgUrl}
+                    //  onError={(e) => (e.target.onerror = null, e.target.src={paw})}
+                     ></img>
               </div>
               <div className='my-product-title'>{userProduct.title}</div>
               <div className='my-product-price'>Price: {userProduct.price}</div>

@@ -9,32 +9,18 @@ import validator from 'validator';
 
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
-  // console.log("product passed into edit form", product)
-  // console.log("product title:", product.title)
-  // console.log("productS!!!", products)
 
-  const [imgUrl, setImgUrl] = useState(product.imgUrl);
-  const [type, setType] = useState(product.type)
-  const [title, setTitle] = useState(product.title)
-  const [description, setDescription ] = useState(product.description)
-  const [detail, setDetail ] = useState(product.detail)
-  const [price, setPrice] = useState(product.price)
-  const [inventory, setInventory] = useState(product.inventory)
+  const [imgUrl, setImgUrl] = useState(product?.imgUrl);
+  const [type, setType] = useState(product?.type)
+  const [title, setTitle] = useState(product?.title)
+  const [description, setDescription ] = useState(product?.description)
+  const [detail, setDetail ] = useState(product?.detail)
+  const [price, setPrice] = useState(product?.price)
+  const [inventory, setInventory] = useState(product?.inventory)
   const [errors, setErrors] = useState([])
 
   const sessionUser = useSelector(state => state.session.user)
 
-  // const validationErrors = () => {
-  //   const errors = [];
-  //   if (!imgUrl) errors.push("Image cannot be empty.")
-  //   if (!title) errors.push("Title cannot be empty.")
-  //   if (!description) errors.push("Description cannot be empty.")
-  //   if (!price || price < 0) errors.push("Price cannot be less than 0.")
-  //   if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
-  //   if (inventory < 1 || inventory > 10000) errors.push("Inventory cannot be less than 1 or greater than 10,000")
-
-  //   return errors
-  // }
 
   useEffect(() => {
     const errors = [];
@@ -42,8 +28,10 @@ function EditProductForm({ product, hideForm }) {
     if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
+    // if (typeof price !== 'number') errors.push("Price should be a number.")
     if (!price || price < 0) errors.push("Price cannot be less than 0.")
     if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
+    // if (typeof inventory !== 'number') errors.push("Inventory should be a number.")
     if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
     if (inventory > 100000) errors.push("Inventory cannot be greater than 100,000.")
 
@@ -53,10 +41,7 @@ function EditProductForm({ product, hideForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const validateErrors = validationErrors();
-    // if (validateErrors) {
-    //   setErrors(validateErrors)
-    // }
+
 
     const payload = {
       ...product,

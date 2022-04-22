@@ -46,10 +46,10 @@ function MyOrders () {
     await dispatch(cancelOrder(e.currentTarget.id))
     // await dispatch(loadUserOrders(sessionUser.id))
     const orderIsEmpty = Object.keys(userOrdersData).length === 0;
-    console.log("orderisEmpty?", orderIsEmpty)
-    console.log("orders.length", Object.keys(userOrdersData).length);
-    console.log("orders", Object.keys(userOrdersData))
-    console.log("state", userOrdersData)
+    // console.log("orderisEmpty?", orderIsEmpty)
+    // console.log("orders.length", Object.keys(userOrdersData).length);
+    // console.log("orders", Object.keys(userOrdersData))
+    // console.log("state", userOrdersData)
   }
 
   let component;
