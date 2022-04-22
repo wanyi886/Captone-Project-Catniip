@@ -26,7 +26,12 @@ function EditProductForm({ product, hideForm }) {
   useEffect(() => {
     const errors = [];
     if (!imgUrl) errors.push("Image URL cannot be empty.")
-    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
+
+    const isImage = (url) => {
+      return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+    }
+
+    if (!isImage(imgUrl) || !validator.isURL(imgUrl)) errors.push("Please enter a valid image URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (title.length > 32) errors.push("Title cannot be over 32 characters.")
     if (!description) errors.push("Description cannot be empty.")
