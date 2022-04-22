@@ -81,7 +81,7 @@ router.delete('/:id', asyncHandler(async(req, res) => {
 
   if (targetOrder) {
     // add back inventory for products
-    // TODO:
+    
     const orderItems = await OrderItem.findAll({
       where: {
         orderId: orderId
@@ -94,9 +94,7 @@ router.delete('/:id', asyncHandler(async(req, res) => {
       const orderItem = orderItems[i];
       const targetProduct = await Product.findByPk(orderItem.productId);
 
-      console.log("======= targetProduct.inventory before ========", targetProduct.inventory)
       targetProduct.inventory = targetProduct.inventory + orderItem.quantity
-      console.log("======= targetProduct.inventory after =======", targetProduct.inventory)
 
       await targetProduct.save()
     }
