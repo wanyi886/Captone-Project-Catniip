@@ -75,7 +75,9 @@ function MyListingPage(){
                     //  onError={(e) => (e.target.onerror = null, e.target.src={paw})}
                      ></img>
               </div>
-              <div className='my-product-title'>{userProduct.title}</div>
+              <div className='my-product-title-container'>
+                <div className='my-product-title'>{userProduct.title}</div>
+              </div>
               <div className='my-product-price'>Price: {userProduct.price}</div>
               <div className='my-product-inventory'>Inventory: {userProduct.inventory}</div>
               <div className='my-product-sold'>Sold: Coming soon{}</div>

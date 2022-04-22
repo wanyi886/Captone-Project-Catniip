@@ -28,13 +28,12 @@ function EditProductForm({ product, hideForm }) {
     if (!imgUrl) errors.push("Image URL cannot be empty.")
     if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
+    if (title.length > 32) errors.push("Title cannot be over 32 characters.")
     if (!description) errors.push("Description cannot be empty.")
-    // if (typeof price !== 'number') errors.push("Price should be a number.")
-    if (!price || price < 0) errors.push("Price cannot be less than 0.")
+    if (!price || price <= 0) errors.push("Price cannot be equal or less than 0.")
     if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
-    // if (typeof inventory !== 'number') errors.push("Inventory should be a number.")
     if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
-    if (inventory > 100000) errors.push("Inventory cannot be greater than 100,000.")
+    if (inventory > 1000000) errors.push("Inventory cannot be greater than 1,000,000.")
 
     setErrors(errors)
   }, [imgUrl, title, description, price, inventory])
@@ -52,7 +51,7 @@ function EditProductForm({ product, hideForm }) {
       detail,
       description,
       imgUrl,
-      price,
+      price: Math.round(price * 100)/100,
       inventory
     }
     // console.log("payload in form", payload)
@@ -76,7 +75,7 @@ function EditProductForm({ product, hideForm }) {
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>
-          <label htmlFor='image'>Product Image Url</label>
+          <label htmlFor='image'>Product Image Url*</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -89,7 +88,7 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title'>Title*</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -101,7 +100,7 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='type'>Product Type</label>
+          <label htmlFor='type'>Product Type*</label>
         </div>
 
         <div className='product-form-input'>
@@ -117,7 +116,7 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='description'>Description</label>
+          <label htmlFor='description'>Description*</label>
         </div>
 
         <div className='product-form-input des'>
@@ -143,12 +142,16 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='price'>Price</label>
+          <label htmlFor='price'>Price*</label>
         </div>
 
         <div className='product-form-input'>
           <input
             name="price"
+            type='number'
+            min="0"
+            max='1000000'
+            step="0.01"
             onChange={e => setPrice(e.target.value)}
             value={price}
           >
@@ -156,12 +159,16 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='inventory'>Inventory</label>
+          <label htmlFor='inventory'>Inventory*</label>
         </div>
 
         <div className='product-form-input'>
           <input
             name="inventory"
+            type='number'
+            min="0"
+            max='1000000'
+            step="1"
             onChange={e => setInventory(e.target.value)}
             value={inventory}
           >
