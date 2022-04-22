@@ -39,10 +39,26 @@ router.post(`/users/:id`, asyncHandler(async(req, res) => {
     return {...orderItem, orderId: newOrder.id}
   })
 
+
+  // console.log('=========  addOrderIdItems  =========', addOrderIdItems )
+
+
   if (newOrder) {
+
+    // create orderItems
     for (let i = 0; i < addOrderIdItems.length; i++) {
       await OrderItem.create(addOrderIdItems[i])
     }
+
+    // adjust product inventory
+    for (let i = 0; i < addOrderIdItems.length; i++) {
+      const orderItem = addOrderIdItems[i];
+      const targetProduct = await Product.findByPk(orderItem.productId)
+
+      targetProduct.inventory = targetProduct.inventory - orderItem.quantity
+      await targetProduct.save()
+    }
+
   }
 
   // const createdOrder = await Order.findOne(
@@ -64,7 +80,27 @@ router.delete('/:id', asyncHandler(async(req, res) => {
   const targetOrder = await Order.findByPk(orderId);
 
   if (targetOrder) {
+    // add back inventory for products
+    
+    const orderItems = await OrderItem.findAll({
+      where: {
+        orderId: orderId
+      }
+    })
+
+    // console.log("========= orderItems grabbed from database", orderItems)
+
+    for (let i = 0; i < orderItems.length; i++) {
+      const orderItem = orderItems[i];
+      const targetProduct = await Product.findByPk(orderItem.productId);
+
+      targetProduct.inventory = targetProduct.inventory + orderItem.quantity
+
+      await targetProduct.save()
+    }
+
     await targetOrder.destroy()
+
     return res.json(orderId)
 
   } else {

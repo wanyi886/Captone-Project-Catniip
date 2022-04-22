@@ -57,7 +57,10 @@ function CartItem ({item}) {
           {item.title}
         </div>
         <div className='cart-item-price'>
-          Unit Price: ${item?.price}
+           ${item?.price}
+        </div>
+        <div className='cart-item-inventory'>
+          {item?.inventory} pieces available
         </div>
       </div>
 

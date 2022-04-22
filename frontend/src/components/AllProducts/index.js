@@ -60,9 +60,17 @@ function AllProducts() {
                   <div className="product-price">
                     $ {product?.price}
                   </div>
-                  <button onClick={handleAddCart} id={product?.id} className="add-to-cart-button">
-                    <i class="fa-solid fa-cart-plus"></i>
-                  </button>
+                  {product?.inventory > 0 ? (
+                      <button onClick={handleAddCart} id={product?.id} className="add-to-cart-button">
+                        <i class="fa-solid fa-cart-plus"></i>
+                      </button>
+                    ) : (
+                      <p className="all-product-out-of-stock">Out of Stock</p>
+                    )
+                  }
+                  {/* // <button onClick={handleAddCart} id={product?.id} className="add-to-cart-button">
+                  //   <i class="fa-solid fa-cart-plus"></i>
+                  // </button> */}
                 </div>
               </div>
             </Link>

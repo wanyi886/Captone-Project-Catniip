@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from './ProductTypeList'
 import { addOneProduct } from '../../store/products'
+import validator from 'validator';
 
 function AddProductForm({ hideForm }) {
   const dispatch = useDispatch();
@@ -21,11 +22,14 @@ function AddProductForm({ hideForm }) {
 
   const validationErrors = () => {
     const errors = [];
-    if (!imgUrl) errors.push("Image cannot be empty.")
+    if (!imgUrl) errors.push("Image URL cannot be empty.")
+    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
     if (!price || price < 0) errors.push("Price cannot be less than 0.")
-    if (inventory < 1 || inventory > 10000) errors.push("Inventory cannot be less than 1 or greater than 10,000")
+    if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
+    if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
+    if (inventory > 100000) errors.push("Inventory cannot be greater than 100,000.")
 
     return errors
   }
@@ -66,7 +70,7 @@ function AddProductForm({ hideForm }) {
           {errors && errors.map((error) => <li key={error}>{error}</li>)}
         </ul>
         <div className='product-form-label'>
-          <label htmlFor='image'>Product Image Url</label>
+          <label htmlFor='image'>*Product Image Url</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -79,7 +83,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title'>*Title</label>
         </div>
         <div className='product-form-input'>
           <input
@@ -91,7 +95,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='type'>Product Type</label>
+          <label htmlFor='type'>*Product Type</label>
         </div>
 
         <div className='product-form-input'>
@@ -107,7 +111,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='description'>Description</label>
+          <label htmlFor='description'>*Description</label>
         </div>
 
         <div className='product-form-input des'>
@@ -133,7 +137,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='price'>Price</label>
+          <label htmlFor='price'>*Price</label>
         </div>
 
         <div className='product-form-input'>
@@ -146,7 +150,7 @@ function AddProductForm({ hideForm }) {
         </div>
 
         <div className='product-form-label'>
-          <label htmlFor='inventory'>Inventory</label>
+          <label htmlFor='inventory'>*Inventory</label>
         </div>
 
         <div className='product-form-input'>

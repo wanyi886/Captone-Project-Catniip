@@ -11,6 +11,7 @@ function ProductDetail () {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -34,8 +35,11 @@ function ProductDetail () {
     history.push('/cart')
   }
 
-  return (
-    <div className="product-detail-page-body">
+  let component;
+
+  if (product.inventory < 1) {
+    component = (
+      <div className="product-detail-page-body">
       {/* <h1>Product Detail</h1> */}
       <div className="product-detail-info-area">
         <div className="product-img-container">
@@ -43,6 +47,31 @@ function ProductDetail () {
         </div>
         <div className="non-image-container">
           {/* <div>Product Id: {product?.id}</div> */}
+          <div className="product-detail-title">{product?.title}</div>
+          <div className="product-detail-price">$ {product?.price}</div>
+          <div className="product-detail-des">{product?.description}</div>
+          <div className="product-detail-btn-container">
+            <h2 className="product-detail-out-of-stock">Out of Stock</h2>
+          </div>
+        </div>
+      </div>
+
+      <div className="reviews-area">
+        <h1 className="review-h1">Reviews</h1>
+        <div className="no-review">No Reviews for this product now</div>
+      </div>
+    </div>
+
+    )
+  } else {
+    component = (
+      <div className="product-detail-page-body">
+      {/* <h1>Product Detail</h1> */}
+      <div className="product-detail-info-area">
+        <div className="product-img-container">
+          <img src={`${product?.imgUrl}`}/>
+        </div>
+        <div className="non-image-container">
           <div className="product-detail-title">{product?.title}</div>
           <div className="product-detail-price">$ {product?.price}</div>
           <div className="product-detail-des">{product?.description}</div>
@@ -60,7 +89,12 @@ function ProductDetail () {
         <div className="no-review">No Reviews for this product now</div>
       </div>
     </div>
-  )
+
+    )
+  }
+
+  return component
+
 }
 
 export default ProductDetail;

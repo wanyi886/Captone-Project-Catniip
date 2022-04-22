@@ -1,10 +1,11 @@
 import './EditProductForm.css';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { productTypes } from '../AddProductFormModal/ProductTypeList'
-import { updateOneProduct } from '../../store/products'
+import { updateOneProduct } from '../../store/products';
+import validator from 'validator';
 
 function EditProductForm({ product, hideForm }) {
   const dispatch = useDispatch();
@@ -23,23 +24,39 @@ function EditProductForm({ product, hideForm }) {
 
   const sessionUser = useSelector(state => state.session.user)
 
-  const validationErrors = () => {
+  // const validationErrors = () => {
+  //   const errors = [];
+  //   if (!imgUrl) errors.push("Image cannot be empty.")
+  //   if (!title) errors.push("Title cannot be empty.")
+  //   if (!description) errors.push("Description cannot be empty.")
+  //   if (!price || price < 0) errors.push("Price cannot be less than 0.")
+  //   if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
+  //   if (inventory < 1 || inventory > 10000) errors.push("Inventory cannot be less than 1 or greater than 10,000")
+
+  //   return errors
+  // }
+
+  useEffect(() => {
     const errors = [];
-    if (!imgUrl) errors.push("Image cannot be empty.")
+    if (!imgUrl) errors.push("Image URL cannot be empty.")
+    if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
-    if (price < 0) errors.push("Price cannot be less than 0.")
-    if (!inventory) errors.push("Inventory cannot be less than 1")
+    if (!price || price < 0) errors.push("Price cannot be less than 0.")
+    if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
+    if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
+    if (inventory > 100000) errors.push("Inventory cannot be greater than 100,000.")
 
-    return errors
-  }
+    setErrors(errors)
+  }, [imgUrl, title, description, price, inventory])
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validateErrors = validationErrors();
-    if (validateErrors) {
-      setErrors(validateErrors)
-    }
+    // const validateErrors = validationErrors();
+    // if (validateErrors) {
+    //   setErrors(validateErrors)
+    // }
 
     const payload = {
       ...product,
@@ -165,8 +182,8 @@ function EditProductForm({ product, hideForm }) {
         </div>
 
         <div className='new-product-btn-area'>
-          {/* <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button> */}
-          <button type='submit'  className="new-product-submit">Submit</button>
+          <button type='submit' disabled={errors.length > 0} className="new-product-submit">Submit</button>
+          {/* <button type='submit' className="new-product-submit">Submit</button> */}
           <button type="button" onClick={hideForm} className="new-product-cancel">Cancel</button>
         </div>
 
