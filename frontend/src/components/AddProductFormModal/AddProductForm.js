@@ -15,7 +15,7 @@ function AddProductForm({ hideForm }) {
   const [title, setTitle] = useState("")
   const [description, setDescription ] = useState("")
   const [detail, setDetail ] = useState("")
-  const [price, setPrice] = useState(0)
+  const [price, setPrice] = useState(1)
   const [inventory, setInventory] = useState(1)
   const [errors, setErrors] = useState([])
 
@@ -44,7 +44,7 @@ function AddProductForm({ hideForm }) {
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
     // if (typeof Number(price) !== 'number') errors.push("Price should be a number.")
-    if (!price || price < 0) errors.push("Price cannot be less than 0.")
+    if (!price || price <= 0) errors.push("Price cannot be equal or less than 0.")
     if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
     // if (typeof inventory !== 'number') errors.push("Inventory should be a number.")
     if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
@@ -68,7 +68,7 @@ function AddProductForm({ hideForm }) {
       detail,
       description,
       imgUrl,
-      price,
+      price: Math.round(price * 100)/100,
       inventory
     }
 
