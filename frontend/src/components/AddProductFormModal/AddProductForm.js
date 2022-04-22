@@ -42,11 +42,10 @@ function AddProductForm({ hideForm }) {
     if (!imgUrl) errors.push("Image URL cannot be empty.")
     if (!validator.isURL(imgUrl)) errors.push("Please enter a valid URL.")
     if (!title) errors.push("Title cannot be empty.")
+    if (title.length > 32) errors.push("Title cannot be over 32 characters.")
     if (!description) errors.push("Description cannot be empty.")
-    // if (typeof Number(price) !== 'number') errors.push("Price should be a number.")
     if (!price || price <= 0) errors.push("Price cannot be equal or less than 0.")
     if (price > 1000000) errors.push("Price cannot be over 1,000,000.")
-    // if (typeof inventory !== 'number') errors.push("Inventory should be a number.")
     if (inventory < 1 ) errors.push("Inventory cannot be less than 1.")
     if (inventory > 1000000) errors.push("Inventory cannot be greater than 1,000,000.")
 
