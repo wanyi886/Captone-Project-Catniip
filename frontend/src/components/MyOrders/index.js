@@ -92,7 +92,13 @@ function MyOrders () {
                 return (
                   <div key={i} className="order-item-area">
                     <div className="order-item-img-container">
-                      <img src={orderItem.Product.imgUrl}></img>
+                      <img
+                        src={orderItem.Product.imgUrl}
+                        onError={(event) => {
+                          event.target.src = "/imgs/paw.png";
+                          event.onerror = null;
+                        }}
+                      />
                     </div>
                     <div className="order-item-title-price-area">
                       <div className="order-item-title">{orderItem.Product.title}</div>

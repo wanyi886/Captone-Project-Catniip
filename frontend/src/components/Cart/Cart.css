@@ -116,13 +116,14 @@
 
 .cart-item-price {
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-family: 'Rubik', sans-serif;
+  font-weight: 600;
   color: #555555;
 }
 
 .cart-item-inventory {
-  font-size: 15px;
+  font-size: 18x;
   margin-bottom: 10px;
   font-family: 'Rubik', sans-serif;
   color: #555555;
@@ -150,7 +151,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Rubik', sans-serif;
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 600;
   color: #555555;
 
@@ -170,21 +171,31 @@
 }
 
 .cart-item-count-decrease {
-  font-size: 25px;
+  font-size: 22px;
   margin: 10px 5px;
   cursor: pointer;
+  color: rgb(117, 117, 117)
+}
+
+.cart-item-count-decrease:hover {
+  color:#343434
 }
 
 .cart-item-count-increase {
-  font-size: 25px;
+  font-size: 22px;
 
   margin: 10px 5px;
   cursor: pointer;
+  color: rgb(117, 117, 117)
+}
+
+.cart-item-count-increase:hover {
+  color:#343434
 }
 
 .cart-item-count-number {
-  font-size: 25px;
-  margin: 10px
+  font-size: 18px;
+  margin: 10px;
 }
 
 .cart-item-container {

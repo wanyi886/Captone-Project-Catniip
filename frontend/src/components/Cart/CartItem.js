@@ -49,7 +49,13 @@ function CartItem ({item}) {
     <div className='cart-item-container'>
 
       <div className='cart-item-image-container'>
-        <img src={item?.imgUrl}></img>
+        <img
+          src={item?.imgUrl}
+          onError={(event) => {
+            event.target.src = "/imgs/paw.png";
+            event.onerror = null;
+          }}
+        />
       </div>
 
       <div className='cart-item-info-container'>
