@@ -12,16 +12,16 @@ function ListingItem ({userProduct, index, handleEditClick, handleDeleteClick}) 
       <div className='my-product-container'>
       {/* <div className='my-product-id'>Product #{userProduct.id}</div> */}
       <div className='my-product-img-container'>
-        <img src={imageSource ? imageSource : userProduct.imgUrl }
-              // onError={(e) =>(e.target.onerror = null, e.target.src={paw})}
-              onError={(e) => {
-                e.onerror = null;
-                // e.src={paw}
-                setImageSource(paw)
-                // return
-              }}
+        <img
+          src={userProduct.imgUrl }
+          alt="test"
+          onError={(event) => {
+            console.log("xxxxxxxxxxxxxxx")
+            event.target.src = "/imgs/paw.png";
+            event.onerror = null;
+          }}
 
-            ></img>
+        />
       </div>
       <div className='my-product-title-container'>
         <div className='my-product-title'>{userProduct.title}</div>
