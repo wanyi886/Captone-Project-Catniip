@@ -50,7 +50,14 @@ function AllProducts() {
           <div className="product-container" key={product?.id}  >
             <Link to={`/products/${product?.id}/detail`} style={{ textDecoration: 'none' }}>
               <div className="product-picture-container">
-                <img src={`${product?.imgUrl}`}/>
+                <img
+                  src = {`${product?.imgUrl}`}
+                  onError={(event) => {
+                    event.target.src = "/imgs/paw.png";
+                    event.onerror = null;
+                  }}
+                />
+
               </div>
               <div className="product-info-area">
                 <div className="product-title">
