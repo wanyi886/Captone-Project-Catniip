@@ -35,9 +35,7 @@ function AllProducts() {
     if (!targetItem) {
       await dispatch(addToCart(e.currentTarget.id))
     } else {
-      if (targetItem.count < products[e.currentTarget.id - 1].inventory) {
-        await dispatch(updateCount(e.currentTarget.id, targetItem.count + 1 ))
-      }
+      await dispatch(updateCount(e.currentTarget.id, targetItem.count + 1 ))
     }
 
     history.push('/cart')
