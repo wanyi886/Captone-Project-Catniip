@@ -55,11 +55,9 @@
 .product-detail-des {
   font-family: 'Rubik', sans-serif;
   font-size: 18px;
-  color:rgb(85, 85, 85);
-  display: flex;
-  align-items: center;
   margin-bottom: 20px;
-
+  color:rgb(85, 85, 85);
+  overflow-wrap: break-word;
 }
 
 .product-detail-btn-container {
