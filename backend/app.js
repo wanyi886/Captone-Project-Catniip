@@ -5,6 +5,7 @@ const csurf = require('csurf');
 const helmet = require('helmet'); // Enable better overall security
 const cookieParser = require('cookie-parser');
 const { ValidationError } = require('sequelize')
+const secure = require('ssl-express-www');
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -12,6 +13,8 @@ const isProduction = environment === 'production';
 const routes = require('./routes');
 
 const app = express();
+
+app.use(secure);
 
 app.use(morgan('dev'));
 app.use(cookieParser()); // parsing cookies
