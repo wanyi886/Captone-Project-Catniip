@@ -30,6 +30,14 @@ Catniip was built using the following technologies:
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" style="width:75px;" />
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" style="width:75px;" />
 
+## Screenshots
+
+### HomePage
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/01-Homepage-1.png" width="400px"/>
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/02-Homepage-2.png" width="400px"/>
+
+### Signup
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/03-signup-page.png"/>
 
 ## Getting started
 
