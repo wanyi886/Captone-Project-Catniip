@@ -33,11 +33,29 @@ Catniip was built using the following technologies:
 ## Screenshots
 
 ### HomePage
-<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/01-Homepage-1.png" width="400px"/>
-<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/02-Homepage-2.png" width="400px"/>
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/01-Homepage-1.png" />
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/02-Homepage-2.png" />
 
 ### Signup
 <img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/03-signup-page.png"/>
+
+### Login
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/04-login.png"/>
+
+### Products Page
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/05-products-page.png" />
+
+### Product Detail
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/06-product-detail-page.png" />
+
+### Shopping Cart
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/07-shopping-cart.png" />
+
+### My Orders
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/09-orders-page.png" />
+
+### My Listings
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/10-mylistings.png"/>
 
 ## Getting started
 
