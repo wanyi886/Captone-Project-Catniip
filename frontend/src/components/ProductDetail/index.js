@@ -25,19 +25,19 @@ function ProductDetail () {
   const cartArray = Object.values(cartData)
 
   const handleClick = async () => {
-    const targetItem = cartArray.find(item => item.id === product.id)
+    const targetItem = cartArray.find(item => item.id === product?.id)
 
     if (!targetItem) {
-      await dispatch(addToCart(product.id))
+      await dispatch(addToCart(product?.id))
     } else {
-      await dispatch(updateCount(product.id, targetItem.count + 1 ))
+      await dispatch(updateCount(product?.id, targetItem.count + 1 ))
     }
     history.push('/cart')
   }
 
   let component;
 
-  if (product.inventory < 1) {
+  if (product?.inventory < 1) {
     component = (
       <div className="product-detail-page-body">
       {/* <h1>Product Detail</h1> */}
@@ -69,7 +69,13 @@ function ProductDetail () {
       {/* <h1>Product Detail</h1> */}
       <div className="product-detail-info-area">
         <div className="product-img-container">
-          <img src={`${product?.imgUrl}`}/>
+          <img
+            src={`${product?.imgUrl}`}
+            onError={(event) => {
+              event.target.src = "/imgs/paw.png";
+              event.onerror = null;
+            }}
+          />
         </div>
         <div className="non-image-container">
           <div className="product-detail-title">{product?.title}</div>

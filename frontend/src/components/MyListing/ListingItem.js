@@ -14,9 +14,7 @@ function ListingItem ({userProduct, index, handleEditClick, handleDeleteClick}) 
       <div className='my-product-img-container'>
         <img
           src={userProduct.imgUrl }
-          alt="test"
           onError={(event) => {
-            console.log("xxxxxxxxxxxxxxx")
             event.target.src = "/imgs/paw.png";
             event.onerror = null;
           }}
