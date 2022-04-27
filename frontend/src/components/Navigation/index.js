@@ -47,8 +47,8 @@ function Navigation({ isLoaded }){
           </Link>
         <div className='navbar-right-container'>
           <div className='navbar-icon-tray'>
-            <Link onMouseEnter={mouseEnterHandler}  onMouseLeave={mouseLeaveHandler} className='navbar-SHOP' to="/products">
-              SHOP
+            <Link onMouseEnter={mouseEnterHandler}  onMouseLeave={mouseLeaveHandler} className="navbar-SHOP-Link" to="/products">
+              <div className='navbar-SHOP'>SHOP</div>
               {showDropDown &&
                 <ShopDropDown />
               }
