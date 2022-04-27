@@ -1,15 +1,25 @@
 // frontend/src/components/Navigation/index.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import logo from '../../images/logo-removebg.png'
+import ShopDropDown from './ShopDropDown';
 
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const [showDropDown, setShowDropDown] = useState(false);
+
+  const mouseEnterHandler = ()  => {
+    setShowDropDown(true);
+  }
+
+  const mouseLeaveHandler = ()  => {
+    setShowDropDown(false);
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -37,8 +47,12 @@ function Navigation({ isLoaded }){
           </Link>
         <div className='navbar-right-container'>
           <div className='navbar-icon-tray'>
-            <Link to="/products">
-              <i class="fa-solid fa-store"></i>
+            <Link onMouseEnter={mouseEnterHandler}  onMouseLeave={mouseLeaveHandler} className='navbar-SHOP' to="/products">
+              SHOP
+              {showDropDown &&
+                <ShopDropDown />
+              }
+              {/* <i class="fa-solid fa-store"></i> */}
             </Link>
             <Link to="/cart">
               <i class="fa-solid fa-cart-shopping"></i>
