@@ -1,0 +1,32 @@
+.shop-dropdown-container {
+  position: relative;
+}
+
+.shop-dropdown-ul {
+  list-style: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  border: #d3d3d3;
+  width: 155px;
+  margin: 0 0 0 -100px;
+  text-decoration: none;
+}
+
+.shop-dropdown-ul li {
+  font-family: 'Rubik', sans-serif;
+  color:rgb(98, 98, 98);
+  cursor:pointer;
+  margin: 10px;
+
+}
+
+.shop-dropdown-ul li:hover {
+  color: #cf8193;
+  font-weight: 600;
+}
+
+.shop-dropdown-ul a {
+  text-decoration: none;
+}

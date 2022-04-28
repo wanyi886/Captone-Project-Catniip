@@ -13,7 +13,7 @@ import Cart from "./components/Cart"
 import MyOrders from "./components/MyOrders";
 import HomePage from "./components/HomePage";
 import Footer from "./components/Footer"
-
+import ProductTypesPage from "./components/ProductTypesPage/ProductTypesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +39,9 @@ function App() {
           </Route>
           <Route exact path="/products/:id/detail">
             <ProductDetail />
+          </Route>
+          <Route exact path="/products/:type">
+            <ProductTypesPage />
           </Route>
           <Route exact path="/my-listing">
             <MyListingPage />

@@ -57,3 +57,17 @@
 .nav-bar-signup:hover {
   color: #242424
 }
+
+.navbar-SHOP {
+  /* border: red 1px solid; */
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 15px;
+  text-decoration: none;
+  color:rgb(98, 98, 98)
+}
+
+.navbar-SHOP-Link {
+  text-decoration: none;
+}
