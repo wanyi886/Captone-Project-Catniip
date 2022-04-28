@@ -17,7 +17,7 @@
 .products-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: start;
   width: 1200px;
 }
 
@@ -26,6 +26,8 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
   height: 400px;
+
+  margin: 25px;
 }
 
 .product-container:hover {

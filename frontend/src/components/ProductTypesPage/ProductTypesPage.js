@@ -1,18 +1,19 @@
 import './ProductTypesPage.css'
 import React, { useEffect } from "react";
-import { Link, useHistory, useParams } from 'react-router-dom'
-import { productTypes } from '../AddProductFormModal/ProductTypeList';
+import { useParams } from 'react-router-dom'
 import { loadProductsPage } from "../../store/products"
-import { useDispatch } from 'react-redux';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import ProductsDisplay from '../ProductsDisplay/ProductsDisplay';
 
 function ProductTypesPage () {
   const dispatch = useDispatch()
-  const history = useHistory();
-  const { type } = useParams()
+  const { type } = useParams();
+  const productsStateData = useSelector(state => state.productsState);
+  const products = Object.values(productsStateData);
+  const selectedProducts = products.filter( product => product.type === type)
 
-  console.log(type)
+  const cartData = useSelector(state => state.cart);
+  const cartArray = Object.values(cartData)
 
   useEffect(() => {
     dispatch(loadProductsPage())
@@ -20,9 +21,9 @@ function ProductTypesPage () {
 
 
   return (
-    <div className='product-types-page-body'>
-      <h1>{type}</h1>
-
+    <div className='products-page-body'>
+      <h1 className="all-products-h1">{type}</h1>
+      <ProductsDisplay products={selectedProducts} cartArray={cartArray}/>
     </div>
   )
 }

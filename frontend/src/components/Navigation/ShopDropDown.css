@@ -11,6 +11,7 @@
   border: #d3d3d3;
   width: 155px;
   margin: 0 0 0 -100px;
+  text-decoration: none;
 }
 
 .shop-dropdown-ul li {
@@ -18,9 +19,14 @@
   color:rgb(98, 98, 98);
   cursor:pointer;
   margin: 10px;
+
 }
 
 .shop-dropdown-ul li:hover {
   color: #cf8193;
   font-weight: 600;
+}
+
+.shop-dropdown-ul a {
+  text-decoration: none;
 }

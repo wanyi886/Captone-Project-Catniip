@@ -7,8 +7,10 @@ function ShopDropDown () {
   return (
     <div className="shop-dropdown-container">
       <ul className='shop-dropdown-ul'>
+        <Link to='/products'>
+          <li>All Products</li>
+        </Link>
         {productTypes.map( type => (
-          // TODO: Link to the pages
           <Link key={type} to={`/products/${type}`}>
             <li >{type}</li>
           </Link>
