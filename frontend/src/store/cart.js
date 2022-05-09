@@ -11,14 +11,13 @@ export const addToCart = (id) => ({
   id
 })
 
-export const updateCount = (id, count, inventory) => {
+export const updateCount = (id, count) => {
 
   // if (count)
   return {
     type: UPDATE_COUNT,
     id,
-    count,
-    inventory
+    count
   }
 }
 

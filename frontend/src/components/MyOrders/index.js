@@ -35,10 +35,10 @@ function MyOrders () {
   useEffect(() => {
     if (sessionUser) {
       dispatch(loadUserOrders(sessionUser.id))
-      console.log("orderisEmpty?", orderIsEmpty)
-    console.log("orders.length", Object.keys(userOrdersData).length);
-    console.log("orders", Object.keys(userOrdersData))
-    console.log("state", userOrdersData)
+    //   console.log("orderisEmpty?", orderIsEmpty)
+    // console.log("orders.length", Object.keys(userOrdersData).length);
+    // console.log("orders", Object.keys(userOrdersData))
+    // console.log("state", userOrdersData)
     }
   }, [dispatch])
 

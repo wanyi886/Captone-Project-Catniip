@@ -34,9 +34,6 @@ function ProductDetail () {
     } else {
 
       if (targetItemInCart.count + 1 > product?.inventory ) {
-        console.log("if statement")
-        console.log("targetItemInCart.count", targetItemInCart.count)
-        console.log("product?.inventory", product?.inventory)
 
         dispatch(updateCount(product?.id, product?.inventory ))
       } else {
