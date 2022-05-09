@@ -30,27 +30,7 @@ export const clearCart = () => ({
   type: CLEAR
 })
 
-// const placeOrder = (order) => ({
-//   type: PLACE_ORDER,
-//   payload: order
-// })
 
-// export const createOrder = (data) => async (dispatch) => {
-
-//   console.log("hi from createOrder thunk")
-//   console.log("data.userId", data.userId)
-
-//   const res = csrfFetch(`/api/orders/users/${data.userId}`, {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify(data)
-//   })
-
-//   if (res.ok) {
-//     const order = await res.json();
-//     await dispatch(placeOrder(order))
-//   }
-// }
 
 
 // ========== Reducer ==========
