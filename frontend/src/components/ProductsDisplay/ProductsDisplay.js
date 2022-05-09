@@ -20,13 +20,13 @@ function ProductsDisplay({products, cartArray}) {
     */
 
     // if the item is not in the cart, add this item to cart, if it exists, just add one to the count
-    const targetItemInCart = cartArray.find(item => item.id === e.currentTarget.id);
+    const targetItemInCart = cartArray.find(item => Number(item.id) === Number(e.currentTarget.id));
 
-    const targetItemInProducts = products.find(item => item.id.toString() === e.currentTarget.id);
+    const targetItemInProducts = products.find(item => item.id === Number(e.currentTarget.id));
 
 
     if (!targetItemInCart) {
-      await dispatch(addToCart(e.currentTarget.id))
+      await dispatch(addToCart(Number(e.currentTarget.id)))
     } else {
 
       if (targetItemInCart.count + 1 > targetItemInProducts.inventory ) {
