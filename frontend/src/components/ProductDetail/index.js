@@ -25,19 +25,23 @@ function ProductDetail () {
   const cartData = useSelector(state => state.cart);
   const cartArray = Object.values(cartData)
 
+
   const handleClick = async () => {
     const targetItemInCart = cartArray.find(item => item.id === product?.id)
 
     if (!targetItemInCart) {
-      await dispatch(addToCart(product?.id))
+      dispatch(addToCart(product?.id))
     } else {
 
       if (targetItemInCart.count + 1 > product?.inventory ) {
-        await dispatch(updateCount(product?.id, targetItemInCart.count ))
+
+        dispatch(updateCount(product?.id, product?.inventory ))
       } else {
-        await dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
+        dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
 
       }
+
+      // dispatch(updateCount(product?.id, targetItemInCart.count + 1, product?.inventory))
     }
     history.push('/cart')
   }

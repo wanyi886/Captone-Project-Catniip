@@ -13,7 +13,7 @@ export const addToCart = (id) => ({
 
 export const updateCount = (id, count) => {
 
-  if (count)
+  // if (count)
   return {
     type: UPDATE_COUNT,
     id,

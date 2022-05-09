@@ -19,20 +19,27 @@ function ProductsDisplay({products, cartArray}) {
     instead of its child button.add-to-cart-button.
     */
 
+
     // if the item is not in the cart, add this item to cart, if it exists, just add one to the count
-    const targetItemInCart = cartArray.find(item => item.id === e.currentTarget.id);
+    const targetItemInCart = cartArray.find(item => Number(item.id) === Number(e.currentTarget.id));
 
-    const targetItemInProducts = products.find(item => item.id.toString() === e.currentTarget.id);
+    const targetItemInProducts = products.find(item => item.id === Number(e.currentTarget.id));
 
+    /*
+    when we pass product.id to be the event currentTarget id, it becomes a string, it's different from the id(number) we passed from product detail page
+    so when we try to check if there's the targetItem, we can't find the "same" item, so the addToCart will be dispatched again, not updateCount
+    it will start counting from 1
+    we need to convert the e.currentTarget.id to number right here to prevent the situation
+    */
 
     if (!targetItemInCart) {
-      await dispatch(addToCart(e.currentTarget.id))
+      await dispatch(addToCart(Number(e.currentTarget.id)))
     } else {
 
       if (targetItemInCart.count + 1 > targetItemInProducts.inventory ) {
-        await dispatch(updateCount(e.currentTarget.id, targetItemInCart.count ))
+        await dispatch(updateCount(Number(e.currentTarget.id), targetItemInCart.count ))
       } else {
-        await dispatch(updateCount(e.currentTarget.id, targetItemInCart.count + 1 ))
+        await dispatch(updateCount(Number(e.currentTarget.id), targetItemInCart.count + 1 ))
       }
     }
 
