@@ -10,6 +10,7 @@ import { addToCart, updateCount } from '../../store/cart'
 function ProductsDisplay({products, cartArray}) {
   const dispatch = useDispatch()
   const history = useHistory()
+
   const handleAddCart = async (e) => {
 
     /* e.target.id sometimes works, sometimes not.
@@ -19,12 +20,20 @@ function ProductsDisplay({products, cartArray}) {
     */
 
     // if the item is not in the cart, add this item to cart, if it exists, just add one to the count
-    const targetItem = cartArray.find(item => item.id === e.currentTarget.id)
+    const targetItemInCart = cartArray.find(item => item.id === e.currentTarget.id);
 
-    if (!targetItem) {
+    const targetItemInProducts = products.find(item => item.id.toString() === e.currentTarget.id);
+
+
+    if (!targetItemInCart) {
       await dispatch(addToCart(e.currentTarget.id))
     } else {
-      await dispatch(updateCount(e.currentTarget.id, targetItem.count + 1 ))
+
+      if (targetItemInCart.count + 1 > targetItemInProducts.inventory ) {
+        await dispatch(updateCount(e.currentTarget.id, targetItemInCart.count ))
+      } else {
+        await dispatch(updateCount(e.currentTarget.id, targetItemInCart.count + 1 ))
+      }
     }
 
     history.push('/cart')

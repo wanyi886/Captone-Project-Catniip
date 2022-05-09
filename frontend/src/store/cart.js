@@ -13,6 +13,7 @@ export const addToCart = (id) => ({
 
 export const updateCount = (id, count) => {
 
+  if (count)
   return {
     type: UPDATE_COUNT,
     id,
@@ -79,10 +80,7 @@ export default function cartReducer(state = initialState, action) {
       window.localStorage.setItem('cart', JSON.stringify(emptyState))
       return emptyState
 
-    // case PLACE_ORDER:
-    //   console.log('Hi from place order reducer case')
-    //   // TODO: clear out the items in cart????
-    //   return newState;
+
 
     default:
       return newState
