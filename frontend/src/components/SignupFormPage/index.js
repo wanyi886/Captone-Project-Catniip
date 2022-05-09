@@ -31,6 +31,10 @@ function SignupFormPage() {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  const handleClick = () => {
+    return dispatch(sessionActions.login({ credential: "Demo-WanYi", password: "password" }))
+  }
+
   return (
     <div className='signup-form-page-body'>
       <div className="signup-form-image-container">
@@ -103,6 +107,7 @@ function SignupFormPage() {
             <button className="btn-signup" type="submit">Sign Up</button>
           </div>
           <div className='login-container'>
+            <button className="btn-signup" type="button" onClick={handleClick}>Sign Up as Demo User</button>
             {/* <a  className="atag" href="/login">Already have an account?</a> */}
           </div>
         </form>

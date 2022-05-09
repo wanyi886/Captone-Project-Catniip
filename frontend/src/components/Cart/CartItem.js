@@ -1,28 +1,22 @@
 import { updateCount, removeFromCart } from '../../store/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import './Cart.css'
 
 function CartItem ({item}) {
 
-  // console.log("item in CartItem", item);
-
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart)
-  // console.log("cart!!", cart)
-  const [finalCount, setFinalCount] = useState(cart[item.id].count)
-  // console.log("finalCount", finalCount)
-  const [cartErrors, setCartErrors] = useState([])
 
-  // let cartErrors = []
+  const [finalCount, setFinalCount] = useState(cart[item.id].count)
+
 
   const handleAdd = async () => {
     const count = item.count
 
     if (count === item.inventory) {
-      // cartErrors.push(`Only ${item.inventory} pieces available for this product currently.`)
-      // console.log(cartErrors)
-      return cartErrors;
+      return;
     } else {
       await dispatch(updateCount(item.id, count + 1))
       setFinalCount(prev => prev + 1)
@@ -60,7 +54,9 @@ function CartItem ({item}) {
 
       <div className='cart-item-info-container'>
         <div className='cart-item-title'>
+          <Link to={`/products/${item.id}/detail`}>
           {item.title}
+          </Link>
         </div>
         <div className='cart-item-price'>
            ${item?.price}

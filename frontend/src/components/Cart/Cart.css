@@ -114,6 +114,16 @@
   overflow-wrap: break-word;
 }
 
+.cart-item-title a {
+  text-decoration: none;
+  color: #4b4b4b;
+}
+
+.cart-item-title a:hover {
+  text-decoration: underline;
+  /* color: #561c1c; */
+}
+
 .cart-item-price {
   font-size: 18px;
   margin-bottom: 20px;

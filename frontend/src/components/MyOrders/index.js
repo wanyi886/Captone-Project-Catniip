@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
 import { loadUserOrders, cancelOrder } from "../../store/orders";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom'
 import './MyOrders.css'
 
 
@@ -101,7 +102,11 @@ function MyOrders () {
                       />
                     </div>
                     <div className="order-item-title-price-area">
-                      <div className="order-item-title">{orderItem.Product.title}</div>
+                      <div className="order-item-title">
+                        <Link to={`/products/${orderItem.Product.id}/detail`}>
+                        {orderItem.Product.title}
+                        </Link>
+                        </div>
                       <div className="order-item-price">$ {orderItem.Product.price}</div>
                     </div>
                     <div className="order-item-qty">Qty: {orderItem.quantity}</div>

@@ -16,6 +16,7 @@ function ProductDetail () {
 
   useEffect(() => {
     dispatch(loadOneProduct(id))
+
   }, [dispatch])
 
 
@@ -25,12 +26,18 @@ function ProductDetail () {
   const cartArray = Object.values(cartData)
 
   const handleClick = async () => {
-    const targetItem = cartArray.find(item => item.id === product?.id)
+    const targetItemInCart = cartArray.find(item => item.id === product?.id)
 
-    if (!targetItem) {
+    if (!targetItemInCart) {
       await dispatch(addToCart(product?.id))
     } else {
-      await dispatch(updateCount(product?.id, targetItem.count + 1 ))
+
+      if (targetItemInCart.count + 1 > product?.inventory ) {
+        await dispatch(updateCount(product?.id, targetItemInCart.count ))
+      } else {
+        await dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
+
+      }
     }
     history.push('/cart')
   }
