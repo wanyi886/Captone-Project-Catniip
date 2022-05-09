@@ -29,15 +29,17 @@ function ProductDetail () {
     const targetItemInCart = cartArray.find(item => item.id === product?.id)
 
     if (!targetItemInCart) {
-      await dispatch(addToCart(product?.id))
+      dispatch(addToCart(product?.id))
     } else {
 
       if (targetItemInCart.count + 1 > product?.inventory ) {
-        await dispatch(updateCount(product?.id, targetItemInCart.count ))
+        dispatch(updateCount(product?.id, targetItemInCart.count ))
       } else {
-        await dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
+        dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
 
       }
+
+      // dispatch(updateCount(product?.id, targetItemInCart.count + 1 ))
     }
     history.push('/cart')
   }
