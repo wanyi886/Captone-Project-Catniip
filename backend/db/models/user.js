@@ -54,6 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     // User.hasMany(models.Ticket, { foreignKey: "userId" })
     User.hasMany(models.Product, { foreignKey:"sellerId" })
     User.hasMany(models.Order, { foreignKey:"buyerId" })
+    User.hasMany(models.Review, { foreignKey: "userId" })
 
   };
 
