@@ -9,15 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Users" }
       },
       productId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Products" }
       },
       score: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING(255)
+      },
       imgUrl: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       createdAt: {
