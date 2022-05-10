@@ -75,12 +75,16 @@ router.delete('/:id', asyncHandler(async(req, res) => {
 
   if (targetProduct) {
     await targetProduct.destroy()
-    
+
     return res.json(id)
   } else {
     throw new Error('Cannot find this product.')
   }
 }))
+
+
+// read all reviews for a product
+router.get('/:id/reviews')
 
 
 module.exports = router;
