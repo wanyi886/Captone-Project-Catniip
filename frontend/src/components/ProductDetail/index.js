@@ -22,6 +22,10 @@ function ProductDetail () {
 
   const productPageData = useSelector(state => state.productsState)
   const product = productPageData[id];
+  console.log("product in product detail", product)
+  const reviews = product?.Reviews
+  console.log("reviews in product detail", reviews)
+
   const cartData = useSelector(state => state.cart);
   const cartArray = Object.values(cartData)
 
@@ -72,7 +76,16 @@ function ProductDetail () {
 
       <div className="reviews-area">
         <h1 className="review-h1">Reviews</h1>
-        <div className="no-review">No Reviews for this product now</div>
+        {reviews?.length < 1?
+          ( <div className="no-review">No Reviews for this product now</div> ) :
+          ( reviews?.map(review => (
+              <div key={review.id} className="review-container">
+                <div>{review.User.username}</div>
+                <div>Score: {review.score}</div>
+              </div>
+            ))
+          )
+        }
       </div>
     </div>
 
