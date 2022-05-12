@@ -52,6 +52,10 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
                 }]
     }
   )
+  // console.log("product in route", product);
+  console.log("+++reviews+++", product[0].Reviews);
+  console.log("+++reviews+++", product[0].Reviews[0].score);
+  console.log("+++reviews+++", product[0].Reviews[0].description);
   return res.json(product[0]);
 }))
 

@@ -51,7 +51,7 @@ function ProductDetail () {
 
   return (
       <div className="product-detail-page-body">
-      {/* <h1>Product Detail</h1> */}
+
       <div className="product-detail-info-area">
         <div className="product-img-container">
           <img src={`${product?.imgUrl}`}/>
@@ -81,7 +81,9 @@ function ProductDetail () {
           ( reviews?.map(review => (
               <div key={review.id} className="review-container">
                 <div>{review.User.username}</div>
+                {/* <img src={review.imgUrl}></img> */}
                 <div>Score: {review.score}</div>
+                <div>{review.description}</div>
               </div>
             ))
           )
