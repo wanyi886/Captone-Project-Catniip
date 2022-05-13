@@ -94,21 +94,3 @@
   font-weight: 600;
 }
 
-.reviews-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.review-h1 {
-  font-family: 'Rubik', sans-serif;
-  margin: 20px;
-  color:rgb(89, 89, 89)
-}
-
-.no-review {
-  font-family: 'Rubik', sans-serif;
-  color:rgb(89, 89, 89);
-  margin: 20px;
-}

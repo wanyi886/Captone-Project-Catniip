@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { loadOneProduct } from '../../store/products'
 import { addToCart, updateCount } from '../../store/cart'
-
+import Reviews from '../Reviews'
 
 import './ProductDetail.css';
 
@@ -73,24 +73,7 @@ function ProductDetail () {
           </div>
         </div>
       </div>
-
-      <div className="reviews-area">
-        <h1 className="review-h1">Reviews</h1>
-        {reviews?.length < 1?
-          ( <div className="no-review">No Reviews for this product now</div> ) :
-          ( <div className="reviews-outter-container">
-            {reviews?.map(review => (
-              <div key={review.id} className="review-container">
-                <div>{review.User.username}</div>
-                {/* <img src={review.imgUrl}></img> */}
-                <div>Score: {review.score}</div>
-                <div>{review.description}</div>
-              </div>
-            ))}
-            </div>
-          )
-        }
-      </div>
+      <Reviews reviews={reviews}/>
     </div>
 
     )
