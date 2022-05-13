@@ -16,3 +16,17 @@
   color:rgb(89, 89, 89);
   margin: 20px;
 }
+
+.reviews-outter-container {
+  border: red 1px solid;
+  width: 70vw;
+  padding: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.review-container {
+  width: 32vw;
+
+}
