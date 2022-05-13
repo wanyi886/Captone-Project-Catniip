@@ -70,16 +70,19 @@ function Reviews ({reviews}) {
           ( <div className="reviews-outter-container">
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
-                <div>{review.User.username}</div>
+                <div >{review.User.username}</div>
                 <div className="ratings-container">
-                  <div>Score: {review.score}</div>
+                  {/* <div>Score: {review.score}</div> */}
                   {getStars(review.score)}
                 </div>
                 <div className="img-description-area">
                   <div className="review-img-container">
                     <img src={review.imgUrl}></img>
                   </div>
-                  <div>{review.description}</div>
+                  <div>
+                    <div className='rating-date'>{new Date(review.updatedAt).toDateString()}</div>
+                    <div className='review-description'>{review.description}</div>
+                  </div>
                 </div>
               </div>
             ))}

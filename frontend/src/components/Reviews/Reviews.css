@@ -18,15 +18,52 @@
 }
 
 .reviews-outter-container {
-  border: red 1px solid;
-  width: 70vw;
+
+  width: 65vw;
   padding: 2vw;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .review-container {
-  width: 32vw;
+  width: 65vw;
+  background-color: #f6f6f6;
+  margin: 10px;
+  padding: 20px;
+  font-family: 'Rubik', sans-serif;
+}
 
+.ratings-container i {
+  color: rgb(255, 170, 0);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.img-description-area {
+  display: flex;
+}
+
+.review-img-container {
+  width: 10vw;
+}
+
+.rating-date {
+  margin-left: 2vw;
+  color:rgb(72, 71, 71);
+  font-size: small;
+  margin-bottom: 5px;
+}
+
+.review-img-container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.review-description {
+  color:rgb(72, 71, 71);
+  margin-left: 2vw;
+  margin-right: 15px;
+  overflow-wrap: break-word;
 }
