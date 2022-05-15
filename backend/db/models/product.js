@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Product.belongsTo(models.User, { foreignKey:"sellerId" })
     Product.hasMany(models.OrderItem, { foreignKey: "productId" })
+    Product.hasMany(models.Review, { foreignKey: "productId", onDelete: 'CASCADE', hooks: true })
   };
   return Product;
 };
