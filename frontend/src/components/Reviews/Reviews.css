@@ -50,10 +50,10 @@
 }
 
 .rating-date {
-  margin-left: 2vw;
   color:rgb(72, 71, 71);
   font-size: small;
-  margin-bottom: 5px;
+  margin-top: 3px;
+  /* margin-bottom: 3px; */
 }
 
 .review-img-container img {
