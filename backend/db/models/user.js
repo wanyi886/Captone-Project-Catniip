@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [3, 30],
         isNotEmail(value) {
@@ -64,6 +64,7 @@ module.exports = (sequelize, DataTypes) => {
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
     return { id, username, email };
+ 
   };
 
   User.prototype.validatePassword = function (password) {
