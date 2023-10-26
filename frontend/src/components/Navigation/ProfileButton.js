@@ -28,7 +28,8 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout());
+    window.open("http://localhost:5000/api/session/logout", "_self" ); // for social login
+    dispatch(sessionActions.logout()); // for regular login
   };
 
   return (

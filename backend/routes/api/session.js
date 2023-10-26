@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const passport = require("passport");
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
@@ -7,6 +8,57 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
+
+// Google and Github social login
+
+const CLIENT_URL = "http://localhost:3000";
+
+router.get("/google", passport.authenticate("google", { scope: ["profile"] } ));
+
+router.get("/google/callback", passport.authenticate("google", {
+    successRedirect: `${CLIENT_URL}/products`,
+    failureRedirect: "/login/failed",
+}));
+
+router.get("/github", passport.authenticate("github", { scope: ["profile"] } ));
+
+router.get("/github/callback", passport.authenticate("github", {
+    successRedirect: `${CLIENT_URL}/products`,
+    failureRedirect: "/login/failed",
+}));
+
+router.get('/login/success', (req, res) => {
+  if (req.user) {
+      res.status(200).json({
+          success: true,
+          message: "successfull",
+          user: req.user,
+          // cookies: req.cookies
+      })
+  }
+})
+
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+      success: false,
+      message: "Failure"
+  })
+});
+
+router.get("/logout", (req, res) => {
+    
+  req.logout(); 
+  
+  // Passport exposes a logout() function on req that can be called from any route handler which needs to terminate a login session
+  // Invoking logout() will remove the req.user property and clear the login session
+  // https://www.passportjs.org/concepts/authentication/logout/
+  
+  res.clearCookie("token"); // for regualr logout
+  res.redirect(`${CLIENT_URL}/products`);
+})
+
+
+// Regular login
 
 const validateLogin = [
   check('credential')
@@ -58,7 +110,8 @@ router.get(
     const { user } = req;
     if (user) {
       return res.json({
-        user: user.toSafeObject()
+        // user: user.toSafeObject();
+        user: user
       });
     } else return res.json({});
   }

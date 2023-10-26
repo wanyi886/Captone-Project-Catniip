@@ -18,6 +18,13 @@ function LoginForm() {
     <Redirect to="/" />
   );
 
+  const google= () => {
+    window.open("http://localhost:5000/api/session/google", "_self");
+  }
+  const github= () => {
+    window.open("http://localhost:5000/api/session/github", "_self");
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -39,11 +46,11 @@ function LoginForm() {
         <h1 className='login-h1'>Log In</h1>
         <div className='container'>
           <div className="left">
-              <div className="loginButton google" >
+              <div className="loginButton google" onClick={google}>
                   <img src={Google} alt="" className="icon"/>
                   Log in with Google
               </div>
-              <div className="loginButton github" >
+              <div className="loginButton github" onClick={github}>
                   <img src={Github} alt="" className="icon"/>
                   Log in with Github
               </div>
