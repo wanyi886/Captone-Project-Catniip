@@ -39,7 +39,7 @@ function ProfileButton({ user }) {
       </div>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li className="welcome">Welcome, {user.username} !</li>
+          <li className="welcome">Hi, {user.displayName || user.username}</li>
           <li><Link to="/my-listing" style={{ textDecoration: 'none' }} className="li">My Listing</Link></li>
           <li><Link to="/my-orders" style={{ textDecoration: 'none' }} className="li">My Orders</Link></li>
           <li onClick={logout} className='logout-button'>Log Out</li>
