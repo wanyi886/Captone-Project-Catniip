@@ -106,7 +106,7 @@ function SignupFormPage() {
           <div className='btn-container'>
             <button className="btn-signup" type="submit">Sign Up</button>
           </div>
-          <div className='login-container'>
+          <div className='btn-container'>
             <button className="btn-signup" type="button" onClick={handleClick}>Sign Up as Demo User</button>
             {/* <a  className="atag" href="/login">Already have an account?</a> */}
           </div>
