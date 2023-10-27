@@ -52,7 +52,6 @@ function Navigation({ isLoaded }){
               {showDropDown &&
                 <ShopDropDown />
               }
-              {/* <i class="fa-solid fa-store"></i> */}
             </Link>
             <Link to="/cart">
               <i class="fa-solid fa-cart-shopping"></i>

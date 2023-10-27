@@ -14,17 +14,10 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
@@ -33,14 +26,17 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className='profile-button-container' onClick={openMenu}>
+    <div className='profile-button-container' onMouseEnter={openMenu} onMouseLeave={closeMenu}>
+      <div className="username-container">
+        <div className="username">{user.displayName || user.username}</div>
+      </div>
       <div className='profile-button-icon'>
         {user.photos? 
             <img src={ user.photos[0].value || user.photos[0] } alt="avatar" className="avatar"/> :
             <i className="fas fa-user-circle" />
         }
-        <div className="welcome">{user.displayName || user.username}</div>
       </div>
+      
       {showMenu && (
         <ul className="profile-dropdown">
           <li><Link to="/my-listing" style={{ textDecoration: 'none' }} className="li">My Listing</Link></li>
