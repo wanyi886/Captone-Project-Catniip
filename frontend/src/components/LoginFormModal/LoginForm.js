@@ -19,10 +19,12 @@ function LoginForm() {
   );
 
   const google= () => {
-    window.open("http://localhost:5000/api/session/google", "_self");
+    // window.open("http://localhost:5000/api/session/google", "_self");
+    window.open("https://catniip-26d640bb2067.herokuapp.com/api/session/google", "_self");
   }
   const github= () => {
-    window.open("http://localhost:5000/api/session/github", "_self");
+    // window.open("http://localhost:5000/api/session/github", "_self");
+    window.open("https://catniip-26d640bb2067.herokuapp.com/api/session/github", "_self");
   }
 
   const handleSubmit = (e) => {
