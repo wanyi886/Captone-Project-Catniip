@@ -1,6 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
+const { User } = require('../backend/db/');
 
 
 require('https').globalAgent.options.rejectUnauthorized = false;
@@ -25,7 +26,6 @@ passport.use(new GoogleStrategy({
 //       return cb(err, user);
 //     });
 //   }
-
 
     function(accessToken, refreshToken, profile, done) { // profile means user information
         done(null, profile)
