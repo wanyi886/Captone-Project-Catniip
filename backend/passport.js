@@ -16,7 +16,8 @@ const GITHUB_CLIENT_SECRET = "b2a81fb859deb1576b1ff19474a2e53163339c7b"
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "/api/session/google/callback"
+    // callbackURL: "/api/session/google/callback"
+    callbackURL: "https://catniip-26d640bb2067.herokuapp.com/api/session/google/callback"
   },
 
 // example codes from website below, because we won't have any db, so we will use "done" instead of "cb"
