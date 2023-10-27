@@ -42,7 +42,9 @@ passport.deserializeUser(( user, done) => {
 passport.use(new GithubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "/api/session/github/callback"
+    // callbackURL: "/api/session/github/callback"
+    callbackURL: "https://catniip-26d640bb2067.herokuapp.com/api/session/github/callback"
+    
   },
 
     function(accessToken, refreshToken, profile, done) { // profile means user information
