@@ -21,7 +21,8 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    window.open("http://localhost:5000/api/session/logout", "_self" ); // for social login
+    // window.open("http://localhost:5000/api/session/logout", "_self" ); // for social login
+    window.open("https://catniip-26d640bb2067.herokuapp.com/api/session/logout", "_self");
     dispatch(sessionActions.logout()); // for regular login
   };
 
