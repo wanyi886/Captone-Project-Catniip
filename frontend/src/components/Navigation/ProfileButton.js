@@ -14,31 +14,31 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout());
+    window.open("http://localhost:5000/api/session/logout", "_self" ); // for social login
+    dispatch(sessionActions.logout()); // for regular login
   };
 
   return (
-    <div className='profile-button-container'>
-      <div onClick={openMenu} className='profile-button-icon'>
-        <i className="fas fa-user-circle" />
+    <div className='profile-button-container' onMouseEnter={openMenu} onMouseLeave={closeMenu}>
+      <div className="username-container">
+        <div className="username">{user.displayName || user.username}</div>
       </div>
+      <div className='profile-button-icon'>
+        {user.photos? 
+            <img src={ user.photos[0].value || user.photos[0] } alt="avatar" className="avatar"/> :
+            <i className="fas fa-user-circle" />
+        }
+      </div>
+      
       {showMenu && (
         <ul className="profile-dropdown">
-          <li className="welcome">Welcome, {user.username} !</li>
           <li><Link to="/my-listing" style={{ textDecoration: 'none' }} className="li">My Listing</Link></li>
           <li><Link to="/my-orders" style={{ textDecoration: 'none' }} className="li">My Orders</Link></li>
           <li onClick={logout} className='logout-button'>Log Out</li>

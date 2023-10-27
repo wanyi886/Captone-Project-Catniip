@@ -1,4 +1,5 @@
 const express = require('express');
+const cookieSession = require("cookie-session");
 const morgan = require('morgan');
 const cors = require('cors');
 const csurf = require('csurf');
@@ -6,6 +7,9 @@ const helmet = require('helmet'); // Enable better overall security
 const cookieParser = require('cookie-parser');
 const { ValidationError } = require('sequelize')
 const secure = require('ssl-express-www');
+const passport = require("passport");
+require('https').globalAgent.options.rejectUnauthorized = false;
+require("./passport");
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -21,7 +25,11 @@ app.use(cookieParser()); // parsing cookies
 app.use(express.json()); // parsing JSON bodies of requests with Content-Type of "application/json"
 
 if (!isProduction) {
-  app.use(cors()); // enable cors only in development
+  app.use(cors({
+    origin: "http://localhost:3000",
+    methods: "GET, POST, PUT, DELETE",
+    credentials: true
+  })); // enable cors only in development
 }
 
 // helmet helps set a variety of headers to better secure your app
@@ -43,7 +51,18 @@ app.use(
       httpOnly: true // can't be read by Javascript
     }
   })
-)
+);
+
+app.use(cookieSession(
+  {
+      name: "session",
+      keys:["wanyi"],
+      maxAge: 24 * 60 * 60 * 100
+  }
+));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(routes);
 
