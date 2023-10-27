@@ -33,13 +33,16 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className='profile-button-container'>
-      <div onClick={openMenu} className='profile-button-icon'>
-        <i className="fas fa-user-circle" />
+    <div className='profile-button-container' onClick={openMenu}>
+      <div className='profile-button-icon'>
+        {user.photos? 
+            <img src={ user.photos[0].value || user.photos[0] } alt="avatar" className="avatar"/> :
+            <i className="fas fa-user-circle" />
+        }
+        <div className="welcome">{user.displayName || user.username}</div>
       </div>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li className="welcome">Hi, {user.displayName || user.username}</li>
           <li><Link to="/my-listing" style={{ textDecoration: 'none' }} className="li">My Listing</Link></li>
           <li><Link to="/my-orders" style={{ textDecoration: 'none' }} className="li">My Orders</Link></li>
           <li onClick={logout} className='logout-button'>Log Out</li>
