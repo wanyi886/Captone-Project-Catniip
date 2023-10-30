@@ -11,13 +11,24 @@ const GOOGLE_CLIENT_SECRET = "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";
 const GITHUB_CLIENT_ID = "a1d3dd3c78b99ea48f7c";
 const GITHUB_CLIENT_SECRET = "b2a81fb859deb1576b1ff19474a2e53163339c7b"
 
+let googleCallback;
+let githubCallback;
+
+if (process.env.NODE_ENV !== 'production') {
+    googleCallback = "/api/session/google/callback"
+    githubCallback = "/api/session/github/callback"
+} else {
+    googleCallback = "https://catniip-26d640bb2067.herokuapp.com/api/session/google/callback"
+    githubCallback = "https://catniip-26d640bb2067.herokuapp.com/api/session/github/callback"
+}
+
+
 
 
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    // callbackURL: "/api/session/google/callback"
-    callbackURL: "https://catniip-26d640bb2067.herokuapp.com/api/session/google/callback"
+    callbackURL: googleCallback
   },
 
 // example codes from website below, because we won't have any db, so we will use "done" instead of "cb"
@@ -43,8 +54,7 @@ passport.deserializeUser(( user, done) => {
 passport.use(new GithubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    // callbackURL: "/api/session/github/callback"
-    callbackURL: "https://catniip-26d640bb2067.herokuapp.com/api/session/github/callback"
+    callbackURL: githubCallback
     
   },
 
