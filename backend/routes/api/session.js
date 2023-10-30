@@ -11,8 +11,11 @@ const router = express.Router();
 
 // Google and Github social login
 
-// const CLIENT_URL = "http://localhost:3000";
-const CLIENT_URL = "https://catniip-26d640bb2067.herokuapp.com";
+const CLIENT_URL = "http://localhost:3000";
+
+if (process.env.NODE_ENV === 'production') {
+  CLIENT_URL = "https://catniip-26d640bb2067.herokuapp.com";
+}
 
 router.get("/google", passport.authenticate("google", { scope: ["profile"] } ));
 

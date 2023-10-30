@@ -11,17 +11,13 @@ const GOOGLE_CLIENT_SECRET = "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";
 const GITHUB_CLIENT_ID = "a1d3dd3c78b99ea48f7c";
 const GITHUB_CLIENT_SECRET = "b2a81fb859deb1576b1ff19474a2e53163339c7b"
 
-let googleCallback;
-let githubCallback;
+let googleCallback = "/api/session/google/callback";
+let githubCallback = "/api/session/github/callback";
 
-if (process.env.NODE_ENV !== 'production') {
-    googleCallback = "/api/session/google/callback"
-    githubCallback = "/api/session/github/callback"
-} else {
+if (process.env.NODE_ENV === 'production') {
     googleCallback = "https://catniip-26d640bb2067.herokuapp.com/api/session/google/callback"
     githubCallback = "https://catniip-26d640bb2067.herokuapp.com/api/session/github/callback"
 }
-
 
 
 
