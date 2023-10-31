@@ -114,7 +114,7 @@ function Reviews ({reviews}) {
     return sum/ reviews.length;
   }
 
-  // const average = getAverage(reviews)
+  
 
 
   return (
@@ -124,9 +124,11 @@ function Reviews ({reviews}) {
         {reviews?.length > 0?
           ( <div className="reviews-outter-container">
             {/* <ReviewsSum reviews={reviews} /> */}
-            <div>{getAverage(reviews).toFixed(1)}</div>
-            <div>{getStars(getAverage(reviews))}</div>
-            <div>{reviews.length} Ratings</div>
+            <div className='reviews-summary-container'>
+              <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
+              <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
+              <div className='reviews-summary-number'>{reviews.length} Ratings</div>
+            </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
                 <div >{review.User.username}</div>
