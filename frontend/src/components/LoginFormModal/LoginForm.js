@@ -32,7 +32,7 @@ function LoginForm() {
   }
   const github= () => {
     // window.open("http://localhost:5000/api/session/github", "_self");
-    window.open("githubUrl", "_self");
+    window.open(githubUrl, "_self");
   }
 
   const handleSubmit = (e) => {

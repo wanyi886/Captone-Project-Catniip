@@ -1,5 +1,5 @@
 import './Reviews.css';
-import ReviewsSum from './ReviewsSum'
+
 
 function Reviews ({reviews}) {
 
@@ -128,6 +128,7 @@ function Reviews ({reviews}) {
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
               <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
+              <button>Write a review</button>
             </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
