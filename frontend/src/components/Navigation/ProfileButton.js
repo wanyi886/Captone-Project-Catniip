@@ -31,6 +31,7 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout()); // for regular login
   };
 
+
   return (
     <div className='profile-button-container' onMouseEnter={openMenu} onMouseLeave={closeMenu}>
       <div className="username-container">

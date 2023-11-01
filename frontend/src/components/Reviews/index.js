@@ -1,7 +1,10 @@
 import './Reviews.css';
+import React, { useState } from 'react';
+import ReviewForm from './ReviewForm';
+import { Modal } from '../../context/Modal';
 
 
-function Reviews ({reviews}) {
+function Reviews ({reviews, productId}) {
 
 
   function getStars (score) {
@@ -115,7 +118,7 @@ function Reviews ({reviews}) {
   }
 
   
-
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="reviews-area">
@@ -123,12 +126,16 @@ function Reviews ({reviews}) {
         
         {reviews?.length > 0?
           ( <div className="reviews-outter-container">
-            {/* <ReviewsSum reviews={reviews} /> */}
             <div className='reviews-summary-container'>
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
               <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
-              <button>Write a review</button>
+              <button onClick={() => setShowModal(true)}>Write a review</button>
+              {showModal && (
+              <Modal onClose={() => setShowModal(false)} className="modal">
+                <ReviewForm productId={productId}/>
+              </Modal>
+              )}
             </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
