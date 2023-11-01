@@ -7,16 +7,19 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-function LoginForm() {
+function LoginForm(hideModal) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  const currentLocation = window.location.pathname;
+
+  if (sessionUser) {
+    window.location.href = "/";
+    window.location.href = currentLocation
+  }
 
   let googleUrl = "http://localhost:5000/api/session/google";
   let githubUrl =  "http://localhost:5000/api/session/github";

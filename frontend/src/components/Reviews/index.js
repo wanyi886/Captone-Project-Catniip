@@ -1,11 +1,14 @@
 import './Reviews.css';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import ReviewForm from './ReviewForm';
 import { Modal } from '../../context/Modal';
+import LoginForm from '../LoginFormModal/LoginForm';
+
 
 
 function Reviews ({reviews, productId}) {
-
+  const sessionUser = useSelector(state => state.session.user);
 
   function getStars (score) {
     let stars;
@@ -118,10 +121,19 @@ function Reviews ({reviews, productId}) {
   }
 
   
-  const [showModal, setShowModal] = useState(false);
+  const [showReview, setShowReview] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
+  const showModal = () => {
+    if (sessionUser) {
+      setShowReview(true)
+    } else {
+      setShowLogin(true)
+    }
+  }
   
   const hideModal = () => {
-    setShowModal(false)
+    setShowReview(false)
   }
 
   return (
@@ -134,12 +146,19 @@ function Reviews ({reviews, productId}) {
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
               <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
-              <button className="review-button" onClick={() => setShowModal(true)}>Write a review</button>
-              {showModal && (
-              <Modal onClose={() => setShowModal(false)} className="modal">
+              <button className="review-button" onClick={showModal}>Write a review</button>
+              {showReview && (
+              <Modal onClose={() => setShowReview(false)} className="modal">
                 <ReviewForm productId={productId} hideModal={hideModal}/>
               </Modal>
               )}
+              {showLogin && (
+              <Modal onClose={() => setShowLogin(false)} className="modal">
+                <LoginForm hideModal={() => setShowLogin(false)}/>
+              </Modal>
+              )
+
+              }
             </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
