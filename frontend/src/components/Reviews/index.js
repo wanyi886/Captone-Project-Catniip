@@ -119,6 +119,10 @@ function Reviews ({reviews, productId}) {
 
   
   const [showModal, setShowModal] = useState(false);
+  
+  const hideModal = () => {
+    setShowModal(false)
+  }
 
   return (
     <div className="reviews-area">
@@ -130,10 +134,10 @@ function Reviews ({reviews, productId}) {
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
               <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
-              <button onClick={() => setShowModal(true)}>Write a review</button>
+              <button className="review-button" onClick={() => setShowModal(true)}>Write a review</button>
               {showModal && (
               <Modal onClose={() => setShowModal(false)} className="modal">
-                <ReviewForm productId={productId}/>
+                <ReviewForm productId={productId} hideModal={hideModal}/>
               </Modal>
               )}
             </div>
@@ -152,7 +156,7 @@ function Reviews ({reviews, productId}) {
             </div>
           )
           :
-          ( <div className="no-review">No Reviews for this product now</div> )
+          ( <div className="no-review">No Reviews for this product</div> )
         }
       </div>
   )

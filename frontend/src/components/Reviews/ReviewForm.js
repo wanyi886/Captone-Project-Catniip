@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 
-function ReviewForm({ productId }) {
+function ReviewForm({ productId, hideModal }) {
   const dispatch = useDispatch();
 
   const [score, setScore] = useState("")
@@ -19,17 +19,12 @@ function ReviewForm({ productId }) {
   useEffect(() => {
     const errors = [];
 
-    const isImage = (url) => {
-      return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-    }
-
-    if (!isImage(imgUrl) || !validator.isURL(imgUrl)) errors.push("Please enter a valid image URL.")
     if (!title) errors.push("Title cannot be empty.")
     if (title.length > 32) errors.push("Title cannot be over 32 characters.")
     if (!description) errors.push("Description cannot be empty.")
 
     setErrors(errors)
-  }, [imgUrl, title, description])
+  }, [score, title, description])
 
 
   const handleSubmit = async (e) => {
@@ -85,7 +80,7 @@ function ReviewForm({ productId }) {
         </div>
 
         <div className='form-label'>
-          <label htmlFor='title'>Title*</label>
+          <label htmlFor='title'>Title</label>
         </div>
         <div className='form-input'>
           <input
@@ -97,7 +92,7 @@ function ReviewForm({ productId }) {
         </div>
 
         <div className='form-label'>
-          <label htmlFor='description'>Description*</label>
+          <label htmlFor='description'>Description</label>
         </div>
 
         <div className='form-input des'>
@@ -111,7 +106,7 @@ function ReviewForm({ productId }) {
 
         <div className='new-product-btn-area'>
           <button type='submit' disabled={errors.length > 0} className="submit">Submit</button>
-          <button type="button" className="cancel">Cancel</button>
+          <button type="button" onClick={hideModal} className="cancel">Cancel</button>
         </div>
 
       </form>
