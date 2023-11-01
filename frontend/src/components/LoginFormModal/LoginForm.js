@@ -58,11 +58,11 @@ function LoginForm() {
           <div className="left">
               <div className="loginButton google" onClick={google}>
                   <img src={Google} alt="" className="icon"/>
-                  Log in with Google
+                  Continue with Google
               </div>
               <div className="loginButton github" onClick={github}>
                   <img src={Github} alt="" className="icon"/>
-                  Log in with Github
+                  Continue with Github
               </div>
           </div>
 
