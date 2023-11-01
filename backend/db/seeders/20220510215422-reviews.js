@@ -86,7 +86,7 @@ module.exports = {
         updatedAt: new Date()
       } ,
       {
-        userId: 9,
+        userId: 8,
         productId: 1,
         score: 4,
         title:"Kitties love it",
@@ -96,7 +96,7 @@ module.exports = {
         updatedAt: new Date()
       } ,
       {
-        userId: 14,
+        userId: 1,
         productId: 1,
         score: 5,
         title:"simple and comfy",
