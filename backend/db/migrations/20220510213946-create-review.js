@@ -22,12 +22,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      description: {
+      title: {
         allowNull: false,
         type: Sequelize.STRING(255)
       },
-      imgUrl: {
+      description: {
         allowNull: false,
+        type: Sequelize.STRING(500)
+      },
+      imgUrl: {
+        allowNull: true,
         type: Sequelize.TEXT
       },
       createdAt: {

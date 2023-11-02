@@ -22,9 +22,9 @@ function ProductDetail () {
 
   const productPageData = useSelector(state => state.productsState)
   const product = productPageData[id];
-  console.log("product in product detail", product)
+  // console.log("product in product detail", product)
   const reviews = product?.Reviews
-  console.log("reviews in product detail", reviews)
+  // console.log("reviews in product detail", reviews)
 
   const cartData = useSelector(state => state.cart);
   const cartArray = Object.values(cartData)
@@ -73,7 +73,7 @@ function ProductDetail () {
           </div>
         </div>
       </div>
-      <Reviews reviews={reviews}/>
+      <Reviews reviews={reviews?.reverse()} productId={product?.id}/>
     </div>
 
     )

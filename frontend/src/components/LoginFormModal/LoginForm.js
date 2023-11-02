@@ -7,16 +7,19 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-function LoginForm() {
+function LoginForm(hideModal) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    <Redirect to="/" />
-  );
+  const currentLocation = window.location.pathname;
+
+  if (sessionUser) {
+    window.location.href = "/";
+    window.location.href = currentLocation
+  }
 
   let googleUrl = "http://localhost:5000/api/session/google";
   let githubUrl =  "http://localhost:5000/api/session/github";
@@ -32,7 +35,7 @@ function LoginForm() {
   }
   const github= () => {
     // window.open("http://localhost:5000/api/session/github", "_self");
-    window.open("githubUrl", "_self");
+    window.open(githubUrl, "_self");
   }
 
   const handleSubmit = (e) => {
@@ -58,11 +61,11 @@ function LoginForm() {
           <div className="left">
               <div className="loginButton google" onClick={google}>
                   <img src={Google} alt="" className="icon"/>
-                  Log in with Google
+                  Continue with Google
               </div>
               <div className="loginButton github" onClick={github}>
                   <img src={Github} alt="" className="icon"/>
-                  Log in with Github
+                  Continue with Github
               </div>
           </div>
 

@@ -48,8 +48,9 @@ router.get('/:id/detail', asyncHandler(async(req, res) => {
     {
       where: {id: productId},
       include: [{ model: Review,
-                  include: [{ model: User }]
-                }]
+                  include: [{ model: User }],
+                }],
+
     }
   )
 

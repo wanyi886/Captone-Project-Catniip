@@ -19,9 +19,45 @@ export const loadReviews = (productId) => async (dispatch) => {
 // ========== Create a review ==========
 const CREATE_A_REVIEW = 'products/CREATE_A_REVIEW';
 
+const createReview = (review) => ({
+  type: CREATE_A_REVIEW,
+  payload: review
+})
+
+export const addOneReview = (data) => async(dispatch) => {
+
+  const res = await csrfFetch(`/api/reviews`,{
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+
+
+  if (res.ok){
+    const review = await res.json();
+
+    await dispatch(createReview(review))
+    return review
+  }
+}
+
 // ========== Update a review ==========
 const UPDATE_A_REVIEW = 'products/UPDATE_A_REVIEW';
 
 // ========== Delete a review ==========
 const DELETE_A_REVIEW = 'products/DELETE_A_REVIEW';
- 
+
+const initialState = {};
+
+export default function reviewsReducer(state = initialState, action) {
+  const newState = {...state}
+
+  switch (action.type) {
+
+    case CREATE_A_REVIEW:
+      newState[action.payload.id] = action.payload
+      return newState;
+    default:
+      return newState
+  }
+}
