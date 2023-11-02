@@ -11,7 +11,7 @@ const router = express.Router();
 
 // Google and Github social login
 
-const CLIENT_URL = "http://localhost:3000";
+let CLIENT_URL = "http://localhost:3000";
 
 if (process.env.NODE_ENV === 'production') {
   CLIENT_URL = "https://catniip-26d640bb2067.herokuapp.com";
