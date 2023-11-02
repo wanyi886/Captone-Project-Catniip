@@ -166,6 +166,7 @@ function Reviews ({reviews, productId}) {
                 <div className="ratings-container">
                   {getStars(review.score)}
                 </div>
+                <div className='review-title'>{review.title}</div>
                 <div className='review-description'>{review.description}</div>
                 <div className="review-img-container">
                   <img src={review.imgUrl}></img>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
+import { addOneReview } from "../../store/reviews"
 
 function ReviewForm({ productId, hideModal }) {
   const dispatch = useDispatch();
@@ -34,13 +35,20 @@ function ReviewForm({ productId, hideModal }) {
     const payload = {
       userId: sessionUser?.id,
       productId: productId,
-      score,
+      score: Number(score),
       title,
       description,
       imgUrl,
     }
-    // console.log("payload in form", payload)
+    console.log("payload in form", payload)
     // await dispatch(addOneProduct(payload))
+    const result = dispatch(addOneReview(payload))
+    // await dispatch(loadProductsPage())
+
+    if (result) {
+      hideModal()
+
+    }
   }
 
   return (
@@ -62,6 +70,9 @@ function ReviewForm({ productId, hideModal }) {
             name="score"
             onChange={e => setScore(e.target.value)}
             value={score}
+            type="number"
+            min={1}
+            max={5}
           >
           </input>
         </div>
@@ -87,6 +98,7 @@ function ReviewForm({ productId, hideModal }) {
             name="title"
             onChange={e => setTitle(e.target.value)}
             value={title}
+            type='text'
           >
           </input>
         </div>
