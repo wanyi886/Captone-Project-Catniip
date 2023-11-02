@@ -120,6 +120,7 @@ function Reviews ({reviews, productId}) {
     return sum/ reviews.length;
   }
 
+  console.log("review!!!!!!!!!!!", reviews?.reverse())
   
   const [showReview, setShowReview] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
