@@ -1,15 +1,23 @@
 import { csrfFetch } from "./csrf";
 
 // ========== get all reviews for a product ==========
-const GET_ALL_REVIEWS = 'products/GET_ALL_REVIEWS';
+const GET_REVIEWS_FOR_A_PRODUCT = 'products/GET_REVIEWS_FOR_A_PRODUCT';
 
 const getReviews = (reviews) => ({
-  type: GET_ALL_REVIEWS,
+  type: GET_REVIEWS_FOR_A_PRODUCT,
   payload: reviews
 })
 
+// export const loadReviews = (productId) => async (dispatch) => {
+//   const res = await csrfFetch(`/api/products/${productId}/reviews`);
+//   if (res.ok) {
+//     const reviews = await res.json();
+//     dispatch(getReviews(reviews))
+//   }
+// }
+
 export const loadReviews = (productId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/products/${productId}/reviews`);
+  const res = await csrfFetch(`/api/reviews/product/${productId}/`);
   if (res.ok) {
     const reviews = await res.json();
     dispatch(getReviews(reviews))
@@ -53,10 +61,17 @@ export default function reviewsReducer(state = initialState, action) {
   const newState = {...state}
 
   switch (action.type) {
+    case GET_REVIEWS_FOR_A_PRODUCT:
+      console.log("action.payload", action.payload)
+      action.payload.forEach(review => {
+        newState[review.id] = review
+      })
+      return newState;
 
     case CREATE_A_REVIEW:
       newState[action.payload.id] = action.payload
       return newState;
+
     default:
       return newState
   }

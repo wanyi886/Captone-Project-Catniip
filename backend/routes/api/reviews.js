@@ -34,14 +34,33 @@ const validateReview = [
 //     return res.json(product[0]);
 //   }))
   
+  // load reviews under a product
+  router.get('/product/:id', handleValidationErrors, asyncHandler(async(req, res) => {
+    const productId = req.params.id;
+
+    const reviews = await Review.findAll(
+      {
+        where: { productId: productId },
+        include: [{ model: User }],
+  
+      })
+    
+    return res.json(reviews)
+  }))
+
   // create a review
   router.post('/', validateReview, handleValidationErrors, asyncHandler(async(req, res) => {
-    console.log("in api route!!!!!!!!")
+    
     const data = req.body;
-    console.log("data~~~~~~~", data)
+    
     const newReview = await Review.create(data);
+    const review = await Review.findAll(
+      {
+        where: { id: newReview.id },
+        include: [{ model: User }],
+      })
   
-    return res.json(newReview)
+    return res.json(review[0])
   }))
 
   module.exports = router;

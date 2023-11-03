@@ -1,14 +1,24 @@
 import './Reviews.css';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ReviewForm from './ReviewForm';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
+import { loadReviews } from '../../store/reviews';
 
 
 
-function Reviews ({reviews, productId}) {
+function Reviews ({productId}) {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadReviews(productId))
+  }, [dispatch])
+  const reviewsData = useSelector(state => state.reviews);
+  const reviews = Object.values(reviewsData)
+
+  console.log("reviews in component", reviews)
+  
 
   function getStars (score) {
     let stars;

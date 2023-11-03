@@ -73,7 +73,7 @@ function ProductDetail () {
           </div>
         </div>
       </div>
-      <Reviews reviews={reviews?.reverse()} productId={product?.id}/>
+      <Reviews productId={id}/>
     </div>
 
     )
