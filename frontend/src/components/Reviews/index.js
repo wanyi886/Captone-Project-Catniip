@@ -120,7 +120,7 @@ function Reviews ({reviews, productId}) {
     return sum/ reviews.length;
   }
 
-  console.log("review!!!!!!!!!!!", reviews?.reverse())
+  reviews?.sort( (a, b) => b['id'] - a['id'])
   
   const [showReview, setShowReview] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
