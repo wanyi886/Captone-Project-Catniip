@@ -109,7 +109,7 @@ function ReviewForm({ productId, hideModal }) {
             </input>
           </div>
 
-          <div className='form-label'>
+          {/* <div className='form-label'>
             <label htmlFor='image'>Upload Image</label>
           </div>
           <div className='form-input'>
@@ -120,7 +120,7 @@ function ReviewForm({ productId, hideModal }) {
               onChange={e => setImgUrl(e.target.value)}
             >
             </input>
-          </div>
+          </div> */}
 
           <div className='form-label'>
             <label htmlFor='title'>Title</label>

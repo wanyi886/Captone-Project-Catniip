@@ -108,14 +108,13 @@ function LoginForm(hideModal) {
                   />
               </div>
 
-              <div>
-                <button className="btn-login" type="submit">Log In</button>
+              <div className='login-btn-area'>
+                <button className="btn" type="submit">Log In</button>
+                <button className="btn" type="submit" onClick={handleClick}>Demo Log In</button>
               </div>
+              
             </form>
 
-            <div>
-              <button className="btn-demo" type="submit" onClick={handleClick}>Demo User Log In</button>
-            </div>
 
           </div>
         
