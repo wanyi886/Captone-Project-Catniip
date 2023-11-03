@@ -110,4 +110,67 @@
   cursor: pointer;
 }
 
+.new-review-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 320px;
+  height: 50vh; /* Adjust this to suit your needs */
+}
 
+.new-review-h1 {
+  font-size: 30px;
+  color: #2c2c2c;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+}
+
+
+.form-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  font-family: 'Rubik', sans-serif;
+}
+
+
+.form-input input,
+.form-input textarea {
+  width: 100%; /* Ensures all input fields have the same width */
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-family:'Rubik', sans-serif;
+}
+
+.new-review-btn-area {
+  display: flex;
+  justify-content: center;
+}
+
+.submit,
+.cancel {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin: 5px;
+}
+
+.submit {
+  background-color: #cf8193;
+}
+
+.cancel {
+  background-color: #626262;
+}
+
+.error-list {
+  color: rgb(198, 0, 0);
+  margin: 10px;
+}
