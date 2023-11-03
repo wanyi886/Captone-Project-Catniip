@@ -85,14 +85,12 @@ function ReviewForm({ productId, hideModal }) {
       <div className='h1-container'>
         <h1 className='new-review-h1'>Write a Review</h1>
       </div>
+      <StarRating onStarClick={handleStarClick}/>
       <div className='form-container'>
         <form onSubmit={handleSubmit}>
           <ul className='error-list'>
             {errors && errors.map((error) => <li key={error}>{error}</li>)}
           </ul>
-
-          <StarRating onStarClick={handleStarClick}/>
-          {/* <div>Selected stars:{selectedStars}</div> */}
 
           <div className='form-label'>
             <label htmlFor='title'>Title</label>
