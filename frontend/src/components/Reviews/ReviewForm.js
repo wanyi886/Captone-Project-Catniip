@@ -4,15 +4,21 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import { addOneReview } from "../../store/reviews"
+import StarRating from './StarRating';
 
 function ReviewForm({ productId, hideModal }) {
   const dispatch = useDispatch();
 
-  const [score, setScore] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription ] = useState("")
   const [imgUrl, setImgUrl] = useState("");
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
+
+  const [ selectedStars, setSelectedStars ] = useState(0);
+
+  const handleStarClick = (selected) => {
+      setSelectedStars(selected)
+  }
 
   const sessionUser = useSelector(state => state.session.user)
 
@@ -30,18 +36,11 @@ function ReviewForm({ productId, hideModal }) {
   const validate = () => {
     const errors = [];
     if (!title) errors.push("Title cannot be empty.")
-    if (score < 1 || score > 5 || !score) {
-      errors.push('Score must be between 1 and 5.');
-    }
     if (!description) errors.push("Description cannot be empty.")
 
     setErrors(errors)
   }
 
-  const handleScoreChange = (e) => {
-    setScore(e.target.value);
-    validate()
-  }
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -58,12 +57,12 @@ function ReviewForm({ productId, hideModal }) {
     validate()
     e.preventDefault();
     
-    if(errors.length === 0 && title && description && score) {
+    if(errors.length === 0 && title && description) {
 
       const payload = {
         userId: sessionUser?.id,
         productId: productId,
-        score: Number(score),
+        score: Number(selectedStars),
         title,
         description,
         imgUrl,
@@ -92,35 +91,8 @@ function ReviewForm({ productId, hideModal }) {
             {errors && errors.map((error) => <li key={error}>{error}</li>)}
           </ul>
 
-
-          <div className='form-label'>
-            <label htmlFor='score'>Score</label>
-          </div>
-
-          <div className='form-input'>
-            <input
-              name="score"
-              onChange={handleScoreChange}
-              value={score}
-              type="number"
-              min={1}
-              max={5}
-            >
-            </input>
-          </div>
-
-          {/* <div className='form-label'>
-            <label htmlFor='image'>Upload Image</label>
-          </div>
-          <div className='form-input'>
-            <input
-              type="text"
-              name='image'
-              value={imgUrl}
-              onChange={e => setImgUrl(e.target.value)}
-            >
-            </input>
-          </div> */}
+          <StarRating onStarClick={handleStarClick}/>
+          {/* <div>Selected stars:{selectedStars}</div> */}
 
           <div className='form-label'>
             <label htmlFor='title'>Title</label>
@@ -149,7 +121,7 @@ function ReviewForm({ productId, hideModal }) {
           </div>
 
           <div className='new-review-btn-area'>
-            <button type='submit' disabled={errors.length > 0 || !title || !description || !score} className="submit">Submit</button>
+            <button type='submit' disabled={errors.length > 0 || !title || !description } className="submit">Submit</button>
             <button type="button" onClick={hideModal} className="cancel">Cancel</button>
           </div>
 

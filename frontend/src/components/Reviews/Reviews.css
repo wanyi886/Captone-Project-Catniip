@@ -174,3 +174,8 @@
   color: rgb(198, 0, 0);
   margin: 10px;
 }
+
+.star-rating-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
