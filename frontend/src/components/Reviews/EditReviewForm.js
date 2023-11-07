@@ -85,9 +85,6 @@ function EditReviewForm({ review, reviewId, hideModal }) {
     <div className='new-review-modal'>
       <div className='h1-container'>
         <h1 className='new-review-h1'>Edit Your Review</h1>
-        <div>review.id: {review.id}</div>
-        <div>review.title: {review.title}</div>
-        <div>reviewId: {reviewId}</div>
       </div>
       <StarRating onStarClick={handleStarClick} score={review.score}/>
       <div className='form-container'>

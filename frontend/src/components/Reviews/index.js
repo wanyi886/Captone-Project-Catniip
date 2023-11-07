@@ -111,14 +111,13 @@ function Reviews ({productId}) {
                 
                 {sessionUser.id !== review.userId? "" : 
                 <div className='button-area'>
-                  <button onClick={() => handleEditClick(review)} className='edit'>Edit {review.id}</button>
+                  <button onClick={() => handleEditClick(review)} className='edit'>Edit</button>
                   {showEditForm && (
                     <Modal onClose={() => setShowEditForm(false)} className="modal" reviewId={review.id}>
-                      review.id:{review.id}
                      <EditReviewForm review={modalData} hideModal={() => setShowEditForm(false)}/>
                     </Modal>
                   )}
-                  <button onClick={() => handleConfirmClick(review)} className='delete'>Delete {review.id}</button>
+                  <button onClick={() => handleConfirmClick(review)} className='delete'>Delete</button>
                   {showConfirm && (
                     <Modal onClose={() => setShowConfirm(false)} className="modal">
                       <ConfirmModal reviewId={modalData.id} hideModal={() => setShowConfirm(false)}/>
