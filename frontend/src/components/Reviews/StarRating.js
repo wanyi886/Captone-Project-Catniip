@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
-function StarRating({ onStarClick }) {
-    const [selectedStars, setSelectedStars] = useState(0);
+function StarRating({ onStarClick, score }) {
+    const [selectedStars, setSelectedStars] = useState(score || 0);
 
     const handleStarClick = (selected) => {
         setSelectedStars(selected);

@@ -45,6 +45,30 @@ export const addOneReview = (data) => async(dispatch) => {
 // ========== Update a review ==========
 const UPDATE_A_REVIEW = 'products/UPDATE_A_REVIEW';
 
+const updateReview = (review) => ({
+  type: UPDATE_A_REVIEW,
+  payload: review
+})
+
+export const updateOneReview = (data) => async(dispatch) => {
+  // console.log("hi from update thunk");
+  // console.log("data passed into update thunk", data);
+  const res = await csrfFetch(`/api/reviews/${data.id}`,{
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  // console.log("res in the update thunk", res)
+
+  if (res.ok){
+    const review = await res.json();
+    console.log("updated review??", review)
+    await dispatch(updateReview(review[0]))
+    // if we don't return product, the result const in edit product form would be undefined
+    return review[0];
+  }
+}
+
 // ========== Delete a review ==========
 const DELETE_A_REVIEW = 'products/DELETE_A_REVIEW';
 
@@ -80,6 +104,10 @@ export default function reviewsReducer(state = initialState, action) {
       return newState;
 
     case CREATE_A_REVIEW:
+      newState[action.payload.id] = action.payload
+      return newState;
+
+    case UPDATE_A_REVIEW:
       newState[action.payload.id] = action.payload
       return newState;
 

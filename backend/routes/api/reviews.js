@@ -46,6 +46,26 @@ const validateReview = [
     return res.json(review[0])
   }))
 
+  // update a review
+  router.put('/:id', validateReview, handleValidationErrors, asyncHandler(async(req, res) => {
+    const id = req.params.id;
+    const targetReview = await Review.findByPk(id);
+    const updatedPayload = req.body;
+
+    if (targetReview) {
+      await targetReview.update(updatedPayload);
+      const updatedReview = await Review.findAll(
+        {
+          where: { id: targetReview.id },
+          include: [{ model: User }],
+        })
+      return res.json(updatedReview)
+    } else {
+      throw new Error('Cannot find this review.')
+    }
+
+  }))
+
   // delete a review
   router.delete('/:id', asyncHandler(async(req, res) => {
     

@@ -6,6 +6,7 @@ import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import { loadReviews } from '../../store/reviews';
 import ConfirmModal from './ConfirmModal';
+import EditReviewForm from './EditReviewForm';
 
 
 
@@ -135,7 +136,8 @@ function Reviews ({productId}) {
   
   const [showReview, setShowReview] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const showModal = () => {
     if (sessionUser) {
@@ -185,14 +187,17 @@ function Reviews ({productId}) {
                 </div>
                 {sessionUser.id !== review.userId? "" : 
                 <div className='button-area'>
-                  <button>Edit</button>
+                  <button onClick={() => setShowEditForm(true)}>Edit</button>
+                  {showEditForm && (
+                    <Modal onClose={() => setShowEditForm(false)} className="modal">
+                     <EditReviewForm review={review} hideModal={() => setShowEditForm(false)}/>
+                    </Modal>
+                  )}
                   <button onClick={() => setShowConfirm(true)}>Delete</button>
                   {showConfirm && (
-                    <>
                     <Modal onClose={() => setShowConfirm(false)} className="modal">
                       <ConfirmModal reviewId={review.id} hideModal={() => setShowConfirm(false)}/>
                     </Modal>
-                    </>
                     )}
                 </div>
                 }
