@@ -46,4 +46,21 @@ const validateReview = [
     return res.json(review[0])
   }))
 
+  // delete a review
+  router.delete('/:id', asyncHandler(async(req, res) => {
+    
+    const id = req.params.id;
+    const targetReview = await Review.findByPk(id);
+    
+    if (targetReview) {
+      await targetReview.destroy()
+      
+      return res.json(id)
+    } else {
+      throw new Error('Cannot find this Review.')
+    }
+  }))
+
+
+
   module.exports = router;

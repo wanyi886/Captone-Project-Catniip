@@ -5,6 +5,7 @@ import ReviewForm from './ReviewForm';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import { loadReviews } from '../../store/reviews';
+import ConfirmModal from './ConfirmModal';
 
 
 
@@ -134,6 +135,7 @@ function Reviews ({productId}) {
   
   const [showReview, setShowReview] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const showModal = () => {
     if (sessionUser) {
@@ -168,7 +170,6 @@ function Reviews ({productId}) {
                 <LoginForm hideModal={() => setShowLogin(false)}/>
               </Modal>
               )
-
               }
             </div>
             {reviews?.map(review => (
@@ -182,6 +183,19 @@ function Reviews ({productId}) {
                 <div className="review-img-container">
                   <img src={review.imgUrl}></img>
                 </div>
+                {sessionUser.id !== review.userId? "" : 
+                <div className='button-area'>
+                  <button>Edit</button>
+                  <button onClick={() => setShowConfirm(true)}>Delete</button>
+                  {showConfirm && (
+                    <>
+                    <Modal onClose={() => setShowConfirm(false)} className="modal">
+                      <ConfirmModal reviewId={review.id} hideModal={() => setShowConfirm(false)}/>
+                    </Modal>
+                    </>
+                    )}
+                </div>
+                }
               </div>
             ))}
             </div>
