@@ -3,9 +3,6 @@
 function DisplayStars({score}) {
 
     function getStars(score) {
-        const fullStar = <i className="fa fa-star"></i>;
-        const halfStar = <i className="fas fa-star-half-alt"></i>;
-        const emptyStar = <i className="fa-regular fa-star"></i>;
       
         const starsArray = [];
         const fullStars = Math.floor(score);
@@ -13,11 +10,11 @@ function DisplayStars({score}) {
       
         for (let i = 0; i < 5; i++) {
           if (i < fullStars) {
-            starsArray.push(fullStar);
+            starsArray.push(<i key={i} className="fa fa-star"></i>);
           } else if (i === fullStars && hasHalfStar) {
-            starsArray.push(halfStar);
+            starsArray.push(<i key={i} className="fas fa-star-half-alt"></i>);
           } else {
-            starsArray.push(emptyStar);
+            starsArray.push(<i key={i} className="fa-regular fa-star"></i>);
           }
         }
       
