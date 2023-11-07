@@ -5,6 +5,9 @@ import ReviewForm from './ReviewForm';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import { loadReviews } from '../../store/reviews';
+import ConfirmModal from './ConfirmModal';
+import EditReviewForm from './EditReviewForm';
+import DisplayStars from './DisplayStars';
 
 
 
@@ -20,106 +23,7 @@ function Reviews ({productId}) {
   console.log("reviews in component", reviews)
   
 
-  function getStars (score) {
-    let stars;
-    if (score <= 1) {
-      stars = (
-      <>
-        <i class="fa fa-star" ></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-      </>
-      )
-    } else if (score > 1 && score < 2) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 2) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 2 && score < 3) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 3) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 3 && score < 4) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 4) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 4 && score < 5) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-        </>
-      )
-
-    }
-    else {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-        </>
-      )
-    }
-    return stars
-  }
+  
 
   const getAverage = (reviews) => {
     if (reviews.length === 0) return 0
@@ -134,6 +38,8 @@ function Reviews ({productId}) {
   
   const [showReview, setShowReview] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const showModal = () => {
     if (sessionUser) {
@@ -155,7 +61,9 @@ function Reviews ({productId}) {
           ( <div className="reviews-outter-container">
             <div className='reviews-summary-container'>
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
-              <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
+              <div className='reviews-summary-star'>
+                <DisplayStars score={getAverage(reviews)}/>
+              </div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
               <button className="review-button" onClick={showModal}>Write a review</button>
               {showReview && (
@@ -168,20 +76,37 @@ function Reviews ({productId}) {
                 <LoginForm hideModal={() => setShowLogin(false)}/>
               </Modal>
               )
-
               }
             </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
                 <div >{review.User.username} <span className='rating-date'>on {new Date(review.updatedAt).toDateString()}</span></div>
                 <div className="ratings-container">
-                  {getStars(review.score)}
+                  {/* {getStars(review.score)} */}
+                
+                  <DisplayStars score={review.score}/>
                 </div>
                 <div className='review-title'>{review.title}</div>
                 <div className='review-description'>{review.description}</div>
                 <div className="review-img-container">
                   <img src={review.imgUrl}></img>
                 </div>
+                {sessionUser.id !== review.userId? "" : 
+                <div className='button-area'>
+                  <button onClick={() => setShowEditForm(true)} className='edit'>Edit</button>
+                  {showEditForm && (
+                    <Modal onClose={() => setShowEditForm(false)} className="modal">
+                     <EditReviewForm review={review} hideModal={() => setShowEditForm(false)}/>
+                    </Modal>
+                  )}
+                  <button onClick={() => setShowConfirm(true)} className='delete'>Delete</button>
+                  {showConfirm && (
+                    <Modal onClose={() => setShowConfirm(false)} className="modal">
+                      <ConfirmModal reviewId={review.id} hideModal={() => setShowConfirm(false)}/>
+                    </Modal>
+                    )}
+                </div>
+                }
               </div>
             ))}
             </div>

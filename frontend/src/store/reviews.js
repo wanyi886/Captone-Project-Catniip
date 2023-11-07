@@ -45,8 +45,48 @@ export const addOneReview = (data) => async(dispatch) => {
 // ========== Update a review ==========
 const UPDATE_A_REVIEW = 'products/UPDATE_A_REVIEW';
 
+const updateReview = (review) => ({
+  type: UPDATE_A_REVIEW,
+  payload: review
+})
+
+export const updateOneReview = (data) => async(dispatch) => {
+  // console.log("hi from update thunk");
+  // console.log("data passed into update thunk", data);
+  const res = await csrfFetch(`/api/reviews/${data.id}`,{
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  })
+  // console.log("res in the update thunk", res)
+
+  if (res.ok){
+    const review = await res.json();
+    await dispatch(updateReview(review[0]))
+    return review[0];
+  }
+}
+
 // ========== Delete a review ==========
 const DELETE_A_REVIEW = 'products/DELETE_A_REVIEW';
+
+const deleteReview = (id) => ({
+  type: DELETE_A_REVIEW,
+  payload: id
+})
+
+export const removeOneReview = (id) => async(dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+  })
+
+  if (res.ok) {
+    const reviewId = await res.json();
+    dispatch(deleteReview(reviewId))
+  }
+}
+
+
 
 const initialState = {};
 
@@ -64,6 +104,14 @@ export default function reviewsReducer(state = initialState, action) {
     case CREATE_A_REVIEW:
       newState[action.payload.id] = action.payload
       return newState;
+
+    case UPDATE_A_REVIEW:
+      newState[action.payload.id] = action.payload
+      return newState;
+
+    case DELETE_A_REVIEW:
+      delete newState[action.payload]
+      return newState
 
     default:
       return newState

@@ -33,7 +33,11 @@ const validateProduct = [
 // get all products
 router.get('/', asyncHandler(async (req, res) => {
 
-  const products = await Product.findAll();
+  const products = await Product.findAll({
+    
+    include: [{ model: Review}],
+
+  });
 
   return res.json(products);
 }))
