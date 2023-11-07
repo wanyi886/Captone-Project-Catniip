@@ -35,6 +35,7 @@ function ReviewForm({ productId, hideModal }) {
 
   const validate = () => {
     const errors = [];
+    if (Number(selectedStars) < 1) errors.push("Please click stars to give ratings")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
 
@@ -44,12 +45,12 @@ function ReviewForm({ productId, hideModal }) {
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
-    validate()
+    // validate()
   }
 
   const handleDesChange = (e) => {
     setDescription(e.target.value);
-    validate()
+    // validate()
   }
 
 

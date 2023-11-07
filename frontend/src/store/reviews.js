@@ -8,13 +8,6 @@ const getReviews = (reviews) => ({
   payload: reviews
 })
 
-// export const loadReviews = (productId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/products/${productId}/reviews`);
-//   if (res.ok) {
-//     const reviews = await res.json();
-//     dispatch(getReviews(reviews))
-//   }
-// }
 
 export const loadReviews = (productId) => async (dispatch) => {
   const res = await csrfFetch(`/api/reviews/product/${productId}/`);
@@ -62,7 +55,7 @@ export default function reviewsReducer(state = initialState, action) {
 
   switch (action.type) {
     case GET_REVIEWS_FOR_A_PRODUCT:
-      console.log("action.payload", action.payload)
+      
       action.payload.forEach(review => {
         newState[review.id] = review
       })
