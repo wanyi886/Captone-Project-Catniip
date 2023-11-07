@@ -5,6 +5,7 @@ import '../AllProducts/AllProducts.css';
 import { loadProductsPage } from "../../store/products"
 import { addToCart, updateCount } from '../../store/cart'
 // import ProductsDisplay from "../ProductsDisplay/ProductsDisplay";
+import DisplayStars from "../Reviews/DisplayStars";
 
 
 function ProductsDisplay({products, cartArray}) {
@@ -19,10 +20,8 @@ function ProductsDisplay({products, cartArray}) {
     instead of its child button.add-to-cart-button.
     */
 
-
     // if the item is not in the cart, add this item to cart, if it exists, just add one to the count
     const targetItemInCart = cartArray.find(item => Number(item.id) === Number(e.currentTarget.id));
-
     const targetItemInProducts = products.find(item => item.id === Number(e.currentTarget.id));
 
     /*
@@ -46,7 +45,13 @@ function ProductsDisplay({products, cartArray}) {
     history.push('/cart')
   }
 
-
+  const getAverageScore = (reviews) => {
+    let sum = 0;
+    for (const review of reviews) {
+      sum += review.score;
+    }
+    return (sum / reviews.length ).toFixed(1)
+  }
 
   return (
     <div className="products-container">
@@ -67,6 +72,14 @@ function ProductsDisplay({products, cartArray}) {
                 <div className="product-title">
                   {product?.title}
                 </div>
+                {product.Reviews.length <= 0? 
+                  <div className="review-average-container">No reviews now </div>
+                  :
+                  <div className="review-average-container">
+                    <DisplayStars score={getAverageScore(product.Reviews)}/>
+                    <span className="score-span">{getAverageScore(product.Reviews)}</span>
+                  </div>
+                }
                 <div className="price-and-cart-btn">
                   <div className="product-price">
                     $ {product?.price}

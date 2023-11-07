@@ -7,6 +7,7 @@ import LoginForm from '../LoginFormModal/LoginForm';
 import { loadReviews } from '../../store/reviews';
 import ConfirmModal from './ConfirmModal';
 import EditReviewForm from './EditReviewForm';
+import DisplayStars from './DisplayStars';
 
 
 
@@ -22,106 +23,7 @@ function Reviews ({productId}) {
   console.log("reviews in component", reviews)
   
 
-  function getStars (score) {
-    let stars;
-    if (score <= 1) {
-      stars = (
-      <>
-        <i class="fa fa-star" ></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-        <i class="fa-regular fa-star"></i>
-      </>
-      )
-    } else if (score > 1 && score < 2) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 2) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 2 && score < 3) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 3) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 3 && score < 4) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-
-    } else if (score === 4) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa-regular fa-star"></i>
-        </>
-      )
-    } else if (score > 4 && score < 5) {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fas fa-star-half-alt"></i>
-        </>
-      )
-
-    }
-    else {
-      stars = (
-        <>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-          <i class="fa fa-star" ></i>
-        </>
-      )
-    }
-    return stars
-  }
+  
 
   const getAverage = (reviews) => {
     if (reviews.length === 0) return 0
@@ -159,7 +61,9 @@ function Reviews ({productId}) {
           ( <div className="reviews-outter-container">
             <div className='reviews-summary-container'>
               <div className='reviews-summary'>{getAverage(reviews).toFixed(1)}</div>
-              <div className='reviews-summary-star'>{getStars(getAverage(reviews))}</div>
+              <div className='reviews-summary-star'>
+                <DisplayStars score={getAverage(reviews)}/>
+              </div>
               <div className='reviews-summary-number'>{reviews.length} Ratings</div>
               <button className="review-button" onClick={showModal}>Write a review</button>
               {showReview && (
@@ -178,7 +82,9 @@ function Reviews ({productId}) {
               <div key={review.id} className="review-container">
                 <div >{review.User.username} <span className='rating-date'>on {new Date(review.updatedAt).toDateString()}</span></div>
                 <div className="ratings-container">
-                  {getStars(review.score)}
+                  {/* {getStars(review.score)} */}
+                
+                  <DisplayStars score={review.score}/>
                 </div>
                 <div className='review-title'>{review.title}</div>
                 <div className='review-description'>{review.description}</div>
