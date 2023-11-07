@@ -1,5 +1,5 @@
 import './Reviews.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewForm from './ReviewForm';
 import { Modal } from '../../context/Modal';
@@ -18,9 +18,12 @@ function Reviews ({productId}) {
     dispatch(loadReviews(productId))
   }, [dispatch])
   const reviewsData = useSelector(state => state.reviews);
-  const reviews = Object.values(reviewsData)
+  const allReviews = Object.values(reviewsData);
+  const reviews = allReviews.filter( (review) => review.productId === Number(productId))
 
-  console.log("reviews in component", reviews)
+
+  console.log("reviews in component", reviews);
+  // console.log("test", test)
   
 
   
@@ -41,6 +44,9 @@ function Reviews ({productId}) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
+  // cannot pass prop for every indivisual modal, so we need to store the data in the variable, and assign it to the prop
+  const [modalData, setModalData] = useState(null)
+
   const showModal = () => {
     if (sessionUser) {
       setShowReview(true)
@@ -49,8 +55,21 @@ function Reviews ({productId}) {
     }
   }
   
+  // use useCallback hook to memoize the function, make sure the function reference remains the same unless it's changed
+  const handleEditClick = useCallback((review) => {
+    setShowEditForm(true);
+    setModalData(review);
+  }, []);
+
+
+  const handleConfirmClick = useCallback((review) => {
+    setShowConfirm(true);
+    setModalData(review)
+  }, [])
+
   const hideModal = () => {
-    setShowReview(false)
+    setShowReview(false);
+    
   }
 
   return (
@@ -82,8 +101,6 @@ function Reviews ({productId}) {
               <div key={review.id} className="review-container">
                 <div >{review.User.username} <span className='rating-date'>on {new Date(review.updatedAt).toDateString()}</span></div>
                 <div className="ratings-container">
-                  {/* {getStars(review.score)} */}
-                
                   <DisplayStars score={review.score}/>
                 </div>
                 <div className='review-title'>{review.title}</div>
@@ -91,18 +108,20 @@ function Reviews ({productId}) {
                 <div className="review-img-container">
                   <img src={review.imgUrl}></img>
                 </div>
+                
                 {sessionUser.id !== review.userId? "" : 
                 <div className='button-area'>
-                  <button onClick={() => setShowEditForm(true)} className='edit'>Edit</button>
+                  <button onClick={() => handleEditClick(review)} className='edit'>Edit {review.id}</button>
                   {showEditForm && (
-                    <Modal onClose={() => setShowEditForm(false)} className="modal">
-                     <EditReviewForm review={review} hideModal={() => setShowEditForm(false)}/>
+                    <Modal onClose={() => setShowEditForm(false)} className="modal" reviewId={review.id}>
+                      review.id:{review.id}
+                     <EditReviewForm review={modalData} hideModal={() => setShowEditForm(false)}/>
                     </Modal>
                   )}
-                  <button onClick={() => setShowConfirm(true)} className='delete'>Delete</button>
+                  <button onClick={() => handleConfirmClick(review)} className='delete'>Delete {review.id}</button>
                   {showConfirm && (
                     <Modal onClose={() => setShowConfirm(false)} className="modal">
-                      <ConfirmModal reviewId={review.id} hideModal={() => setShowConfirm(false)}/>
+                      <ConfirmModal reviewId={modalData.id} hideModal={() => setShowConfirm(false)}/>
                     </Modal>
                     )}
                 </div>
