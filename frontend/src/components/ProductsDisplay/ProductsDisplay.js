@@ -76,8 +76,9 @@ function ProductsDisplay({products, cartArray}) {
                   <div className="review-average-container">No reviews now </div>
                   :
                   <div className="review-average-container">
+                    <span className="score-span-left">{getAverageScore(product.Reviews)}</span>
                     <DisplayStars score={getAverageScore(product.Reviews)}/>
-                    <span className="score-span">{getAverageScore(product.Reviews)}</span>
+                    <span className="score-span-right">({product.Reviews.length})</span>
                   </div>
                 }
                 <div className="price-and-cart-btn">
