@@ -62,9 +62,7 @@ export const updateOneReview = (data) => async(dispatch) => {
 
   if (res.ok){
     const review = await res.json();
-    console.log("updated review??", review)
     await dispatch(updateReview(review[0]))
-    // if we don't return product, the result const in edit product form would be undefined
     return review[0];
   }
 }

@@ -11,13 +11,16 @@ function ConfirmModal({ reviewId, hideModal }) {
     }
 
     return (
-        <div>
+        <div className='confirm-modal'>
             <div className='h1-container'>
-                <h2>Are you sure you want to delete this review?</h2>
+                <h1 className='delete-review-h1'>Delete the Review</h1>
             </div>
-            <div className='button-container'>
-                <button onClick={deleteHandler}>Yes, delete it</button>
-                <button onClick={hideModal}>Cancel</button>
+            <div className='p-container'>
+                <p className='delete-review-p'>Are you sure about deleting this review?</p>
+            </div>
+            <div className='delete-review-btn-area'>
+                <button onClick={deleteHandler} className='submit'>Yes</button>
+                <button onClick={hideModal} className="cancel">Cancel</button>
             </div>
         </div>
 

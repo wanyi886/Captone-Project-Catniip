@@ -110,7 +110,8 @@
   cursor: pointer;
 }
 
-.new-review-modal {
+.new-review-modal,
+.confirm-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,7 +120,8 @@
   height: 45vh; /* Adjust this to suit your needs */
 }
 
-.new-review-h1 {
+.new-review-h1,
+.delete-review-h1 {
   font-size: 30px;
   color: #2c2c2c;
   font-family: 'Rubik', sans-serif;
@@ -147,13 +149,15 @@
   font-family:'Rubik', sans-serif;
 }
 
-.new-review-btn-area {
+.new-review-btn-area,
+.delete-review-btn-area {
   display: flex;
   justify-content: center;
 }
 
 .submit,
 .cancel {
+  width: 80px;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
@@ -178,4 +182,36 @@
 .star-rating-container {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.confirm-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 330px;
+  height: 25vh; /* Adjust this to suit your needs */
+}
+
+.delete-review-p {
+  font-family: 'Rubik', sans-serif;
+  color:rgb(72, 71, 71);
+  margin: 20px 35px;
+}
+
+.edit,
+.delete {
+  font-family: 'Rubik', sans-serif;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  margin-right: 10px;
+  padding: 5px;
+  width: 55px;
+  border-radius: 5px;
+}
+
+.edit:hover,
+.delete:hover {
+  text-decoration: underline;
 }
