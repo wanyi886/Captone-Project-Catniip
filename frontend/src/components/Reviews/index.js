@@ -109,7 +109,7 @@ function Reviews ({productId}) {
                   <img src={review.imgUrl}></img>
                 </div>
                 
-                {sessionUser.id !== review.userId? "" : 
+                {( !sessionUser || sessionUser.id !== review.userId )? "" : 
                 <div className='button-area'>
                   <button onClick={() => handleEditClick(review)} className='edit'>Edit</button>
                   {showEditForm && (

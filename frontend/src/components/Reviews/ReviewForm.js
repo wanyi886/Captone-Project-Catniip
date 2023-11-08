@@ -55,8 +55,8 @@ function ReviewForm({ productId, hideModal }) {
 
 
   const handleSubmit = async (e) => {
-    validate()
     e.preventDefault();
+    validate()
     
     if(errors.length === 0 && title && description) {
 
@@ -120,7 +120,8 @@ function ReviewForm({ productId, hideModal }) {
           </div>
 
           <div className='new-review-btn-area'>
-            <button type='submit' disabled={errors.length > 0 || !title || !description } className="submit">Submit</button>
+            {/* <button type='submit' disabled={errors.length > 0 || !title || !description || Number(selectedStars) < 1} className="submit">Submit</button> */}
+            <button type='submit'  className="submit">Submit</button>
             <button type="button" onClick={hideModal} className="cancel">Cancel</button>
           </div>
 
