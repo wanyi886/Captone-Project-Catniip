@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      oauthId: {
+        type: Sequelize.STRING(100),
+        allowNull: true,
+      },
       username: {
         type: Sequelize.STRING(30),
         allowNull: true,
@@ -17,6 +21,10 @@ module.exports = {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true
+      },
+      photos: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: true,
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,

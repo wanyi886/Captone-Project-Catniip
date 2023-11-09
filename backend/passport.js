@@ -1,6 +1,8 @@
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
+const { User } = require('./db/models');
+const bcrypt = require('bcryptjs');
 
 
 require('https').globalAgent.options.rejectUnauthorized = false;
@@ -19,12 +21,12 @@ if (process.env.NODE_ENV === 'production') {
     githubCallback = "https://catniip-26d640bb2067.herokuapp.com/api/session/github/callback"
 }
 
-
+const googleUserPwd = "googleUserPwd2023"
 
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: googleCallback
+    callbackURL: googleCallback,
   },
 
 // example codes from website below, because we won't have any db, so we will use "done" instead of "cb"
@@ -34,9 +36,35 @@ passport.use(new GoogleStrategy({
 //     });
 //   }
 
-    function(accessToken, refreshToken, profile, done) { // profile means user information
-        done(null, profile)
+    // function(accessToken, refreshToken, profile, done) { // profile means user information
+    //     done(null, profile)
+    // }
+
+    async (accessToken, refreshToken, profile, done) => {
+
+        try {
+            console.log("profile", profile)
+            const user = await User.findOne({ where: { email: profile.emails[0].value }})
+
+            if (user) {
+                return done(null, user);
+            } else {
+
+                const newUser = await User.create({
+                    oauthId: profile.id,
+                    username: profile.displayName,
+                    email: profile.emails[0].value,
+                    hashedPassword: bcrypt.hashSync(googleUserPwd),
+                    photos: [ profile.photos[0].value ]
+                });
+                return done(null, newUser)
+            }
+    
+        } catch(err) {
+            return done(err, null)
+        }
     }
+
 ));
 
 passport.serializeUser(( user, done) => {

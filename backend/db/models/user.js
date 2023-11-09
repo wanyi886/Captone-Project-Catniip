@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    oauthId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,7 +34,11 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       }
-    }
+    },
+    photos: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
   },
   {
     defaultScope: {
