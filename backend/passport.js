@@ -1,6 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
+const AppleStrategy = require('passport-apple');
 const { User } = require('./db/models');
 const bcrypt = require('bcryptjs');
 
@@ -43,7 +44,7 @@ passport.use(new GoogleStrategy({
     async (accessToken, refreshToken, profile, done) => {
 
         try {
-            console.log("profile", profile)
+            
             const user = await User.findOne({ where: { email: profile.emails[0].value }})
 
             if (user) {
@@ -78,11 +79,35 @@ passport.deserializeUser(( user, done) => {
 passport.use(new GithubStrategy({
     clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: githubCallback
-    
+    callbackURL: githubCallback,
+    scope: [ 'user:email' ],
   },
 
-    function(accessToken, refreshToken, profile, done) { // profile means user information
-        done(null, profile)
+  async (accessToken, refreshToken, profile, done) => {
+    // console.log("profile", profile);
+    // console.log("profile.email", profile.email)
+
+    try {
+        
+        
+        const user = await User.findOne({ where: { email: profile.email }})
+
+        if (user) {
+            return done(null, user);
+        } else {
+
+            const newUser = await User.create({
+                oauthId: profile.id,
+                username: profile.displayName,
+                email: profile.emails[0].value,
+                hashedPassword: bcrypt.hashSync(googleUserPwd),
+                photos: [ profile.photos[0].value ]
+            });
+            return done(null, newUser)
+        }
+
+    } catch(err) {
+        return done(err, null)
     }
+}
 ));

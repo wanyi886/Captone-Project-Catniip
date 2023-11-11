@@ -10,6 +10,8 @@ const secure = require('ssl-express-www');
 const passport = require("passport");
 require('https').globalAgent.options.rejectUnauthorized = false;
 require("./passport");
+const bodyParser = require("body-parser");
+
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -23,6 +25,7 @@ app.use(secure);
 app.use(morgan('dev'));
 app.use(cookieParser()); // parsing cookies
 app.use(express.json()); // parsing JSON bodies of requests with Content-Type of "application/json"
+app.use(bodyParser.urlencoded({ extended: true }));
 
 if (!isProduction) {
   app.use(cors({

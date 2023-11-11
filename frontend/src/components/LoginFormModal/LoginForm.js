@@ -63,10 +63,10 @@ function LoginForm(hideModal) {
                   <img src={Google} alt="" className="icon"/>
                   Continue with Google
               </div>
-              <div className="loginButton github" onClick={github}>
+              {/* <div className="loginButton github" onClick={github}>
                   <img src={Github} alt="" className="icon"/>
                   Continue with Github
-              </div>
+              </div> */}
           </div>
 
           <div className="center">

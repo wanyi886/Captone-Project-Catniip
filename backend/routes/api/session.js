@@ -24,7 +24,7 @@ router.get("/google/callback", passport.authenticate("google", {
     failureRedirect: "/login/failed",
 }));
 
-router.get("/github", passport.authenticate("github", { scope: ["profile", "email"] } ));
+router.get("/github", passport.authenticate("github", { scope: [ 'user:email' ] } ));
 
 router.get("/github/callback", passport.authenticate("github", {
     successRedirect: `${CLIENT_URL}/products`,
