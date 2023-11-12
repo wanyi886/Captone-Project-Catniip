@@ -4,6 +4,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Review, User } = require('../../db/models');
+const { createUploadURL } = require('../../utils/s3')
 
 const router = express.Router();
 
@@ -32,11 +33,29 @@ const validateReview = [
   }))
 
   // create a review
-  router.post('/', validateReview, handleValidationErrors, asyncHandler(async(req, res) => {
+  router.post('/', validateReview, asyncHandler(async(req, res) => {
     
-    const data = req.body;
+    const {
+      userId,
+      productId,
+      score,
+      title,
+      description,
+      imgUrl
+    } = req.body;
+
+
+    // const url = await createUploadURL();
+    console.log("req.body!!!!!!!!!", req.body)
     
-    const newReview = await Review.create(data);
+    const newReview = await Review.create({
+      userId,
+      productId,
+      score,
+      title,
+      description,
+      imgUrl
+    });
     const review = await Review.findAll(
       {
         where: { id: newReview.id },

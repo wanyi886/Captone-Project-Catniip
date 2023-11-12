@@ -8,14 +8,16 @@ const sessionRouter = require('./session');
 const usersRouter = require('./users');
 const productsRouter = require('./products');
 const ordersRouter = require('./orders');
-const reviewsRouter = require('./reviews')
+const reviewsRouter = require('./reviews');
+const awsRouter = require('./aws')
 
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/products', productsRouter);
 router.use('/orders', ordersRouter);
-router.use('/reviews', reviewsRouter)
+router.use('/reviews', reviewsRouter);
+router.use('/file', awsRouter);
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
