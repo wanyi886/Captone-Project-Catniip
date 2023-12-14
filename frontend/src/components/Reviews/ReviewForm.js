@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import { addOneReview } from "../../store/reviews"
 import StarRating from './StarRating';
+import Cookies from 'js-cookie';
+
 
 function ReviewForm({ productId, hideModal }) {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ function ReviewForm({ productId, hideModal }) {
   // }, [score, title, description])
 
   const validate = () => {
-    const errors = [];
+    // const errors = [];
     if (Number(selectedStars) < 1) errors.push("Please click stars to give ratings")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
@@ -53,11 +55,44 @@ function ReviewForm({ productId, hideModal }) {
     // validate()
   }
 
+  const handleImgChange = async () => {
+    const res = await fetch('http://localhost:5000/api/file/imgUrl');
+
+    
+    const { url } = await res.json()
+    setImgUrl(url)
+  }
+  const validFileTypes = ['image/jpg', 'image/jpeg', 'image/png',];
+
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    console.log(file)
+
+    // if ( !validFileTypes.find(type => type === file.type)) {
+    //   // errors.push("File must be in JPG/PNG/JPEG format");
+    //   return;
+    // } 
+    const form = new FormData();
+    form.append('image', file)
+    const res = await fetch('/api/file/upload', {
+      method: 'POST',
+      headers: {
+        // can't use csrfFetch here, cause the image file can't be parsed in 'application/json'
+        'XSRF-Token': Cookies.get('XSRF-TOKEN')
+      },
+      body: form
+    })
+
+    // const data = await res.json();
+    console.log("#############", res)
+    
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     validate()
-    
+ 
     if(errors.length === 0 && title && description) {
 
       const payload = {
@@ -117,6 +152,18 @@ function ReviewForm({ productId, hideModal }) {
               value={description}
             >
             </textarea>
+          </div>
+
+          <div className='form-label'>
+            <label htmlFor='upload-image'>Upload Image</label>
+          </div>
+          <div className='form-input'>
+            <input
+              name="upload-image"
+              onChange={handleUpload}
+              type='file'
+            >
+            </input>
           </div>
 
           <div className='new-review-btn-area'>

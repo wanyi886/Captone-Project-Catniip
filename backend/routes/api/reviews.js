@@ -15,7 +15,7 @@ const validateReview = [
     check('description')
       .exists({checkFalsy: true})
       .withMessage('Description cannot be empty.'),
-  ]
+]
 
   
   // load reviews under a product
