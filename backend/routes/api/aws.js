@@ -18,13 +18,15 @@ const upload = multer({
 router.post('/upload', upload.single("image"), asyncHandler(async (req, res) => {
    
     const { file } = req;
-    console.log("file in upload route", file)
+    // console.log("file in upload route", file)
 
-    const { error, key } = uploadToS3({ file });
+    const { error, url, key } = await uploadToS3({ file });
+
+    console.log("in the /upload backend", url)
 
     if (error) return res.status(500).json({ message: error.message})
 
-    return res.status(201).json({ key })
+    return res.status(201).json({ url: url, key: key })
 
 
 }))

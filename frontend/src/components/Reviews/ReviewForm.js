@@ -55,23 +55,10 @@ function ReviewForm({ productId, hideModal }) {
     // validate()
   }
 
-  const handleImgChange = async () => {
-    const res = await fetch('http://localhost:5000/api/file/imgUrl');
-
-    
-    const { url } = await res.json()
-    setImgUrl(url)
-  }
-  const validFileTypes = ['image/jpg', 'image/jpeg', 'image/png',];
-
   const handleUpload = async (e) => {
     const file = e.target.files[0];
-    console.log(file)
+    // console.log(file)
 
-    // if ( !validFileTypes.find(type => type === file.type)) {
-    //   // errors.push("File must be in JPG/PNG/JPEG format");
-    //   return;
-    // } 
     const form = new FormData();
     form.append('image', file)
     const res = await fetch('/api/file/upload', {
@@ -83,8 +70,8 @@ function ReviewForm({ productId, hideModal }) {
       body: form
     })
 
-    // const data = await res.json();
-    console.log("#############", res)
+    const { url, key } = await res.json();
+    setImgUrl(`https://project-catniip.s3.us-west-1.amazonaws.com/${key}`)
     
   }
 
