@@ -69,7 +69,7 @@
 
 .review-img-container {
   margin-top: 7px;
-  width: 8vw;
+  width: 9vw;
 }
 
 .rating-date {
@@ -80,6 +80,7 @@
 .review-img-container img {
   width: 100%;
   object-fit: cover;
+  height: 9vw;
   border-radius: 5px;
 }
 
