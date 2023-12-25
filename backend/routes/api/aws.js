@@ -4,7 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 const multer = require('multer');
 const { memoryStorage } = require('multer');
-const { uploadToS3 } = require('../../utils/s3');
+const { uploadToS3, deleteFromS3 } = require('../../utils/s3');
 
 // from multer:
 
@@ -22,11 +22,25 @@ router.post('/upload', upload.single("image"), asyncHandler(async (req, res) => 
 
     const { error, url, key } = await uploadToS3({ file });
 
-    console.log("in the /upload backend", url)
 
     if (error) return res.status(500).json({ message: error.message})
 
     return res.status(201).json({ url: url, key: key })
+
+
+}));
+
+router.delete("/:imgKey", asyncHandler(async (req, res) => {
+   
+    const imgKey = req.params.imgKey;
+    // console.log("file in upload route", file)
+
+    const { error, key } = await deleteFromS3({ imgKey });
+
+
+    if (error) return res.status(500).json({ message: error.message})
+
+    return res.status(200).json({ key: key })
 
 
 }))

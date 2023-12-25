@@ -124,7 +124,7 @@ function Reviews ({productId}) {
                   <button onClick={() => handleConfirmClick(review)} className='delete'>Delete</button>
                   {showConfirm && (
                     <Modal onClose={() => setShowConfirm(false)} className="modal">
-                      <ConfirmModal reviewId={modalData.id} hideModal={() => setShowConfirm(false)}/>
+                      <ConfirmModal review={modalData} hideModal={() => setShowConfirm(false)}/>
                     </Modal>
                     )}
                 </div>

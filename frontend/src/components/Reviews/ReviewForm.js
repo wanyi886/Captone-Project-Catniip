@@ -70,7 +70,7 @@ function ReviewForm({ productId, hideModal }) {
       body: form
     })
 
-    const { url, key } = await res.json();
+    const { key } = await res.json();
     setImgUrl(`https://project-catniip.s3.us-west-1.amazonaws.com/${key}`)
     
   }
@@ -132,7 +132,7 @@ function ReviewForm({ productId, hideModal }) {
             <label htmlFor='description'>Description</label>
           </div>
 
-          <div className='form-input des'>
+          <div className='form-input'>
             <textarea
               name="description"
               onChange={handleDesChange}

@@ -28,7 +28,7 @@ const uploadToS3 = async ({ file }) => {
     })
 
     const url = await getSignedUrl(s3, getCommand);
-    console.log("url!!!", url)
+    // console.log("url!!!", url)
 
     const putCommand = new PutObjectCommand({
         Bucket: bucketname,
@@ -47,11 +47,20 @@ const uploadToS3 = async ({ file }) => {
 
 }
 
-const deleteFromS3 = async() => {
+const deleteFromS3 = async({ imgKey }) => {
     const deleteCommand = new DeleteObjectCommand({
         Bucket: bucketname,
-        Key: key
+        Key: imgKey
     })
+
+    try {
+    
+        await s3.send(deleteCommand);
+        return { key: imgKey }
+    } catch(error) {
+        console.error('Error deleting file:', error)
+    }
+
 }
 
-module.exports = { uploadToS3 };
+module.exports = { uploadToS3, deleteFromS3 };

@@ -75,13 +75,20 @@ const deleteReview = (id) => ({
   payload: id
 })
 
-export const removeOneReview = (id) => async(dispatch) => {
-  const res = await csrfFetch(`/api/reviews/${id}`, {
+export const removeOneReview = (review) => async(dispatch) => {
+  
+  const res1 = await csrfFetch(`/api/reviews/${review.id}`, {
     method: "DELETE",
   })
 
-  if (res.ok) {
-    const reviewId = await res.json();
+  const imgKey = await review.imgUrl.split("/")[3]
+
+  const res2 = await csrfFetch(`/api/file/${imgKey}`, {
+    method: "DELETE",
+  })
+
+  if (res1.ok) {
+    const reviewId = await res1.json();
     dispatch(deleteReview(reviewId))
   }
 }

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeOneReview } from '../../store/reviews';
+import Cookies from 'js-cookie';
 
-function ConfirmModal({ reviewId, hideModal }) {
+function ConfirmModal({ review, hideModal }) {
     const dispatch = useDispatch();
-    const deleteHandler = () => {
-      dispatch(removeOneReview(reviewId))
+    const deleteHandler = async () => {
+        dispatch(removeOneReview(review))
+    
       hideModal()
     }
 
