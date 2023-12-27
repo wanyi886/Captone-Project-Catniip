@@ -22,7 +22,7 @@ function Reviews ({productId}) {
   const reviews = allReviews.filter( (review) => review.productId === Number(productId))
 
 
-  console.log("reviews in component", reviews);
+  // console.log("reviews in component", reviews);
   // console.log("test", test)
   
 

@@ -117,8 +117,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 330px;
-  height: 45vh; /* Adjust this to suit your needs */
+  width: 380px;
+  height: 460px; /* Adjust this to suit your needs */
 }
 
 .new-review-h1,

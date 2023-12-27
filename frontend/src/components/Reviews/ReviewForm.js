@@ -36,7 +36,7 @@ function ReviewForm({ productId, hideModal }) {
   // }, [score, title, description])
 
   const validate = () => {
-    // const errors = [];
+    const errors = [];
     if (Number(selectedStars) < 1) errors.push("Please click stars to give ratings")
     if (!title) errors.push("Title cannot be empty.")
     if (!description) errors.push("Description cannot be empty.")
@@ -116,7 +116,19 @@ function ReviewForm({ productId, hideModal }) {
           </ul>
 
           <div className='form-label'>
-            <label htmlFor='title'>Title</label>
+            <label htmlFor='upload-image'>Upload Image</label>
+          </div>
+          <div className='form-input'>
+            <input
+              name="upload-image"
+              onChange={handleUpload}
+              type='file'
+            >
+            </input>
+          </div>
+
+          <div className='form-label'>
+            <label htmlFor='title'>Title *</label>
           </div>
           <div className='form-input'>
             <input
@@ -129,7 +141,7 @@ function ReviewForm({ productId, hideModal }) {
           </div>
 
           <div className='form-label'>
-            <label htmlFor='description'>Description</label>
+            <label htmlFor='description'>Description *</label>
           </div>
 
           <div className='form-input'>
@@ -139,18 +151,6 @@ function ReviewForm({ productId, hideModal }) {
               value={description}
             >
             </textarea>
-          </div>
-
-          <div className='form-label'>
-            <label htmlFor='upload-image'>Upload Image</label>
-          </div>
-          <div className='form-input'>
-            <input
-              name="upload-image"
-              onChange={handleUpload}
-              type='file'
-            >
-            </input>
           </div>
 
           <div className='new-review-btn-area'>

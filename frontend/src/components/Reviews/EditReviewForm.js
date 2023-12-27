@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import { updateOneReview } from "../../store/reviews"
 import StarRating from './StarRating';
+import Cookies from 'js-cookie';
 
 function EditReviewForm({ review, reviewId, hideModal }) {
   const dispatch = useDispatch();
@@ -39,6 +40,26 @@ function EditReviewForm({ review, reviewId, hideModal }) {
     if (!description) errors.push("Description cannot be empty.")
 
     setErrors(errors)
+  }
+
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    // console.log(file)
+
+    const form = new FormData();
+    form.append('image', file)
+    const res = await fetch('/api/file/upload', {
+      method: 'POST',
+      headers: {
+        // can't use csrfFetch here, cause the image file can't be parsed in 'application/json'
+        'XSRF-Token': Cookies.get('XSRF-TOKEN')
+      },
+      body: form
+    })
+
+    const { key } = await res.json();
+    setImgUrl(`https://project-catniip.s3.us-west-1.amazonaws.com/${key}`)
+    
   }
 
 
@@ -80,6 +101,56 @@ function EditReviewForm({ review, reviewId, hideModal }) {
 
   }
 
+  // return (
+
+  //   <div className='new-review-modal'>
+  //     <div className='h1-container'>
+  //       <h1 className='new-review-h1'>Edit Your Review</h1>
+  //     </div>
+  //     <StarRating onStarClick={handleStarClick} score={review.score}/>
+  //     <div className='form-container'>
+  //       <form onSubmit={handleSubmit}>
+  //         <ul className='error-list'>
+  //           {errors && errors.map((error) => <li key={error}>{error}</li>)}
+  //         </ul>
+
+  //         <div className='form-label'>
+  //           <label htmlFor='title'>Title</label>
+  //         </div>
+  //         <div className='form-input'>
+  //           <input
+  //             name="title"
+  //             onChange={handleTitleChange}
+  //             value={title}
+  //             type='text'
+  //           >
+  //           </input>
+  //         </div>
+
+  //         <div className='form-label'>
+  //           <label htmlFor='description'>Description</label>
+  //         </div>
+
+  //         <div className='form-input des'>
+  //           <textarea
+  //             name="description"
+  //             onChange={handleDesChange}
+  //             value={description}
+  //           >
+  //           </textarea>
+  //         </div>
+
+  //         <div className='new-review-btn-area'>
+  //           <button type='submit' disabled={errors.length > 0 || !title || !description } className="submit">Submit</button>
+  //           <button type="button" onClick={hideModal} className="cancel">Cancel</button>
+  //         </div>
+
+  //       </form>
+  //     </div>
+
+  //   </div>
+
+  // )
   return (
 
     <div className='new-review-modal'>
@@ -94,7 +165,19 @@ function EditReviewForm({ review, reviewId, hideModal }) {
           </ul>
 
           <div className='form-label'>
-            <label htmlFor='title'>Title</label>
+            <label htmlFor='upload-image'>Choose another Image</label>
+          </div>
+          <div className='form-input'>
+            <input
+              name="upload-image"
+              onChange={handleUpload}
+              type='file'
+            >
+            </input>
+          </div>
+
+          <div className='form-label'>
+            <label htmlFor='title'>Title *</label>
           </div>
           <div className='form-input'>
             <input
@@ -107,10 +190,10 @@ function EditReviewForm({ review, reviewId, hideModal }) {
           </div>
 
           <div className='form-label'>
-            <label htmlFor='description'>Description</label>
+            <label htmlFor='description'>Description *</label>
           </div>
 
-          <div className='form-input des'>
+          <div className='form-input'>
             <textarea
               name="description"
               onChange={handleDesChange}
@@ -120,7 +203,8 @@ function EditReviewForm({ review, reviewId, hideModal }) {
           </div>
 
           <div className='new-review-btn-area'>
-            <button type='submit' disabled={errors.length > 0 || !title || !description } className="submit">Submit</button>
+            {/* <button type='submit' disabled={errors.length > 0 || !title || !description || Number(selectedStars) < 1} className="submit">Submit</button> */}
+            <button type='submit'  className="submit">Submit</button>
             <button type="button" onClick={hideModal} className="cancel">Cancel</button>
           </div>
 
