@@ -9,14 +9,14 @@ const secretAccessKey =  process.env.AWS_SECRET_ACCESS_KEY;
 const region =  process.env.AWS_REGION;
 const bucketname = process.env.S3_BUCKET;
 
-const s3 = new S3Client()
+// const s3 = new S3Client()
 
-// const s3 = new AWS.S3({
-//     region,
-//     accessKeyId,
-//     secretAccessKey,
-//     signatureVersion: 'v4'
-// })
+const s3 = new S3Client({
+    region,
+    accessKeyId,
+    secretAccessKey,
+    signatureVersion: 'v4'
+})
 
 const uploadToS3 = async ({ file }) => {
 
