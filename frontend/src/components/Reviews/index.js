@@ -108,10 +108,6 @@ function Reviews ({productId}) {
                 <div className={review.imgUrl !== ""? "review-img-container" : ""}>
                   <img src={review.imgUrl}></img>
                 </div>
-
-                {/* <div className="review-img-container">
-                  <img src={review.imgUrl}></img>
-                </div> */}
                 
                 {( !sessionUser || sessionUser.id !== review.userId )? "" : 
                 <div className='button-area'>
