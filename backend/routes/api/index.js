@@ -2,7 +2,8 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const { setTokenCookie } = require('../../utils/auth');
 const { restoreUser, requireAuth } = require( '../../utils/auth');
-const { User} = require('../../db/models')
+const { User} = require('../../db/models');
+const path = require('path');
 
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
@@ -21,6 +22,28 @@ router.use('/file', awsRouter);
 
 router.post('/test', function(req, res) {
   res.json({ requestBody: req.body });
+})
+
+router.get('/testtest', function(req, res) {
+  res.send("**********************")
+})
+
+router.get('/resume', function (req, res) {
+  // const pdfFilePath = path.join(__dirname, '..','..','..', 'frontend', 'public', 'pdf', 'Wan_Yi_Lee_Resume_2024.pdf');
+  // res.download(pdfFilePath, 'Wan_Yi_Lee_Resume_2024.pdf', (err) => {
+  //   if (err) {
+  //     res.status(404).send('File not found');
+  //   }
+  // })
+  
+  
+  res.sendFile(path.resolve("../frontend/public/pdf/Wan_Yi_Lee_Resume_2024.pdf"), (err) => {
+     if (err) {
+      res.status(404).send('Error: File not found.');
+    }
+  });
+ 
+
 })
 
 // test route 1

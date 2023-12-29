@@ -14,7 +14,7 @@ function Footer () {
           <a href="https://github.com/wanyi886/Captone-Project-Catniip" target="_blank">
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="https://wanyi886.github.io/" target="_blank">
+          <a href="/api/resume" target="_blank">
             <i class="fa-solid fa-folder-open"></i>
           </a>
         </div>
