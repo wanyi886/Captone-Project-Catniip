@@ -36,7 +36,7 @@ function HomePage() {
 
       </div>
 
-      <div className="second-area">
+      {/* <div className="second-area">
         <div className='second-area-words-container'>
           <h1 className='second-area-h1'>Where are we</h1>
           <p className='second-area-words'>Catniip is a One-Stop-Shop for happy and healthy cats. As Cat Lovers, you can buy delecate products from food to carrier. If you have products that could level up cat's life, list it here! </p>
@@ -45,7 +45,7 @@ function HomePage() {
           <img src={image2} alt="cat-img-2"/>
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   )
