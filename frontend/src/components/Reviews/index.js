@@ -94,8 +94,7 @@ function Reviews ({productId}) {
               <Modal onClose={() => setShowLogin(false)} className="modal">
                 <LoginForm hideModal={() => setShowLogin(false)}/>
               </Modal>
-              )
-              }
+              )}
             </div>
             {reviews?.map(review => (
               <div key={review.id} className="review-container">
@@ -130,7 +129,25 @@ function Reviews ({productId}) {
             </div>
           )
           :
-          ( <div className="no-review">No Reviews for this product</div> )
+          ( 
+            <div className="reviews-outter-container">
+              <div className="no-review">No Reviews for this product</div> 
+              <div className='reviews-summary-container'>
+              <button className="review-button" onClick={showModal}>Write a review</button>
+              {showReview && (
+              <Modal onClose={() => setShowReview(false)} className="modal">
+                <ReviewForm productId={productId} hideModal={hideModal}/>
+              </Modal>
+              )}
+              {showLogin && (
+              <Modal onClose={() => setShowLogin(false)} className="modal">
+                <LoginForm hideModal={() => setShowLogin(false)}/>
+              </Modal>
+              )}
+            </div>
+            </div>
+            
+          )
         }
       </div>
   )
