@@ -27,9 +27,7 @@ function MyOrders () {
 
   sortListFunc(userOrdersArray);
 
-  // console.log("userOrdersArray", userOrdersArray)
-  // console.log("first ele in orders array: order", userOrdersArray[1])
-  // console.log("orderItems of first order", userOrdersArray[1].OrderItems)
+ 
 
 
   useEffect(() => {
@@ -55,6 +53,8 @@ function MyOrders () {
 
   let component;
 
+  console.log("session uer!!!!", sessionUser)
+
   if (!sessionUser) {
     component = (
       <div className="my-orders-page-body">
@@ -65,6 +65,8 @@ function MyOrders () {
   }
 
   const orderIsEmpty = Object.keys(userOrdersData).length === 0;
+
+  // console.log("%%%%%%%%%", orderIsEmpty)
 
   if (sessionUser && orderIsEmpty) {
     component = (

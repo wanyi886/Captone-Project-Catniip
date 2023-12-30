@@ -1,0 +1,27 @@
+.index {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-family: 'Rubik', sans-serif;
+    
+}
+
+.index-span {
+    margin: 20px 8px 12px 8px;
+    text-decoration: none;
+    color: rgb(98, 98, 98);
+}
+
+.index-link {
+    text-decoration: none;
+    color: rgb(98, 98, 98);
+    font-size: 20px;
+}
+
+.type{
+    text-decoration: underline;
+}
+
+.index-link:hover {
+    color: #cf8193
+}
