@@ -54,6 +54,7 @@ function ProductsDisplay({products, cartArray}) {
   }
 
   return (
+    
     <div className="products-container">
         {products.map((product) => (
           <div className="product-container" key={product?.id}  >

@@ -4,6 +4,8 @@ import {  useHistory } from 'react-router-dom'
 import './AllProducts.css';
 import { loadProductsPage } from "../../store/products"
 import ProductsDisplay from "../ProductsDisplay/ProductsDisplay";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 
 function AllProducts() {
@@ -20,7 +22,16 @@ function AllProducts() {
 
   return (
     <div className="products-page-body">
-      <h1 className="all-products-h1">All Products</h1>
+      <div className='index'>
+        <span className='index-span home'>
+        <Link to="/" className='index-link'>Home</Link>
+        </span>
+        <span className='index-span'>{">"}</span>
+        <span className='index-span type'>
+          <Link to="/products" style={{ textDecoration: 'none' }} className='index-link'>All Products</Link>
+        </span>
+      </div>
+      {/* <h1 className="all-products-h1">All Products</h1> */}
       <ProductsDisplay products={products} cartArray={cartArray}/>
     </div>
   )
