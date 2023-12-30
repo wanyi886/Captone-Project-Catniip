@@ -41,18 +41,22 @@ function Navigation({ isLoaded }){
   return (
     // <nav>
       <div className='navbar-container sticky'>
-        <div className='navbar-logo-tray'></div>
-          <Link to="/">
-            <img src={logo} className="navbar-logo" alt="logo"/>
-          </Link>
-        <div className='navbar-right-container'>
-          <div className='navbar-icon-tray'>
-            <Link onMouseEnter={mouseEnterHandler}  onMouseLeave={mouseLeaveHandler} className="navbar-SHOP-Link" to="/products">
+        <div className='navbar-left-container'></div>
+          <div className='logo-container'>
+            <Link to="/">
+              <img src={logo} className="navbar-logo" alt="logo"/>
+            </Link>
+          </div>
+        <div className='navbar-middle-container'>
+          <Link onMouseEnter={mouseEnterHandler}  onMouseLeave={mouseLeaveHandler} className="navbar-SHOP-Link" to="/products">
               <div className='navbar-SHOP'>SHOP</div>
               {showDropDown &&
                 <ShopDropDown />
               }
-            </Link>
+          </Link>
+        </div>
+        <div className='navbar-right-container'>
+          <div className='navbar-icon-tray'>
             <Link to="/cart">
               <i class="fa-solid fa-cart-shopping"></i>
             </Link>
