@@ -10,9 +10,6 @@ This is a clone of [Wild One](https://wildone.com/). Catniip is a cat supplies w
   - [User Stories](https://github.com/wanyi886/Captone-Project-Catniip/wiki/User-Stories)
   - [WireFrame](https://github.com/wanyi886/Captone-Project-Catniip/wiki/Wireframe)
 
-## Link to live site
-
-Hosted on Heroku: [Catniip](https://catniip.herokuapp.com/)
 
 ## Technologies
 
