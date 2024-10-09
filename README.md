@@ -54,6 +54,12 @@ Catniip was built using the following technologies:
 ### My Orders
 <img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/09-orders-page.png" />
 
+### Reviews
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/10-reviews.png" />
+
+### Add Reviews
+<img src="https://github.com/wanyi886/Captone-Project-Catniip/blob/main/wiki-images/screenshots/11-reviews-add-review.png" />
+
 
 ## Getting started
 
