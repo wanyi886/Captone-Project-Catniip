@@ -18,7 +18,7 @@ function ProfileButton({ user }) {
     setShowMenu(false);
   };
 
-  let url = "http://localhost:5000/api/session/logout";
+  let url = "http://localhost:5001/api/session/logout";
 
   if (process.env.NODE_ENV === 'production') {
     url = "https://catniip-26d640bb2067.herokuapp.com/api/session/logout"
@@ -26,7 +26,7 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    // window.open("http://localhost:5000/api/session/logout", "_self" ); // for social login
+    // window.open("http://localhost:5001/api/session/logout", "_self" ); // for social login
     window.open(url, "_self");
     dispatch(sessionActions.logout()); // for regular login
   };

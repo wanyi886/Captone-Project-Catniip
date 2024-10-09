@@ -21,8 +21,8 @@ function LoginForm(hideModal) {
     window.location.href = currentLocation
   }
 
-  let googleUrl = "http://localhost:5000/api/session/google";
-  let githubUrl =  "http://localhost:5000/api/session/github";
+  let googleUrl = "http://localhost:5001/api/session/google";
+  let githubUrl =  "http://localhost:5001/api/session/github";
   
   if (process.env.NODE_ENV === 'production') {
     googleUrl = "https://catniip-26d640bb2067.herokuapp.com/api/session/google";
@@ -30,11 +30,11 @@ function LoginForm(hideModal) {
   } 
 
   const google= () => {
-    // window.open("http://localhost:5000/api/session/google", "_self");
+    // window.open("http://localhost:5001/api/session/google", "_self");
     window.open(googleUrl, "_self");
   }
   const github= () => {
-    // window.open("http://localhost:5000/api/session/github", "_self");
+    // window.open("http://localhost:5001/api/session/github", "_self");
     window.open(githubUrl, "_self");
   }
 

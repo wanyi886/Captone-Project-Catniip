@@ -22,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/wanyi886/W12D4-Authenticate-Me/issues"
   },
-  "homepage": "https://github.com/wanyi886/W12D4-Authenticate-Me#readme"
+  "homepage": "https://github.com/wanyi886/W12D4-Authenticate-Me#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.4",
+    "sequelize-cli": "^6.6.2"
+  }
 }
