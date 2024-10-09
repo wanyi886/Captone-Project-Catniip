@@ -80,9 +80,11 @@ Catniip was built using the following technologies:
 --`npx dotenv sequelize db:migrate`
 --`npx dotenv sequelize db:seed:all`
 
-8. Start the serveices in the backend directory.
+8. Start the serveices in the backend directory. \
 --`npm start`
+
 9. Start the services in the frontend directory, which should open the project in your default browser. If not, navigate to http://localhost:3000.
+
 --`npm start`
 10. You can use the Demo user or create an account to begin using eventLight.
 
