@@ -60,7 +60,7 @@ Catniip was built using the following technologies:
 
 ## Getting started
 
-0. Make sure you have PostgreSQL / npm / Sequelize
+0. Make sure you have installed PostgreSQL / npm / Sequelize
 
 1. Clone this repo.
 -- `gh repo clone wanyi886/Captone-Project-Catniip`
